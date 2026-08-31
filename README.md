@@ -1,13 +1,13 @@
-# Agentic AI Harness Engineering — CSA GCR 2026
+# Agentic AI Harness Engineering — Packt
 
-English GitHub Pages edition of Ken Huang’s CSA Greater China Region 2026 keynote.
+English GitHub Pages edition of Ken Huang’s Packt harness engineering keynote.
 
 **Live deck:** open `slides.html` (or the GitHub Pages URL after deploy).
 
 ## What this is
 
 The source talk is the bilingual Google Slides deck
-[Agentic AI Harness Engineering — CSA GCR 2026](https://docs.google.com/presentation/d/16UoKTeZEsF4ZGLOaSi_XjrtdbXMiXIUJ5IRTLp3ntDU/edit).
+[Agentic AI Harness Engineering](https://docs.google.com/presentation/d/16UoKTeZEsF4ZGLOaSi_XjrtdbXMiXIUJ5IRTLp3ntDU/edit).
 This site translates that deck into English and presents it in the same interactive template as
 [the Packt Harness Engineering masterclass](https://kenhuangus.github.io/packt-harness/slides.html),
 including the speaker introduction.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the English CSA GCR GitHub Pages deck from slides_data.json + packt-harness CSS."""
+"""Build the English Packt GitHub Pages deck from slides_data.json + packt-harness CSS."""
 from __future__ import annotations
 
 import json
@@ -314,7 +314,7 @@ JS = r"""
               <img src="assets/images/ken-head-shot.png" alt="Ken Huang" class="slide-1-avatar-img" />
             </div>
             <div class="slide-1-instructor-info">
-              <div class="slide-1-instructor-badge"><span>Keynote Speaker &middot; CSA GCR 2026</span></div>
+              <div class="slide-1-instructor-badge"><span>Keynote Speaker &middot; Packt</span></div>
               <div class="slide-1-instructor-name">Ken Huang, CISSP</div>
               <div class="slide-1-instructor-titles">
                 <div class="slide-1-title-item">
@@ -488,7 +488,7 @@ JS = r"""
         <div id="slide-content-wrap" class="thanks-wrap idea-slide">
           <div>
             ${svgFor(23)}
-            <div class="thanks-kicker">CSA GCR 2026</div>
+            <div class="thanks-kicker">Packt</div>
             <div class="thanks-title">Thank you</div>
             <div class="thanks-book">${esc(slide.raw_lines[1] || '')}</div>
             <div class="thanks-link" style="margin-top:0.85rem;">
@@ -638,7 +638,7 @@ def main() -> None:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agentic AI Harness Engineering — CSA GCR 2026</title>
+  <title>Agentic AI Harness Engineering — Packt</title>
   <meta name="description" content="English keynote deck: from software engineering to harness engineering. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
@@ -652,7 +652,7 @@ def main() -> None:
   <header>
     <div class="header-left">
       <img src="assets/images/harness_app_icon.png" alt="Harness Engineering Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; display:inline-block;" />
-      <div class="brand-title">Harness Engineering · CSA GCR 2026</div>
+      <div class="brand-title">Harness Engineering · Packt</div>
     </div>
     <div class="controls">
       <a href="index.html" class="btn">🏠 Home Site</a>

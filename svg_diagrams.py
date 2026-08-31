@@ -57,7 +57,7 @@ def _label(x, y, text, size=12, fill=DK, anchor="middle", weight="800"):
 
 SVG_MAP = {
     "1": _svg("s1", f'''
-  {_label(400, 22, "HARNESS ENGINEERING  —  the umbrella discipline", 15)}
+  {_label(400, 22, "GRAPH ENGINEERING  —  the multi-agent layer", 15)}
   <path d="M 80 78 Q 400 8 720 78" fill="none" stroke="{DK}" stroke-width="3.2"/>
   <path d="M 80 78 L 720 78" stroke="{DK}" stroke-width="2.2"/>
   {_box(70, 96, 155, 72, "Prompt", "define the task")}
@@ -266,7 +266,7 @@ SVG_MAP = {
 ''', 172),
 
     "23": _svg("s23", f'''
-  {_label(400, 30, "Build the harness. Graph engineering is one layer under it.", 15)}
+  {_label(400, 30, "Build the graph. Graph engineering is the multi-agent layer of the harness.", 15)}
   {_box(40, 56, 170, 100, "Prompt", "")}
   {_box(230, 56, 170, 100, "Context", "")}
   {_box(420, 56, 170, 100, "Loop", "")}

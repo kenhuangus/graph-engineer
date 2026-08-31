@@ -638,8 +638,8 @@ def main() -> None:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agentic AI Harness Engineering — Packt</title>
-  <meta name="description" content="English keynote deck: from software engineering to harness engineering. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
+  <title>Agentic AI Graph Engineering — Packt</title>
+  <meta name="description" content="Packt deck on graph engineering for agentic AI. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
@@ -651,8 +651,8 @@ def main() -> None:
 <body>
   <header>
     <div class="header-left">
-      <img src="assets/images/harness_app_icon.png" alt="Harness Engineering Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; display:inline-block;" />
-      <div class="brand-title">Harness Engineering · Packt</div>
+      <img src="assets/images/harness_app_icon.png" alt="Graph Engineering Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; display:inline-block;" />
+      <div class="brand-title">Graph Engineering · Packt</div>
     </div>
     <div class="controls">
       <a href="index.html" class="btn">🏠 Home Site</a>

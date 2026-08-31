@@ -1,13 +1,13 @@
-# Agentic AI Harness Engineering — Packt
+# Agentic AI Graph Engineering — Packt
 
-English GitHub Pages edition of Ken Huang’s Packt harness engineering keynote.
+English GitHub Pages edition of Ken Huang’s Packt graph engineering keynote.
 
 **Live deck:** open `slides.html` (or the GitHub Pages URL after deploy).
 
 ## What this is
 
 The source talk is the bilingual Google Slides deck
-[Agentic AI Harness Engineering](https://docs.google.com/presentation/d/16UoKTeZEsF4ZGLOaSi_XjrtdbXMiXIUJ5IRTLp3ntDU/edit).
+[Agentic AI Graph Engineering](https://docs.google.com/presentation/d/16UoKTeZEsF4ZGLOaSi_XjrtdbXMiXIUJ5IRTLp3ntDU/edit).
 This site translates that deck into English and presents it in the same interactive template as
 [the Packt Harness Engineering masterclass](https://kenhuangus.github.io/packt-harness/slides.html),
 including the speaker introduction.

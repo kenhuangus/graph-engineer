@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI Harness Engineering | CSA GCR 2026</title>
+  <meta name="description" content="English keynote: from software engineering to harness engineering. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --background: #F0EEE6;
+      --surface: #FAF9F5;
+      --text-primary: #141413;
+      --text-secondary: #6B6B63;
+      --rule: #E3E0D6;
+      --accent: #D97757;
+      --accent-hover: #BD5D3A;
+      --accent-fill: #F5E6DF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+      background: var(--background);
+      color: var(--text-primary);
+      line-height: 1.65;
+    }
+    h1, h2, h3 { font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight: 600; }
+    a { color: inherit; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    nav {
+      background: rgba(240, 238, 230, 0.96);
+      border-bottom: 1px solid var(--rule);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center; min-height: 72px;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .brand img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; border: 1px solid var(--accent); }
+    .brand-text { font-family: ui-serif, Georgia, serif; font-weight: 600; font-size: 1.08rem; }
+    .nav-links { display: flex; gap: 1.2rem; align-items: center; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .btn-github {
+      display: inline-flex; align-items: center;
+      background: var(--accent); border: 1px solid var(--accent);
+      color: var(--text-primary) !important; padding: 0.62rem 1.15rem;
+      border-radius: 10px; font-weight: 650 !important; text-decoration: none;
+    }
+    .btn-github:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .hero { padding: 5.5rem 0 4.5rem; border-bottom: 1px solid var(--rule); }
+    .badge-pill {
+      display: inline-flex; background: var(--accent-fill); border: 1px solid var(--rule);
+      padding: 0.42rem 0.8rem; border-radius: 999px; font-size: 0.78rem; font-weight: 650;
+      letter-spacing: 0.08em; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      max-width: 18ch; font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 0.98; letter-spacing: -0.04em; margin-bottom: 1.4rem;
+    }
+    .hero-subtitle { font-size: 1.15rem; color: var(--text-secondary); max-width: 42rem; margin-bottom: 2rem; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn-secondary {
+      color: var(--text-primary); background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 10px; padding: 0.78rem 1.4rem; font-weight: 600; text-decoration: none;
+    }
+    .speaker {
+      display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: center;
+      background: var(--surface); border: 1px solid var(--rule); border-radius: 16px;
+      padding: 1.4rem 1.6rem; margin-top: 2.4rem; max-width: 760px;
+    }
+    .speaker img {
+      width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--accent);
+    }
+    .speaker-badge {
+      display: inline-block; background: var(--accent-fill); color: var(--accent-hover);
+      border: 1px solid var(--accent); font-size: 0.75rem; font-weight: 750;
+      padding: 0.18rem 0.55rem; border-radius: 6px; letter-spacing: 0.03em; text-transform: uppercase;
+    }
+    .speaker h2 { font-size: 1.7rem; margin: 0.35rem 0 0.4rem; }
+    .speaker p { color: var(--text-secondary); font-size: 0.98rem; }
+    section { padding: 4rem 0; border-bottom: 1px solid var(--rule); }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.03em; margin-bottom: 0.7rem; }
+    .section-subtitle { color: var(--text-secondary); max-width: 40rem; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 1.2rem 1.25rem;
+    }
+    .card-icon {
+      width: 32px; height: 32px; border-radius: 8px; background: var(--accent-fill);
+      color: var(--accent-hover); font-weight: 800; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.7rem; font-size: 0.85rem;
+    }
+    .card h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+    .card p { color: var(--text-secondary); font-size: 0.95rem; }
+    footer { padding: 2rem 0 3rem; color: var(--text-secondary); font-size: 0.88rem; }
+    @media (max-width: 700px) {
+      .speaker { grid-template-columns: 1fr; text-align: center; }
+      .speaker img { margin: 0 auto; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <img src="assets/images/harness_app_icon.png" alt="Harness Engineering">
+        <div class="brand-text">Harness Engineering</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#speaker">Speaker</a></li>
+        <li><a href="#outline">Outline</a></li>
+        <li><a href="slides.html" class="nav-highlight">Slide deck</a></li>
+        <li><a href="https://github.com/kenhuangus/graph-engineer" target="_blank" class="btn-github">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="badge-pill">CSA GREATER CHINA REGION · 2026 KEYNOTE</div>
+      <h1 class="hero-title">Agentic AI Harness Engineering</h1>
+      <p class="hero-subtitle">
+        English edition of the CSA GCR keynote. Traditional software engineering specifies deterministic behavior.
+        Agentic systems need a surrounding control plane. Graph engineering is one specialization under that harness &mdash; not a competing discipline.
+      </p>
+      <div class="hero-buttons">
+        <a href="slides.html" class="btn-github">Open the 23-slide deck</a>
+        <a href="#speaker" class="btn-secondary">Meet the speaker</a>
+      </div>
+
+      <div class="speaker" id="speaker">
+        <img src="assets/images/ken-head-shot.png" alt="Ken Huang">
+        <div>
+          <div class="speaker-badge">Keynote speaker</div>
+          <h2>Ken Huang, CISSP</h2>
+          <p>
+            Adjunct Professor, University of San Francisco · Vice President, CSA Greater China Research Institute ·
+            OWASP AIVSS Project Lead · CEO, <a href="https://distributedapps.ai/">DistributedApps.ai</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="outline">
+    <div class="container">
+      <h2 class="section-title">The talk in four moves</h2>
+      <p class="section-subtitle">Translated from the original bilingual Google Slides deck into an English GitHub Pages presentation.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">01</div>
+          <h3>The discipline shift</h3>
+          <p>Software engineering specifies testable behavior. Harness engineering puts a deterministic control plane around probabilistic agents.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">02</div>
+          <h3>The Core Four</h3>
+          <p>Prompt, context, loop, and graph. Graph engineering governs multi-agent nodes, edges, and handoffs.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">03</div>
+          <h3>Control plane</h3>
+          <p>Automation, identity, memory, observability, runtime control, evaluation, scalability, and token budget.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">04</div>
+          <h3>Extensions</h3>
+          <p>Skills, plug-ins, MCP, hooks, and CLI. Inventory, least privilege, typed actions, revoke on policy failure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      English translation of
+      <a href="https://docs.google.com/presentation/d/16UoKTeZEsF4ZGLOaSi_XjrtdbXMiXIUJ5IRTLp3ntDU/edit">the CSA GCR 2026 Google Slides deck</a>.
+      Template and speaker introduction from
+      <a href="https://kenhuangus.github.io/packt-harness/slides.html">the Packt Harness Engineering masterclass</a>.
+    </div>
+  </footer>
+</body>
+</html>

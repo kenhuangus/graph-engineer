@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI Harness Engineering — CSA GCR 2026</title>
+  <meta name="description" content="English keynote deck: from software engineering to harness engineering. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F0EEE6;
+      --surface: #FAF9F5;
+      --surface-alt: #F5E6DF;
+      --ink: #141413;
+      --ink-muted: #6B6B63;
+      --rule: #E3E0D6;
+      --accent: #D97757;
+      --accent-dk: #BD5D3A;
+      --accent-sf: #F5E6DF;
+      --code-bg: #1A1A18;
+      --code-rule: #333330;
+      --font-display: ui-serif, Georgia, "Times New Roman", serif;
+      --font-body: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+      --font-code: ui-monospace, "JetBrains Mono", Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      height: 46px;
+      flex: 0 0 46px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.0rem;
+      z-index: 50;
+      gap: 0.75rem;
+      overflow-x: auto;
+    }
+    .header-left { display: flex; align-items: center; gap: 0.7rem; flex: 0 0 auto; }
+    .brand-logo {
+      width: 30px; height: 30px;
+      background: var(--accent-sf); color: var(--ink); border: 1px solid var(--rule);
+      border-radius: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+    }
+    .brand-title { font-weight: 650; font-size: 0.90rem; white-space: nowrap; }
+
+    .controls { display: flex; align-items: center; gap: 0.40rem; flex: 0 0 auto; }
+    .btn {
+      background: var(--surface); border: 1px solid var(--rule); color: var(--ink);
+      padding: 0.35rem 0.65rem; border-radius: 8px; font-weight: 600; font-size: 0.80rem;
+      cursor: pointer; transition: background-color 0.16s, border-color 0.16s; text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--accent-sf); border-color: var(--accent); }
+    .btn:focus-visible, .slide-select:focus-visible, .goto-input:focus-visible { outline: 2px solid var(--accent-dk); outline-offset: 2px; }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 700; }
+    .btn-primary:hover { background: var(--accent-sf); border-color: var(--accent-dk); color: var(--ink); }
+    
+    .goto-group {
+      display: flex;
+      align-items: center;
+      gap: 0.22rem;
+      background: var(--bg);
+      padding: 0.12rem 0.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+    }
+    .goto-input {
+      width: 48px;
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      padding: 0.25rem 0.35rem;
+      border-radius: 6px;
+      font-family: var(--font-code);
+      font-size: 0.80rem;
+      font-weight: 750;
+      text-align: center;
+      -moz-appearance: textfield;
+    }
+    .goto-input::-webkit-outer-spin-button,
+    .goto-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .btn-goto {
+      padding: 0.26rem 0.50rem;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    select.slide-select {
+      background: var(--surface); color: var(--ink); border: 1px solid var(--rule);
+      padding: 0.35rem 0.55rem; border-radius: 8px; font-family: var(--font-body);
+      font-size: 0.80rem; font-weight: 600;
+      max-width: 290px;
+    }
+
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-viewport {
+      width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      padding: clamp(0.30rem, 0.8vw, 0.70rem);
+    }
+    .slide-card {
+      width: 100%; max-width: 1540px; height: 100%;
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 12px; padding: clamp(0.80rem, 1.5vw, 1.40rem); display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .slide-header {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 0.8rem; margin-bottom: 0.35rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.35rem;
+      flex: 0 0 auto;
+    }
+    .slide-title-wrap { min-width: 0; }
+    .slide-title {
+      font-family: var(--font-display); font-size: clamp(1.75rem, 2.75vw, 2.45rem);
+      font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; color: var(--ink);
+    }
+    .slide-num-badge {
+      background: var(--accent-sf); color: var(--ink); border: 1px solid var(--rule);
+      padding: 0.22rem 0.60rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 750; white-space: nowrap;
+      flex: 0 0 auto;
+    }
+    .slide-body {
+      --fit-scale: 1;
+      --slide-body-base-size: 1.625rem;
+      flex: 1; min-height: 0; overflow-y: auto; padding-right: 0.20rem;
+      font-size: calc(var(--slide-body-base-size) * var(--fit-scale));
+      line-height: 1.50; color: var(--ink);
+    }
+
+    code {
+      font-family: var(--font-code);
+      background: var(--accent-sf);
+      color: var(--accent-dk);
+      padding: 0.08rem 0.32rem;
+      border-radius: 4px;
+      font-size: 0.90em;
+      white-space: nowrap;
+      border: 1px solid var(--rule);
+    }
+    pre code, .tree-block code, .code-editor-body code {
+      white-space: pre !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      color: inherit !important;
+    }
+    .slide-content-wrapper {
+      width: 100%;
+      display: block;
+    }
+    .slide-body > svg, .slide-svg {
+      display: block; width: 100% !important; height: auto; max-width: 100%;
+      margin: 0.35rem 0 0.65rem 0;
+    }
+
+    /* Comparison Table Styling */
+    .slide-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.35rem 0 0.60rem 0;
+      font-size: 1.10rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .slide-table th {
+      background: var(--accent-sf);
+      color: var(--ink);
+      font-weight: 750;
+      text-align: left;
+      padding: 0.45rem 0.70rem;
+      border-bottom: 1.5px solid var(--rule);
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+    }
+    .slide-table td {
+      padding: 0.40rem 0.70rem;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink);
+      line-height: 1.38;
+      vertical-align: middle;
+    }
+    .slide-table tr:last-child td {
+      border-bottom: none;
+    }
+    .slide-table tr:nth-child(even) td {
+      background: rgba(245, 230, 223, 0.25);
+    }
+
+    /* Enhanced Code Slide Layout with Line-Level Highlights */
+    .code-slide-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 1.08fr);
+      gap: 1.05rem;
+      height: 100%;
+      align-items: start;
+    }
+    @media (max-width: 1020px) {
+      .code-slide-container {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+
+    .code-editor-window {
+      background: var(--code-bg);
+      border: 1px solid var(--code-rule);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+      max-height: calc(100vh - 135px);
+    }
+    .code-editor-header {
+      background: #242320;
+      border-bottom: 1px solid var(--code-rule);
+      padding: 0.40rem 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .code-dots {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .code-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+    }
+    .dot-red { background: #E06C75; }
+    .dot-yellow { background: #E5C07B; }
+    .dot-green { background: #98C379; }
+    .code-file-tag {
+      font-family: var(--font-code);
+      font-size: 0.78rem;
+      color: #A0A09A;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .code-lang-tag {
+      background: #333330;
+      color: #D97757;
+      font-family: var(--font-code);
+      font-size: 0.70rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      color: #FAF9F5;
+      font-family: var(--font-code);
+      font-size: 1.08rem;
+      line-height: 1.48;
+      padding: 0.45rem 0;
+      margin: 0;
+      overflow-x: auto;
+      overflow-y: auto;
+    }
+
+    .code-line {
+      display: flex;
+      align-items: baseline;
+      padding: 0.06rem 0.55rem;
+      transition: background-color 0.15s;
+    }
+    .code-line:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .code-line-hl {
+      background: rgba(217, 119, 87, 0.22);
+      border-left: 3.5px solid var(--accent);
+      padding-left: calc(0.55rem - 3.5px);
+    }
+    .line-num {
+      color: #5C5C56;
+      width: 24px;
+      flex: 0 0 24px;
+      text-align: right;
+      margin-right: 8px;
+      font-size: 0.78rem;
+      user-select: none;
+    }
+    .code-line-hl .line-num {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .key-badge {
+      background: var(--accent);
+      color: #FAF9F5;
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 0.05rem 0.35rem;
+      border-radius: 3px;
+      margin-right: 8px;
+      letter-spacing: 0.03em;
+      user-select: none;
+      flex: 0 0 auto;
+    }
+    .line-code {
+      flex: 1;
+      white-space: pre;
+    }
+
+    /* Syntax Highlighting Colors */
+    .tok-kw { color: #E58A6D; font-weight: 600; }
+    .tok-str { color: #89CA78; }
+    .tok-com { color: #7F7F78; font-style: italic; }
+    .tok-dec { color: #E5C07B; font-weight: 600; }
+    .tok-typ { color: #61AFEF; font-weight: 600; }
+    .tok-fn { color: #61AFEF; font-weight: 600; }
+    .tok-cls { color: #E5C07B; font-weight: 700; }
+
+    /* Code Slide Dedicated Concepts Column */
+    .code-concepts-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.60rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 135px);
+      padding-right: 0.20rem;
+    }
+    .code-concepts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .code-concept-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 3.5px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.65rem 0.90rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .concept-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .concept-tag {
+      background: var(--accent);
+      color: #FAF9F5;
+      font-size: 0.70rem;
+      font-weight: 750;
+      padding: 0.10rem 0.42rem;
+      border-radius: 4px;
+      font-family: var(--font-code);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .concept-name {
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .concept-card-text {
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.42;
+    }
+
+    .invariant-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 3.5px solid var(--accent-dk);
+      border-radius: 8px;
+      padding: 0.65rem 0.90rem;
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.40;
+    }
+    .invariant-title {
+      font-family: var(--font-display);
+      font-size: 1.00rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.22rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Dedicated Skill Slide Layout */
+    .skill-slide-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.0fr) minmax(0, 1.15fr);
+      gap: 1.25rem;
+      height: 100%;
+      align-items: start;
+    }
+    @media (max-width: 980px) {
+      .skill-slide-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+    .skill-meta-card {
+      background: var(--surface);
+      border: 1.5px solid var(--accent);
+      border-radius: 10px;
+      padding: 1.10rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.70rem;
+      box-shadow: 0 4px 14px rgba(217, 119, 87, 0.08);
+    }
+    .skill-meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-sf);
+      color: var(--accent-dk);
+      border: 1px solid var(--accent);
+      font-family: var(--font-code);
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 0.24rem 0.60rem;
+      border-radius: 6px;
+      width: fit-content;
+    }
+    .skill-name-heading {
+      font-family: var(--font-code);
+      font-size: 1.30rem;
+      font-weight: 800;
+      color: var(--ink);
+      word-break: break-all;
+    }
+    .skill-desc-box {
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-left: 3.5px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.70rem 0.90rem;
+      font-size: 0.96rem;
+      line-height: 1.46;
+      color: var(--ink);
+    }
+    .skill-tools-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .skill-links-box {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-top: 0.3rem;
+      line-height: 1.46;
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+      border-top: 1px dashed var(--rule);
+      padding-top: 0.55rem;
+    }
+    .skill-details-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.70rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 135px);
+    }
+    .skill-detail-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 3.5px solid var(--accent-dk);
+      border-radius: 8px;
+      padding: 0.75rem 1.00rem;
+    }
+    .skill-detail-title {
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+      font-weight: 750;
+      color: var(--ink);
+      margin-bottom: 0.30rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .skill-detail-body {
+      font-size: 0.94rem;
+      color: var(--ink);
+      line-height: 1.44;
+    }
+
+    /* Monospace Tree Display for Structure Slides */
+    .tree-block {
+      background: var(--code-bg);
+      color: #FAF9F5;
+      font-family: var(--font-code);
+      font-size: 0.86rem;
+      line-height: 1.44;
+      padding: 0.80rem 1.05rem;
+      border-radius: 8px;
+      border: 1px solid var(--code-rule);
+      margin: 0.45rem 0;
+      overflow-x: auto;
+    }
+
+    /* Visual Hierarchy: Parent vs Sub Bullets */
+    .main-bullets { list-style-type: none; padding-left: 0; margin-top: 0.30rem; }
+    .main-bullets.dense-columns {
+      column-count: 2; column-gap: clamp(1.2rem, 3vw, 2.5rem); column-fill: balance;
+    }
+    .bullet-group, .primary-bullet, .sub-bullets, .sub-bullet {
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .primary-bullet {
+      font-family: var(--font-display); font-size: 1.04em; font-weight: 650; color: var(--ink);
+      margin-top: 0.35em; margin-bottom: 0.18em; position: relative; padding-left: 1.25em; line-height: 1.46;
+    }
+    .primary-bullet::before {
+      content: "◆"; color: var(--accent); font-size: 0.72em; line-height: 1; position: absolute; left: 0; top: 0.18em;
+    }
+    .sub-bullets {
+      list-style-type: none; padding-left: 1.25em; border-left: 2px solid var(--rule);
+      margin-left: 0.40em; margin-top: 0.20em; margin-bottom: 0.40em; display: flex; flex-direction: column; gap: 0.22em;
+    }
+    .sub-bullet {
+      font-size: 0.92em; color: var(--ink); margin-bottom: 0.15em; position: relative; padding-left: 1.15em;
+      line-height: 1.42;
+    }
+    .sub-bullet::before {
+      content: "›"; position: absolute; left: 0; top: -0.05em; color: var(--accent-dk); font-weight: 900; font-size: 1.25em; line-height: 1;
+    }
+    .slide-lead-header {
+      font-family: var(--font-display);
+      font-size: 1.15em;
+      font-weight: 750;
+      color: var(--accent-dk);
+      margin-top: 0.15em;
+      margin-bottom: 0.40em;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+
+    /* Capstone Slide 83 Two-Column Grid */
+    .capstone-layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 0.90rem;
+      height: 100%;
+      align-items: stretch;
+    }
+    @media (max-width: 1040px) {
+      .capstone-layout-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+    .capstone-info-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+    .capstone-info-body {
+      padding: 0.60rem 0.80rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.50rem;
+      font-size: 0.84rem;
+      background: var(--surface);
+      flex: 1;
+    }
+    .capstone-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+    .capstone-section-title {
+      font-family: var(--font-display);
+      font-size: 0.84rem;
+      font-weight: 750;
+      color: var(--accent-dk);
+    }
+    .capstone-cmd-box {
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 0.35rem 0.55rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+      font-size: 0.77rem;
+    }
+    .capstone-cmd-box code {
+      font-size: 0.78rem;
+      padding: 0.08rem 0.28rem;
+    }
+    .cmd-note {
+      color: var(--ink-muted);
+      font-size: 0.75rem;
+      margin-left: 0.25rem;
+    }
+    .capstone-providers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+    }
+    .provider-pill {
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      padding: 0.22rem 0.40rem;
+      line-height: 1.25;
+    }
+    .capstone-text-desc {
+      font-size: 0.78rem;
+      line-height: 1.38;
+      color: var(--ink);
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 0.35rem 0.55rem;
+    }
+
+    /* Slide 3 Course Master Map: Two-Column Part 1 (Left) & Part 2 (Right) */
+    .course-map-slide-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .course-map-columns-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.10rem;
+      flex: 1;
+      align-items: stretch;
+    }
+    .course-map-part-col {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.85rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .course-map-part-header {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--accent-dk);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.65rem;
+      padding-bottom: 0.40rem;
+      border-bottom: 1.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .course-map-module-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+    .course-map-module-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      line-height: 1.40;
+    }
+    .course-map-module-list .mod-bullet {
+      color: var(--accent);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* Reference Slide with Two-Table Layout (Links Table + Screenshot Table) */
+    .reference-tables-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 1.02fr);
+      gap: 1.10rem;
+      height: 100%;
+      align-items: start;
+    }
+    @media (max-width: 1040px) {
+      .reference-tables-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+    .ref-table-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+    .ref-table-card-header {
+      background: var(--accent-sf);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 1.02rem;
+      padding: 0.50rem 0.85rem;
+      border-bottom: 1.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 0.40rem;
+    }
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 !important;
+      background: var(--surface);
+    }
+    .ref-table th {
+      background: #F0EEE6;
+      color: var(--ink);
+      font-weight: 750;
+      text-align: left;
+      padding: 0.45rem 0.70rem;
+      border-bottom: 1.5px solid var(--rule);
+      font-size: 0.88rem;
+    }
+    .ref-table td {
+      padding: 0.45rem 0.70rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.86rem;
+      line-height: 1.38;
+      vertical-align: middle;
+    }
+    .ref-table tr:last-child td {
+      border-bottom: none;
+    }
+    .ref-table tr:nth-child(even) td {
+      background: rgba(245, 230, 223, 0.22);
+    }
+    .book-screenshot-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.45rem;
+      text-decoration: none;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+      transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+      max-height: calc(100vh - 170px);
+    }
+    .book-screenshot-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px rgba(217, 119, 87, 0.18);
+    }
+    .book-screenshot-img {
+      max-width: 100%;
+      max-height: calc(100vh - 220px);
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--rule);
+      object-fit: contain;
+    }
+    .book-screenshot-badge {
+      margin-top: 0.40rem;
+      font-size: 0.80rem;
+      font-weight: 750;
+      color: var(--accent-dk);
+      display: flex;
+      align-items: center;
+      gap: 0.30rem;
+    }
+
+    /* Instructor Slide with 8-Book Gallery Grid */
+    .instructor-slide-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.25fr);
+      gap: 1.25rem;
+      height: 100%;
+      align-items: start;
+    }
+    @media (max-width: 1040px) {
+      .instructor-slide-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+    .instructor-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.60rem;
+      min-width: 0;
+    }
+    .instructor-info-col .main-bullets,
+    .instructor-info-col .main-bullets.dense-columns,
+    .instructor-info-col .bullet-list {
+      columns: 1 !important;
+      column-gap: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.98rem;
+    }
+    .instructor-info-col .primary-bullet {
+      line-height: 1.50;
+      margin-bottom: 0.25rem;
+    }
+    .author-books-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+    .author-books-header {
+      background: var(--accent-sf);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 0.88rem;
+      padding: 0.45rem 0.80rem;
+      border-bottom: 1.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.50rem;
+      white-space: nowrap;
+    }
+    .author-books-header a {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 750;
+      color: var(--accent-dk);
+      text-decoration: underline;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Slide 1 Hero & Instructor Cover Layout */
+    .slide-1-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.85rem;
+    }
+    .slide-1-hero-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.10rem 1.50rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .slide-1-hero-tagline {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-dk);
+      line-height: 1.35;
+    }
+    .slide-1-hero-desc {
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    .slide-1-instructor-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.15rem 1.50rem;
+      display: flex;
+      align-items: center;
+      gap: 1.50rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .slide-1-avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .slide-1-avatar-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 4px 12px rgba(217, 119, 87, 0.25);
+      background: var(--surface-alt);
+    }
+    .slide-1-instructor-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+    }
+    .slide-1-instructor-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--accent-sf);
+      color: var(--accent-dk);
+      border: 1px solid var(--accent);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 750;
+      padding: 0.18rem 0.55rem;
+      border-radius: 6px;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .slide-1-instructor-name {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .slide-1-instructor-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-top: 0.15rem;
+    }
+    .slide-1-title-item {
+      display: flex;
+      align-items: center;
+      gap: 0.50rem;
+      font-size: 1.05rem;
+      font-weight: 650;
+      color: var(--ink);
+    }
+    .slide-1-title-item .title-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .slide-1-title-highlight {
+      color: var(--accent-dk);
+      font-weight: 750;
+    }
+    .slide-1-pillars-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    @media (max-width: 900px) {
+      .slide-1-pillars-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .slide-1-instructor-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+      .slide-1-instructor-badge {
+        margin: 0 auto;
+      }
+      .slide-1-title-item {
+        justify-content: center;
+      }
+    }
+    .slide-1-pillar-pill {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .slide-1-pillar-title {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 750;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .slide-1-pillar-desc {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      line-height: 1.30;
+    }
+    .books-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.40rem;
+      padding: 0.50rem;
+      background: #FAF8F2;
+    }
+    .book-item-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 0.25rem 0.20rem;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      transition: transform 0.16s, border-color 0.16s, box-shadow 0.16s;
+    }
+    .book-item-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(217, 119, 87, 0.18);
+    }
+    .book-cover-img {
+      width: 100%;
+      height: clamp(80px, 11.5vh, 115px);
+      object-fit: contain;
+      border-radius: 4px;
+      border: 0.5px solid var(--rule);
+    }
+    .book-item-title {
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.15;
+      margin-top: 0.20rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: block;
+    }
+    .book-publisher-tag {
+      font-size: 0.48rem;
+      font-weight: 800;
+      color: var(--accent-dk);
+      background: var(--accent-sf);
+      padding: 0.05rem 0.20rem;
+      border-radius: 3px;
+      margin-top: 0.12rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+
+    .slide-body a {
+      color: var(--accent-dk);
+      font-weight: 650;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+    .slide-body a:hover { color: var(--accent); }
+
+    code {
+      background: var(--accent-sf); border: 1px solid var(--rule);
+      color: var(--ink); padding: 0.1rem 0.35rem; border-radius: 5px;
+      font-family: var(--font-code); font-size: 0.88em; font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    /* Slide 3: Course Core Thesis (Traditional SE vs Harness Engineering) */
+    .thesis-slide-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      flex: 1;
+      align-items: stretch;
+    }
+    @media (max-width: 1040px) {
+      .thesis-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+    .thesis-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 9px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .thesis-card.trad-card {
+      border-top: 3.5px solid #2563eb;
+    }
+    .thesis-card.harn-card {
+      border-top: 3.5px solid #059669;
+    }
+    .thesis-card-header {
+      padding: 0.40rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .thesis-card-header.trad-header {
+      background: #F0F5FE;
+    }
+    .thesis-card-header.harn-header {
+      background: #E8F8F2;
+    }
+    .thesis-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .thesis-title {
+      font-family: var(--font-display);
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.20;
+    }
+    .thesis-subtitle {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      margin-top: 0.05rem;
+    }
+    .thesis-badge {
+      margin-left: auto;
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 0.10rem 0.38rem;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .thesis-badge.trad-badge {
+      background: #DBEAFE;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+    .thesis-badge.harn-badge {
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #a7f3d0;
+    }
+    .thesis-card-body {
+      padding: 0.45rem 0.70rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+      font-size: 0.82rem;
+      line-height: 1.38;
+      color: var(--ink);
+      background: var(--surface);
+    }
+    .thesis-point {
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      padding: 0.32rem 0.55rem;
+      line-height: 1.34;
+      font-size: 0.79rem;
+    }
+    .trad-card .thesis-point {
+      border-left: 3px solid #3b82f6;
+    }
+    .harn-card .thesis-point {
+      border-left: 3px solid #10b981;
+    }
+
+    /* Slide 7: Enhanced Setup & Command Blocks with Copy Buttons */
+    .setup-slide-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.90fr) minmax(0, 1.35fr);
+      gap: 0.95rem;
+      height: 100%;
+      align-items: start;
+    }
+    @media (max-width: 1040px) {
+      .setup-slide-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+    .setup-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.50rem;
+    }
+    .failure-mode-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+    .failure-mode-header {
+      background: var(--accent-sf);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 0.96rem;
+      padding: 0.42rem 0.75rem;
+      border-bottom: 1.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 0.40rem;
+    }
+    .failure-mode-body {
+      padding: 0.55rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      color: var(--ink);
+    }
+    .failure-hazard-box {
+      background: #FFF5F2;
+      border: 1px solid #F5C6BA;
+      border-left: 3.5px solid #E06C75;
+      border-radius: 6px;
+      padding: 0.40rem 0.60rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+    .hazard-title {
+      font-weight: 750;
+      color: #BD5D3A;
+      font-size: 0.82rem;
+    }
+    .hazard-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+      font-size: 0.80rem;
+    }
+    .hazard-list li {
+      position: relative;
+      padding-left: 1.1rem;
+      line-height: 1.32;
+    }
+    .hazard-list li::before {
+      content: "⚠️";
+      position: absolute;
+      left: 0;
+      font-size: 0.72rem;
+      top: 0.05rem;
+    }
+    .defense-box {
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-left: 3.5px solid #059669;
+      border-radius: 6px;
+      padding: 0.40rem 0.60rem;
+      font-size: 0.80rem;
+      line-height: 1.38;
+    }
+    .defense-title {
+      font-weight: 750;
+      color: #059669;
+      margin-bottom: 0.18rem;
+      font-size: 0.82rem;
+    }
+    .setup-links-box {
+      font-size: 0.80rem;
+      color: var(--ink-muted);
+      line-height: 1.36;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      border-top: 1px dashed var(--rule);
+      padding-top: 0.45rem;
+    }
+    .setup-links-box a {
+      color: var(--accent-dk);
+      font-weight: 650;
+      text-decoration: underline;
+    }
+    .setup-links-box a:hover {
+      color: var(--accent);
+    }
+    .setup-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .setup-steps-container {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.60rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.42rem;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    }
+    .setup-steps-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      border-bottom: 1.5px solid var(--rule);
+      padding-bottom: 0.30rem;
+      flex-wrap: wrap;
+    }
+    .setup-steps-header span:first-child {
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 0.94rem;
+      color: var(--accent-dk);
+    }
+    .setup-steps-sub {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+    .cmd-step-card {
+      background: #FAF8F2;
+      border: 1px solid var(--rule);
+      border-left: 3.5px solid var(--accent);
+      border-radius: 7px;
+      padding: 0.35rem 0.55rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.20rem;
+    }
+    .cmd-step-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .cmd-step-title {
+      font-family: var(--font-display);
+      font-size: 0.86rem;
+      font-weight: 750;
+      color: var(--ink);
+    }
+    .cmd-step-badge {
+      font-size: 0.66rem;
+      font-weight: 750;
+      color: var(--accent-dk);
+      background: var(--accent-sf);
+      border: 1px solid var(--rule);
+      padding: 0.06rem 0.30rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .cmd-step-desc {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      line-height: 1.28;
+    }
+    .cmd-code-row {
+      display: flex;
+      align-items: center;
+      background: var(--code-bg);
+      border: 1px solid var(--code-rule);
+      border-radius: 5px;
+      padding: 0.25rem 0.50rem;
+      gap: 0.45rem;
+      position: relative;
+    }
+    .cmd-code-prompt {
+      color: #D97757;
+      font-family: var(--font-code);
+      font-size: 0.76rem;
+      font-weight: 750;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .cmd-code-text {
+      flex: 1;
+      font-family: var(--font-code) !important;
+      font-size: 0.76rem !important;
+      color: #FAF9F5 !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      white-space: pre-wrap !important;
+      word-break: break-all;
+      line-height: 1.30;
+    }
+    .cmd-copy-btn {
+      background: #2D2C28;
+      color: #FAF9F5;
+      border: 1px solid #444440;
+      border-radius: 4px;
+      padding: 0.18rem 0.45rem;
+      font-family: var(--font-code);
+      font-size: 0.68rem;
+      font-weight: 650;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.22rem;
+      transition: all 0.16s ease;
+      user-select: none;
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .cmd-copy-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FAF9F5;
+      transform: translateY(-1px);
+    }
+    .cmd-copy-btn:active {
+      transform: translateY(0);
+    }
+    .cmd-copy-btn.copied {
+      background: #2e7d32 !important;
+      border-color: #4caf50 !important;
+      color: #ffffff !important;
+    }
+    .copy-icon {
+      font-size: 0.72rem;
+      line-height: 1;
+    }
+    .os-cmd-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+      margin-top: 0.10rem;
+    }
+    .os-cmd-label {
+      font-size: 0.70rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .memory-slide-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      width: 100%;
+      height: 100%;
+    }
+    .memory-grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      flex: 1;
+      min-height: 0;
+    }
+    .memory-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 9px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .memory-card-header {
+      padding: 0.40rem 0.70rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 0.84rem;
+    }
+    .memory-card-body {
+      padding: 0.55rem 0.70rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+    .memory-comp-table th, .memory-comp-table td {
+      border: 1px solid var(--rule);
+      padding: 0.25rem 0.45rem;
+      font-size: 0.76rem;
+      line-height: 1.30;
+    }
+
+    .grid-viewport {
+      width: 100%; height: 100%; overflow-y: auto; padding: clamp(1rem, 2.5vw, 1.8rem);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem;
+    }
+    .grid-slide-card {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 10px; padding: 1.15rem; height: 260px; display: flex; flex-direction: column;
+      cursor: pointer; transition: border-color 0.16s, background-color 0.16s;
+    }
+    .grid-slide-card:hover { background: var(--accent-sf); border-color: var(--accent); }
+    .grid-slide-title {
+      font-family: var(--font-display); font-size: 1.1rem; line-height: 1.15;
+      font-weight: 650; margin-bottom: 0.45rem; color: var(--ink);
+    }
+    .grid-slide-body { flex: 1; overflow: hidden; font-size: 0.8rem; line-height: 1.45; color: var(--ink-muted); }
+
+    .progress-bar { height: 3px; background: var(--rule); width: 100%; }
+    .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
+
+    @media (max-width: 980px) {
+      header { padding: 0 0.6rem; }
+      .brand-title { display: none; }
+      select.slide-select { max-width: 200px; }
+    }
+
+    .section-slide {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.2rem 1.6rem;
+      gap: 0.85rem;
+    }
+    .section-kicker {
+      font-family: var(--font-code);
+      font-size: 0.92rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dk);
+      background: var(--accent-sf);
+      border: 1px solid var(--accent);
+      width: fit-content;
+      padding: 0.28rem 0.70rem;
+      border-radius: 999px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.55rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 18ch;
+    }
+    .section-sub {
+      font-size: 1.15rem;
+      color: var(--ink-muted);
+      font-weight: 550;
+      max-width: 42rem;
+    }
+    .triple-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      margin-top: 0.35rem;
+    }
+    .triple-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.05rem 1.15rem 1.20rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      min-height: 0;
+    }
+    .triple-num {
+      font-family: var(--font-code);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent-dk);
+    }
+    .triple-title {
+      font-family: var(--font-display);
+      font-size: 1.22rem;
+      font-weight: 750;
+      color: var(--ink);
+      line-height: 1.22;
+    }
+    .triple-body {
+      font-size: 0.98rem;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .triple-lead {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      font-weight: 550;
+      margin-bottom: 0.15rem;
+    }
+    .agenda-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.70rem;
+    }
+    .agenda-row {
+      display: grid;
+      grid-template-columns: 4.4rem 1fr;
+      gap: 0.90rem;
+      align-items: stretch;
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+    .agenda-num {
+      background: var(--accent-sf);
+      color: var(--accent-dk);
+      font-family: var(--font-code);
+      font-weight: 800;
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1.5px solid var(--rule);
+    }
+    .agenda-copy {
+      padding: 0.70rem 0.95rem 0.80rem 0;
+    }
+    .agenda-title {
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 1.18rem;
+      color: var(--ink);
+      margin-bottom: 0.18rem;
+    }
+    .agenda-body {
+      font-size: 0.95rem;
+      line-height: 1.42;
+      color: var(--ink);
+    }
+    .core-four-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.55rem;
+      margin: 0.35rem 0 0.70rem;
+    }
+    .core-pill {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.70rem 0.75rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .core-pill-k {
+      font-family: var(--font-code);
+      font-size: 0.72rem;
+      font-weight: 750;
+      color: var(--accent-dk);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .core-pill-t {
+      font-family: var(--font-display);
+      font-weight: 750;
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin: 0.12rem 0 0.10rem;
+    }
+    .core-pill-d {
+      font-size: 0.80rem;
+      color: var(--ink-muted);
+      line-height: 1.30;
+    }
+    .ctrl-pills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.40rem;
+    }
+    .ctrl-pill {
+      background: var(--accent-sf);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.42rem 0.55rem;
+      font-size: 0.82rem;
+      font-weight: 650;
+      color: var(--ink);
+      text-align: center;
+    }
+    .thanks-wrap {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.40rem;
+      align-items: center;
+    }
+    .thanks-kicker {
+      font-family: var(--font-code);
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dk);
+      font-size: 0.88rem;
+    }
+    .thanks-title {
+      font-family: var(--font-display);
+      font-size: 3.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0.35rem 0 0.70rem;
+    }
+    .thanks-book {
+      font-size: 1.08rem;
+      line-height: 1.40;
+      color: var(--ink);
+      max-width: 28rem;
+    }
+    .thanks-link a {
+      color: var(--accent-dk);
+      font-weight: 700;
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+    }
+    .thanks-cover {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 14px;
+      padding: 0.80rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .thanks-cover img {
+      width: 100%;
+      max-height: 52vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    @media (max-width: 980px) {
+      .triple-grid, .core-four-row, .ctrl-pills, .thanks-wrap {
+        grid-template-columns: 1fr 1fr;
+      }
+      .thanks-wrap { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="assets/images/harness_app_icon.png" alt="Harness Engineering Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; display:inline-block;" />
+      <div class="brand-title">Harness Engineering · CSA GCR 2026</div>
+    </div>
+    <div class="controls">
+      <a href="index.html" class="btn">🏠 Home Site</a>
+      <button id="btn-grid" class="btn" onclick="toggleMode()"><span id="mode-icon">📜</span> <span id="mode-text">Grid View</span></button>
+      <button id="btn-prev" class="btn" onclick="prevSlide()">❮ Prev</button>
+      <select id="slide-select" class="slide-select" onchange="goToSlide(this.value)"></select>
+      <div class="goto-group">
+        <input type="number" id="goto-input" min="1" max="23" placeholder="#" class="goto-input" title="Enter slide number (1-23)" onkeydown="if(event.key==='Enter') jumpToEnteredSlide()">
+        <button id="btn-goto" class="btn btn-goto" onclick="jumpToEnteredSlide()" title="Jump to entered slide number">Go ➔</button>
+      </div>
+      <button id="btn-next" class="btn" onclick="nextSlide()">Next ❯</button>
+      <button id="btn-fullscreen" class="btn btn-primary" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+    </div>
+  </header>
+  <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+  <main>
+    <div id="presentation-mode" class="slide-viewport">
+      <div class="slide-card">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div id="slide-title" class="slide-title">Slide Title</div>
+          </div>
+          <div id="slide-num-badge" class="slide-num-badge">Slide 1 / 23</div>
+        </div>
+        <div id="slide-body" class="slide-body"></div>
+      </div>
+    </div>
+    <div id="grid-mode" class="grid-viewport" style="display:none;"></div>
+  </main>
+  <script>
+
+    const slidesData = [{"number": 1, "slide_type": "title", "raw_lines": ["Agentic AI Harness Engineering", "From Software Engineering to Harness Engineering", "CSA Greater China Region 2026"]}, {"number": 2, "slide_type": "speaker", "raw_lines": ["About the Speaker: Ken Huang, CISSP", "• AI book author and speaker (Harness Engineering, MAESTRO)", "• Adjunct Professor, University of San Francisco", "• OWASP AIVSS Project Lead", "• Fellow and co-chair of two CSA AI Safety working groups", "• Core member, OWASP Top 10 for LLM Applications", "• AIUC-1 Consortium Member", "• Grant reviewer, Schmidt Sciences", "• EC-Council instructor — Generative AI for Cyber Security", "• CEO of DistributedApps.ai: https://distributedapps.ai/", "• Substack: kenhuangus.substack.com  ·  LinkedIn: linkedin.com/in/kenhuang8"]}, {"number": 3, "slide_type": "agenda", "raw_lines": ["From Software Engineering to Harness Engineering", "The talk in four moves"], "agenda": [{"num": "01", "title": "The discipline shift", "body": "Software Engineering → Harness Engineering. Traditional SE specifies deterministic behavior. Agentic systems need a surrounding control plane."}, {"num": "02", "title": "The Core Four", "body": "Prompt · Context · Loop · Graph. Graph engineering is the multi-agent specialization under the harness umbrella — not a separate discipline."}, {"num": "03", "title": "Control-plane components", "body": "Automation · Identity · Memory · Observability · Runtime · Evaluation · Scalability · Token budget."}, {"num": "04", "title": "The extension layer", "body": "Skill · Plug-in · MCP · hooks · CLI. Inventory, least privilege, typed actions, and revoke-on-policy-failure."}]}, {"number": 4, "slide_type": "section", "raw_lines": ["Part 1", "From Software Engineering", "to Harness Engineering for Agentic AI Systems"], "kicker": "Ontology → Intent → Prompt · Context · Loop · Graph"}, {"number": 5, "slide_type": "comparison", "raw_lines": ["From Software Engineering to Harness Engineering"]}, {"number": 6, "slide_type": "triple", "raw_lines": ["Ontology Before Intent", "Define meaning before action"], "points": [{"num": "01", "title": "Ontology first", "body": "Ontology defines domain entities, relationships, and rules before any agent is allowed to act."}, {"num": "02", "title": "Intent binds the principal", "body": "Intent binds a principal to a goal, an object, constraints, and an explicit success condition."}, {"num": "03", "title": "The harness validates action", "body": "The harness validates planned actions against that intent and against policy — not against model confidence."}]}, {"number": 7, "slide_type": "section", "raw_lines": ["Part 2", "The Core Four", "Prompt · Context · Loop · Graph"], "kicker": "Four specializations of one harness — Graph Engineering is the multi-agent layer"}, {"number": 8, "slide_type": "triple", "raw_lines": ["Prompt Engineering", "Define the task"], "points": [{"num": "01", "title": "Specify the task completely", "body": "State the goal, constraints, required output, and stop condition. Ambiguous prompts become unbounded runs."}, {"num": "02", "title": "Separate trust boundaries", "body": "Keep trusted instructions apart from untrusted data. Retrieved content, tickets, and user text are not system policy."}, {"num": "03", "title": "Version and test before release", "body": "Prompts are production artifacts. Version them, test them, and re-evaluate when tools or models change."}]}, {"number": 9, "slide_type": "triple", "raw_lines": ["Context Engineering", "Give the right evidence"], "points": [{"num": "01", "title": "Select only what this decision needs", "body": "Do not dump the corpus into the window. Provide the evidence required for the current decision, nothing more."}, {"num": "02", "title": "Attach provenance and scope", "body": "Every retrieved item needs source, freshness, and access scope. Context without provenance is untrusted rumor."}, {"num": "03", "title": "Policy outranks retrieval", "body": "Resolve conflicts before use. Written policy beats retrieved content when the two disagree."}]}, {"number": 10, "slide_type": "triple", "raw_lines": ["Loop Engineering", "Keep autonomy bounded"], "points": [{"num": "01", "title": "Structure every cycle", "body": "Each cycle is observe → plan → act → verify. A loop without verification is just retry theater."}, {"num": "02", "title": "Cap steps, time, cost, and retries", "body": "Unbounded loops burn tokens, multiply side effects, and hide failure. Limits are a safety control, not a cost hack."}, {"num": "03", "title": "Stop when progress cannot be shown", "body": "If the agent cannot demonstrate progress or safety, stop. Silent continuation is the failure mode."}]}, {"number": 11, "slide_type": "triple", "raw_lines": ["Graph Engineering", "Govern workflow and handoffs"], "points": [{"num": "01", "title": "One responsibility per node", "body": "Each node owns one clear job: plan, implement, review, or remediate. Overlapping roles recreate the single-agent bottleneck."}, {"num": "02", "title": "Edges are contracts, not chat", "body": "Edges define allowed data and authority transfer. Pass structured artifacts. Do not forward bloated conversation history."}, {"num": "03", "title": "Route exceptions on purpose", "body": "Failures go to a fallback node or a human. A graph with no exception path is a sequential retry loop wearing a new name."}]}, {"number": 12, "slide_type": "section", "raw_lines": ["Part 3", "Control-Plane Components", "Putting autonomy in order"], "kicker": "Automation · Identity · Memory · Observability · Runtime · Evaluation · Scalability · Token"}, {"number": 13, "slide_type": "triple", "raw_lines": ["Automation", "Repeat the safe boundary"], "points": [{"num": "01", "title": "Automate start, sandbox, allowlist, and stop", "body": "The harness starts the run, sandboxes tools, enforces the allowlist, and stops the run. Humans do not babysit the happy path."}, {"num": "02", "title": "Retries must be visible, bounded, and idempotent", "body": "Invisible retries hide failure. Unbounded retries multiply harm. Non-idempotent retries corrupt state."}, {"num": "03", "title": "Humans approve boundaries; the harness executes inside them", "body": "Policy is a human decision. Execution inside that policy is a harness job."}]}, {"number": 14, "slide_type": "triple", "raw_lines": ["Identity and Intent", "Who acts, for whom, and why"], "points": [{"num": "01", "title": "Every run has a principal", "body": "Each run carries a principal, a task ID, and a short-lived credential. Anonymous autonomy is unaccountable autonomy."}, {"num": "02", "title": "Ontology grounds intent", "body": "Intent is goal, object, constraints, and success — grounded in the domain ontology, not in a free-text wish."}, {"num": "03", "title": "Authorize every tool call against intent", "body": "A tool call that is allowed by the sandbox can still be unauthorized for this intent. Check both."}]}, {"number": 15, "slide_type": "triple", "raw_lines": ["Memory", "Persist only governed state"], "points": [{"num": "01", "title": "Write memory only for an explicit purpose", "body": "Memory is not a dump of the transcript. Write it for a named purpose and a named scope."}, {"num": "02", "title": "Isolate users and tasks", "body": "Separate tenants and tasks. Record provenance and retention. Cross-task memory is a data leak waiting for a prompt."}, {"num": "03", "title": "Detect, quarantine, and roll back poisoned memory", "body": "Persistent memory is an attack surface. Treat poison as an incident: detect, isolate, roll back."}]}, {"number": 16, "slide_type": "triple", "raw_lines": ["Observability", "Evidence for decisions and actions"], "points": [{"num": "01", "title": "Trace decisions, tool calls, and artifacts", "body": "You cannot govern what you cannot reconstruct. Log the decision, the call, and the resulting artifact."}, {"num": "02", "title": "Preserve enough to reconstruct high-risk actions", "body": "High-impact writes, credential use, and external side effects need forensic-grade evidence, not a summary."}, {"num": "03", "title": "Protect telemetry itself", "body": "Minimize, access-control, and retain telemetry on purpose. Agent logs contain secrets, PII, and attack material."}]}, {"number": 17, "slide_type": "triple", "raw_lines": ["Runtime Control", "Intervene after start"], "points": [{"num": "01", "title": "Pause, stop, or change policy live", "body": "A run that cannot be interrupted is not a production system. Operators need pause, stop, and policy change during execution."}, {"num": "02", "title": "Checkpoint before high-impact actions", "body": "Take a checkpoint before irreversible writes. Support rollback. Hope is not a recovery plan."}, {"num": "03", "title": "No interrupt path, no trustworthy autonomy", "body": "Autonomy without an interrupt path is just unsupervised execution with extra vocabulary."}]}, {"number": 18, "slide_type": "triple", "raw_lines": ["Evaluation", "Gate the autonomous zone"], "points": [{"num": "01", "title": "Test success and boundary compliance", "body": "A task that succeeds while violating a boundary is a failed evaluation. Score both."}, {"num": "02", "title": "Re-evaluate after any material change", "body": "Prompts, tools, memory, or models changing is a release. Re-run the gate."}, {"num": "03", "title": "Failed evaluation blocks release or reduces autonomy", "body": "Do not ship a failing agent at full autonomy. Block the release or drop it to a tighter permission tier."}]}, {"number": 19, "slide_type": "triple", "raw_lines": ["Scalability", "Scale safety, not only throughput"], "points": [{"num": "01", "title": "Admit work before execution", "body": "Admission control and backpressure come first. An agent farm with no queue discipline is a denial-of-service against itself."}, {"num": "02", "title": "Isolate tenants and workers", "body": "Contain failures. One poisoned worker or tenant must not contaminate the fleet."}, {"num": "03", "title": "Idempotent retries so scale does not multiply harm", "body": "At ten agents, a bug is a bug. At ten thousand, a non-idempotent retry is an incident."}]}, {"number": 20, "slide_type": "triple", "raw_lines": ["Token Budget", "Bound cost and attack surface"], "points": [{"num": "01", "title": "Budget tokens and tool output per run and loop", "body": "Unbounded context is unbounded spend and unbounded injection surface. Set the cap per run and per loop."}, {"num": "02", "title": "Stop safely at the limit", "body": "Hit the ceiling, stop, and report. Never continue silently past the budget."}, {"num": "03", "title": "Raising the budget is a policy change", "body": "A bigger window is not a tuning knob. It is a policy change and it requires evaluation."}]}, {"number": 21, "slide_type": "section", "raw_lines": ["Part 4", "The Extension Layer", "Skill · Plug-in · MCP · hooks · CLI"], "kicker": "Capabilities are not free — inventory, approve, scope, and revoke"}, {"number": 22, "slide_type": "triple", "raw_lines": ["Extensions", "Skill · Plug-in · MCP · hooks · CLI"], "points": [{"num": "01", "title": "Inventory and approve every capability", "body": "Skills, plug-ins, tools, and MCP servers are part of the attack surface. Nothing joins the harness without an inventory record and an approval."}, {"num": "02", "title": "Typed actions, least privilege, scoped credentials", "body": "Prefer typed tool calls over shell. Issue short-lived, scoped credentials. Broad tokens turn every extension into admin."}, {"num": "03", "title": "Validate I/O and revoke on policy failure", "body": "Check inputs and outputs. An extension that fails policy is revoked, not warned."}]}, {"number": 23, "slide_type": "thanks", "raw_lines": ["Thank you", "Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems", "amazon.com/dp/B0HF3F86YM"]}];
+    const totalSlides = slidesData.length;
+    let currentIdx = 0;
+    let isGridMode = false;
+    const selectEl = document.getElementById('slide-select');
+    const bodyEl = document.getElementById('slide-body');
+
+    slidesData.forEach((s, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = s.number + '. ' + (s.raw_lines[0] || 'Slide');
+      selectEl.appendChild(opt);
+    });
+    const gotoInput = document.getElementById('goto-input');
+    if (gotoInput) {
+      gotoInput.max = String(totalSlides);
+      gotoInput.title = 'Enter slide number (1-' + totalSlides + ')';
+    }
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+    function rich(s) {
+      return esc(s)
+        .replace(/https:\/\/[^\s<]+/g, (m) => '<a href="' + m + '" target="_blank" rel="noopener noreferrer">' + m + '</a>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>');
+    }
+    function formatBullets(lines) {
+      let html = '<ul class="main-bullets">';
+      lines.forEach((line) => {
+        const t = line.replace(/^[•\-\*]\s*/, '').trim();
+        if (t) html += '<li class="bullet-group"><div class="primary-bullet">' + rich(t) + '</div></li>';
+      });
+      html += '</ul>';
+      return html;
+    }
+
+    function renderTitle() {
+      return `
+        <div id="slide-content-wrap" class="slide-1-container">
+          <div class="slide-1-hero-card">
+            <div class="slide-1-hero-tagline">
+              From Software Engineering to Harness Engineering
+            </div>
+            <div class="slide-1-hero-desc">
+              Ontology defines intent. Governed order constrains action. Graph engineering is the multi-agent specialization under the harness umbrella &mdash; not a competing discipline.
+            </div>
+          </div>
+          <div class="slide-1-instructor-card">
+            <div class="slide-1-avatar-wrap">
+              <img src="assets/images/ken-head-shot.png" alt="Ken Huang" class="slide-1-avatar-img" />
+            </div>
+            <div class="slide-1-instructor-info">
+              <div class="slide-1-instructor-badge"><span>Keynote Speaker &middot; CSA GCR 2026</span></div>
+              <div class="slide-1-instructor-name">Ken Huang, CISSP</div>
+              <div class="slide-1-instructor-titles">
+                <div class="slide-1-title-item">
+                  <span class="title-icon">🏛️</span>
+                  <span>Adjunct Professor, <span class="slide-1-title-highlight">University of San Francisco</span></span>
+                </div>
+                <div class="slide-1-title-item">
+                  <span class="title-icon">🛡️</span>
+                  <span>Vice President, <span class="slide-1-title-highlight">CSA Greater China Research Institute</span></span>
+                </div>
+                <div class="slide-1-title-item">
+                  <span class="title-icon">🚀</span>
+                  <span>CEO of <span class="slide-1-title-highlight">DistributedApps.ai</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-1-pillars-row">
+            <div class="slide-1-pillar-pill">
+              <div class="slide-1-pillar-title">✍️ Prompt</div>
+              <div class="slide-1-pillar-desc">Define the task, constraints, output, and stop</div>
+            </div>
+            <div class="slide-1-pillar-pill">
+              <div class="slide-1-pillar-title">📚 Context</div>
+              <div class="slide-1-pillar-desc">Give the right evidence, with provenance</div>
+            </div>
+            <div class="slide-1-pillar-pill">
+              <div class="slide-1-pillar-title">🔁 Loop</div>
+              <div class="slide-1-pillar-desc">Bound observe &rarr; plan &rarr; act &rarr; verify</div>
+            </div>
+            <div class="slide-1-pillar-pill">
+              <div class="slide-1-pillar-title">🕸️ Graph</div>
+              <div class="slide-1-pillar-desc">Govern multi-agent nodes, edges, and handoffs</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderSpeaker(slide) {
+      const rest = (slide.raw_lines || []).slice(1);
+      return `
+        <div id="slide-content-wrap" class="instructor-slide-grid">
+          <div class="instructor-info-col">
+            ${formatBullets(rest)}
+          </div>
+          <div class="author-books-card">
+            <div class="author-books-header">
+              <span>📚 AI Books &amp; Academic Publications (Springer · Cambridge · Wiley · Packt)</span>
+              <a href="https://www.amazon.com/stores/author/B0D3J7L7GN" target="_blank" rel="noopener noreferrer">Amazon Author Page ➔</a>
+            </div>
+            <div class="books-gallery-grid">
+              <a href="https://www.amazon.com/dp/3031900251" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Agentic AI: Theories and Practices (Springer)">
+                <img src="assets/images/books/springer_agentic_ai.jpg" alt="Agentic AI (Springer)" class="book-cover-img" />
+                <div class="book-item-title">Agentic AI</div>
+                <div class="book-publisher-tag">SPRINGER</div>
+              </a>
+              <a href="https://www.amazon.com/dp/3031448839" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Beyond AI (Springer)">
+                <img src="assets/images/books/springer_beyond_ai.jpg" alt="Beyond AI (Springer)" class="book-cover-img" />
+                <div class="book-item-title">Beyond AI</div>
+                <div class="book-publisher-tag">SPRINGER</div>
+              </a>
+              <a href="https://www.amazon.com/dp/3031542517" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Generative AI Security (Springer)">
+                <img src="assets/images/books/springer_generative_ai_security.jpg" alt="GenAI Security (Springer)" class="book-cover-img" />
+                <div class="book-item-title">GenAI Security</div>
+                <div class="book-publisher-tag">SPRINGER</div>
+              </a>
+              <a href="https://www.amazon.com/dp/3031901002" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Securing AI Agents (Springer)">
+                <img src="assets/images/books/springer_securing_ai_agents.jpg" alt="Securing AI Agents" class="book-cover-img" />
+                <div class="book-item-title">Securing Agents</div>
+                <div class="book-publisher-tag">SPRINGER</div>
+              </a>
+              <a href="https://www.amazon.com/dp/1009384467" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Web3 (Cambridge)">
+                <img src="assets/images/books/cambridge_web3.jpg" alt="Web3 (Cambridge UP)" class="book-cover-img" />
+                <div class="book-item-title">Web3 &amp; Economy</div>
+                <div class="book-publisher-tag">CAMBRIDGE</div>
+              </a>
+              <a href="https://www.amazon.com/dp/1394186524" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Blockchain and Web3 (Wiley)">
+                <img src="assets/images/books/wiley_blockchain_web3.jpg" alt="Blockchain & Web3 (Wiley)" class="book-cover-img" />
+                <div class="book-item-title">Blockchain Web3</div>
+                <div class="book-publisher-tag">WILEY</div>
+              </a>
+              <a href="https://www.amazon.com/dp/B0HF3F86YM" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Harness Engineering">
+                <img src="assets/images/books/harness_engineering.jpg" alt="Harness Engineering" class="book-cover-img" />
+                <div class="book-item-title">Harness Eng.</div>
+                <div class="book-publisher-tag">BEST SELLER</div>
+              </a>
+              <a href="https://www.amazon.com/dp/1807785017" target="_blank" rel="noopener noreferrer" class="book-item-card" title="OpenClaw AI in Production">
+                <img src="assets/images/books/openclaw_ai_in_production.jpg" alt="OpenClaw AI in Production" class="book-cover-img" />
+                <div class="book-item-title">OpenClaw AI</div>
+                <div class="book-publisher-tag">PACKT</div>
+              </a>
+              <a href="https://www.amazon.com/dp/B0H8JW9XFN" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Engineering Agentic AI with Claude">
+                <img src="assets/images/books/engineering_agentic_ai_claude.jpg" alt="Engineering Agentic AI with Claude" class="book-cover-img" />
+                <div class="book-item-title">Agentic Claude</div>
+                <div class="book-publisher-tag">CLAUDE AI</div>
+              </a>
+              <a href="https://www.amazon.com/dp/1836207034" target="_blank" rel="noopener noreferrer" class="book-item-card" title="LLM Design Patterns">
+                <img src="assets/images/books/llm_design_patterns.jpg" alt="LLM Design Patterns" class="book-cover-img" />
+                <div class="book-item-title">LLM Patterns</div>
+                <div class="book-publisher-tag">PACKT</div>
+              </a>
+              <a href="https://www.amazon.com/dp/B0H13XWS8W" target="_blank" rel="noopener noreferrer" class="book-item-card" title="Agentic AI Harness Pattern">
+                <img src="assets/images/books/agentic_ai_harness_pattern.jpg" alt="Agentic AI Harness Pattern" class="book-cover-img" />
+                <div class="book-item-title">AI Harness</div>
+                <div class="book-publisher-tag">PATTERNS</div>
+              </a>
+              <a href="https://www.amazon.com/dp/B0DCBDGNTN" target="_blank" rel="noopener noreferrer" class="book-item-card" title="The Layperson's Handbook to Generative AI">
+                <img src="assets/images/books/laypersons_handbook_genai.jpg" alt="Handbook to GenAI" class="book-cover-img" />
+                <div class="book-item-title">GenAI Guide</div>
+                <div class="book-publisher-tag">HANDBOOK</div>
+              </a>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderAgenda(slide) {
+      const rows = (slide.agenda || []).map((row) => `
+        <div class="agenda-row">
+          <div class="agenda-num">${esc(row.num)}</div>
+          <div class="agenda-copy">
+            <div class="agenda-title">${esc(row.title)}</div>
+            <div class="agenda-body">${rich(row.body)}</div>
+          </div>
+        </div>`).join('');
+      return `<div id="slide-content-wrap"><div class="agenda-stack">${rows}</div></div>`;
+    }
+
+    function renderSection(slide) {
+      return `
+        <div id="slide-content-wrap" class="section-slide">
+          <div class="section-kicker">${esc(slide.raw_lines[0] || '')}</div>
+          <div class="section-title">${esc(slide.raw_lines[1] || '')}</div>
+          <div class="section-sub">${esc(slide.raw_lines[2] || '')}</div>
+          ${slide.kicker ? '<div class="triple-lead">' + esc(slide.kicker) + '</div>' : ''}
+        </div>`;
+    }
+
+    function renderTriple(slide) {
+      const cards = (slide.points || []).map((p) => `
+        <div class="triple-card">
+          <div class="triple-num">${esc(p.num)}</div>
+          <div class="triple-title">${esc(p.title)}</div>
+          <div class="triple-body">${rich(p.body)}</div>
+        </div>`).join('');
+      return `
+        <div id="slide-content-wrap">
+          <div class="triple-lead">${esc(slide.raw_lines[1] || '')}</div>
+          <div class="triple-grid">${cards}</div>
+        </div>`;
+    }
+
+    function renderComparison() {
+      return `
+        <div id="slide-content-wrap" class="thesis-slide-wrap">
+          <div class="thesis-grid">
+            <div class="thesis-card trad-card">
+              <div class="thesis-card-header trad-header">
+                <span class="thesis-icon">🏛️</span>
+                <div>
+                  <div class="thesis-title">Software Engineering</div>
+                  <div class="thesis-subtitle">For specified, testable, repeatable behavior</div>
+                </div>
+                <span class="thesis-badge trad-badge">DETERMINISTIC</span>
+              </div>
+              <div class="thesis-card-body">
+                <div class="thesis-point"><strong>What it includes:</strong> specs, design, and code; the test pyramid and CI/CD; release, ops, and SRE.</div>
+                <div class="thesis-point"><strong>What it assumes:</strong> behavior is specified and testable. Logic encodes expected branches.</div>
+                <div class="thesis-point"><strong>Engineering job:</strong> build software whose behavior is specified, tested, and repeatable.</div>
+              </div>
+            </div>
+            <div class="thesis-card harn-card">
+              <div class="thesis-card-header harn-header">
+                <span class="thesis-icon">🛡️</span>
+                <div>
+                  <div class="thesis-title">Harness Engineering</div>
+                  <div class="thesis-subtitle">Deterministic control for probabilistic agents</div>
+                </div>
+                <span class="thesis-badge harn-badge">AGENTIC AI</span>
+              </div>
+              <div class="thesis-card-body">
+                <div class="core-four-row">
+                  <div class="core-pill"><div class="core-pill-k">01</div><div class="core-pill-t">Prompt</div><div class="core-pill-d">Define the task</div></div>
+                  <div class="core-pill"><div class="core-pill-k">02</div><div class="core-pill-t">Context</div><div class="core-pill-d">Provide evidence</div></div>
+                  <div class="core-pill"><div class="core-pill-k">03</div><div class="core-pill-t">Loop</div><div class="core-pill-d">Bound execution</div></div>
+                  <div class="core-pill"><div class="core-pill-k">04</div><div class="core-pill-t">Graph</div><div class="core-pill-d">Govern workflow</div></div>
+                </div>
+                <div class="thesis-point" style="margin-bottom:0.45rem;"><strong>Also part of the harness:</strong></div>
+                <div class="ctrl-pills">
+                  <div class="ctrl-pill">Automation</div>
+                  <div class="ctrl-pill">Identity &amp; intent</div>
+                  <div class="ctrl-pill">Memory</div>
+                  <div class="ctrl-pill">Observability</div>
+                  <div class="ctrl-pill">Runtime control</div>
+                  <div class="ctrl-pill">Evaluation</div>
+                  <div class="ctrl-pill">Scalability</div>
+                  <div class="ctrl-pill">Token budget</div>
+                </div>
+                <div class="thesis-point" style="margin-top:0.55rem;">Extensions: skill · plug-in · MCP · hooks · CLI</div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderThanks(slide) {
+      return `
+        <div id="slide-content-wrap" class="thanks-wrap">
+          <div>
+            <div class="thanks-kicker">CSA GCR 2026</div>
+            <div class="thanks-title">Thank you</div>
+            <div class="thanks-book">${esc(slide.raw_lines[1] || '')}</div>
+            <div class="thanks-link" style="margin-top:0.85rem;">
+              <a href="https://www.amazon.com/dp/B0HF3F86YM" target="_blank" rel="noopener noreferrer">amazon.com/dp/B0HF3F86YM ↗</a>
+            </div>
+            <div class="thanks-link" style="margin-top:0.35rem;">
+              <a href="https://distributedapps.ai/" target="_blank" rel="noopener noreferrer">distributedapps.ai ↗</a>
+              &nbsp;·&nbsp;
+              <a href="https://kenhuangus.substack.com/" target="_blank" rel="noopener noreferrer">kenhuangus.substack.com ↗</a>
+            </div>
+          </div>
+          <div class="thanks-cover">
+            <a href="https://www.amazon.com/dp/B0HF3F86YM" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/harness_engineering_book.png" alt="Harness Engineering book cover" />
+            </a>
+          </div>
+        </div>`;
+    }
+
+    function renderSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= slidesData.length) idx = slidesData.length - 1;
+      currentIdx = idx;
+      const slide = slidesData[idx];
+      selectEl.value = idx;
+      document.getElementById('slide-title').innerText = slide.raw_lines[0] || ('Slide ' + slide.number);
+      document.getElementById('slide-num-badge').innerText = 'Slide ' + slide.number + ' of ' + slidesData.length;
+      if (window.location.hash !== '#' + slide.number) {
+        history.replaceState(null, '', '#' + slide.number);
+      }
+      document.getElementById('btn-prev').disabled = (idx === 0);
+      document.getElementById('btn-next').disabled = (idx === slidesData.length - 1);
+
+      let html = '';
+      const t = slide.slide_type;
+      if (t === 'title') html = renderTitle();
+      else if (t === 'speaker') html = renderSpeaker(slide);
+      else if (t === 'agenda') html = renderAgenda(slide);
+      else if (t === 'section') html = renderSection(slide);
+      else if (t === 'triple') html = renderTriple(slide);
+      else if (t === 'comparison') html = renderComparison();
+      else if (t === 'thanks') html = renderThanks(slide);
+      else {
+        html = '<div id="slide-content-wrap" class="slide-content-wrapper">' + formatBullets((slide.raw_lines || []).slice(1)) + '</div>';
+      }
+      bodyEl.innerHTML = html;
+
+      bodyEl.style.setProperty('--fit-scale', '1.0');
+      const wrapper = document.getElementById('slide-content-wrap') || bodyEl;
+      const clientH = bodyEl.clientHeight;
+      const targetH = clientH * 0.92;
+      const tight = wrapper.querySelector('.slide-1-container, .instructor-slide-grid, .thesis-grid, .triple-grid, .agenda-stack, .thanks-wrap, .section-slide');
+      const maxScale = tight ? 1.18 : 1.50;
+      let scale = 1.0;
+      let grow = 0;
+      while (wrapper.offsetHeight < targetH && bodyEl.scrollHeight <= clientH && scale < maxScale && grow < 40) {
+        scale += 0.05;
+        bodyEl.style.setProperty('--fit-scale', scale.toFixed(2));
+        grow++;
+      }
+      let shrink = 0;
+      while ((bodyEl.scrollHeight > clientH || wrapper.offsetHeight > (clientH - 6)) && scale > 0.50 && shrink < 60) {
+        scale -= 0.02;
+        bodyEl.style.setProperty('--fit-scale', scale.toFixed(2));
+        shrink++;
+      }
+      document.getElementById('progress-fill').style.width = (((idx + 1) / slidesData.length) * 100) + '%';
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('grid-mode');
+      grid.innerHTML = '';
+      slidesData.forEach((slide, idx) => {
+        const card = document.createElement('div');
+        card.className = 'grid-slide-card';
+        card.onclick = () => { isGridMode = true; toggleMode(); renderSlide(idx); };
+        const title = slide.raw_lines[0] || ('Slide ' + slide.number);
+        const body = (slide.raw_lines.slice(1, 3).join(' ') || '');
+        card.innerHTML = '<div style="font-size:0.75rem;font-weight:800;margin-bottom:0.35rem;">SLIDE ' + slide.number + '</div>'
+          + '<div class="grid-slide-title">' + esc(title) + '</div>'
+          + '<div class="grid-slide-body">' + esc(body) + '</div>';
+        grid.appendChild(card);
+      });
+    }
+    function prevSlide() { renderSlide(currentIdx - 1); }
+    function nextSlide() { renderSlide(currentIdx + 1); }
+    function goToSlide(val) { renderSlide(parseInt(val, 10)); }
+    function jumpToEnteredSlide() {
+      const input = document.getElementById('goto-input');
+      const val = parseInt(input.value, 10);
+      if (!isNaN(val) && val >= 1 && val <= slidesData.length) {
+        renderSlide(val - 1);
+        input.value = '';
+      } else {
+        alert('Please enter a slide number between 1 and ' + slidesData.length + '.');
+      }
+    }
+    function toggleMode() {
+      isGridMode = !isGridMode;
+      document.getElementById('presentation-mode').style.display = isGridMode ? 'none' : 'flex';
+      document.getElementById('grid-mode').style.display = isGridMode ? 'grid' : 'none';
+      document.getElementById('mode-text').innerText = isGridMode ? 'Presentation Mode' : 'Grid View';
+      document.getElementById('mode-icon').innerText = isGridMode ? '📺' : '📜';
+      if (isGridMode) renderGrid();
+    }
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else if (document.exitFullscreen) document.exitFullscreen();
+    }
+    document.addEventListener('keydown', (e) => {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      if (e.key === 'm' || e.key === 'M') toggleMode();
+      if (e.key === 'g' || e.key === 'G') {
+        e.preventDefault();
+        const el = document.getElementById('goto-input');
+        if (el) { el.focus(); el.select(); }
+      }
+    });
+    window.addEventListener('resize', () => { if (!isGridMode) renderSlide(currentIdx); });
+    function getInitialSlideIndex() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const num = parseInt(hash, 10);
+        if (!isNaN(num)) {
+          const found = slidesData.findIndex(s => s.number === num);
+          if (found !== -1) return found;
+        }
+      }
+      return 0;
+    }
+    window.addEventListener('hashchange', () => {
+      const idx = getInitialSlideIndex();
+      if (idx !== currentIdx) renderSlide(idx);
+    });
+    renderSlide(getInitialSlideIndex());
+
+  </script>
+</body>
+</html>

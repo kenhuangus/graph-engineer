@@ -1,0 +1,17 @@
+_gslides_raw.json
+_gslides_text.txt
+_gslides_shapes.txt
+_gslides_images.txt
+_gslides_images/
+_fetch_slides.py
+_inspect_slides.py
+_extract_images.py
+_list_images.py
+_prep_assets.py
+_qa_screenshots.py
+_qa_all_slides.py
+_ping.py
+_template.css.fragment
+qa_*.png
+__pycache__/
+.DS_Store

@@ -1560,17 +1560,58 @@
       select.slide-select { max-width: 200px; }
     }
 
+    /* Doubled type, in em so --fit-scale can shrink to fit */
+    .slide-title { font-size: clamp(3.2rem, 5.4vw, 4.8rem) !important; }
+    .slide-body { --slide-body-base-size: 1.65rem; }
+    .slide-num-badge { font-size: 1.35rem !important; padding: 0.28rem 0.85rem; }
+    .slide-1-hero-tagline { font-size: 1.55em !important; }
+    .slide-1-hero-desc { font-size: 1.18em !important; }
+    .slide-1-instructor-name { font-size: 2.15em !important; }
+    .slide-1-instructor-badge { font-size: 0.92em !important; }
+    .slide-1-title-item { font-size: 1.30em !important; }
+    .slide-1-avatar-img { width: 7.5em !important; height: 7.5em !important; }
+    .instructor-info-col .main-bullets { font-size: 1.15em !important; }
+    .instructor-info-col .primary-bullet { font-size: 1.05em !important; line-height: 1.28 !important; margin-bottom: 0.12em !important; }
+    .author-books-header { font-size: 0.95em !important; }
+    .book-item-title { font-size: 0.62em !important; }
+    .book-publisher-tag { font-size: 0.50em !important; }
+    .thesis-title { font-size: 1.40em !important; }
+    .thesis-subtitle { font-size: 0.95em !important; }
+    .thesis-badge { font-size: 0.72em !important; }
+    .thesis-point { font-size: 0.95em !important; }
+
+    .idea-slide {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      min-height: 0;
+      height: 100%;
+    }
+    .idea-slide .slide-svg {
+      width: 100%;
+      height: auto;
+      max-height: 38%;
+      flex: 0 0 auto;
+      margin: 0;
+    }
+    .slide-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+
     .section-slide {
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 1.2rem 1.6rem;
-      gap: 0.85rem;
+      justify-content: flex-start;
+      padding: 0.2rem 0.4rem;
+      gap: 0.55rem;
     }
     .section-kicker {
       font-family: var(--font-code);
-      font-size: 0.92rem;
+      font-size: 1.05em;
       font-weight: 750;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1578,20 +1619,20 @@
       background: var(--accent-sf);
       border: 1px solid var(--accent);
       width: fit-content;
-      padding: 0.28rem 0.70rem;
+      padding: 0.28rem 0.80rem;
       border-radius: 999px;
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: 2.55rem;
+      font-size: 2.70em;
       font-weight: 800;
-      line-height: 1.12;
+      line-height: 1.08;
       letter-spacing: -0.02em;
       color: var(--ink);
       max-width: 18ch;
     }
     .section-sub {
-      font-size: 1.15rem;
+      font-size: 1.32em;
       color: var(--ink-muted);
       font-weight: 550;
       max-width: 42rem;
@@ -1599,53 +1640,54 @@
     .triple-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.85rem;
-      margin-top: 0.35rem;
+      gap: 0.70rem;
+      min-height: 0;
+      flex: 1;
     }
     .triple-card {
       background: var(--surface);
       border: 1.5px solid var(--rule);
       border-radius: 12px;
-      padding: 1.05rem 1.15rem 1.20rem;
+      padding: 0.85rem 1.00rem 1.00rem;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.28rem;
       box-shadow: 0 4px 14px rgba(0,0,0,0.04);
       min-height: 0;
     }
     .triple-num {
       font-family: var(--font-code);
-      font-size: 1.35rem;
+      font-size: 1.48em;
       font-weight: 800;
       color: var(--accent-dk);
     }
     .triple-title {
       font-family: var(--font-display);
-      font-size: 1.22rem;
+      font-size: 1.32em;
       font-weight: 750;
       color: var(--ink);
-      line-height: 1.22;
+      line-height: 1.15;
     }
     .triple-body {
-      font-size: 0.98rem;
-      line-height: 1.45;
+      font-size: 1.18em;
+      line-height: 1.28;
       color: var(--ink);
     }
     .triple-lead {
-      font-size: 1.05rem;
+      font-size: 1.16em;
       color: var(--ink-muted);
       font-weight: 550;
-      margin-bottom: 0.15rem;
     }
     .agenda-stack {
       display: flex;
       flex-direction: column;
-      gap: 0.70rem;
+      gap: 0.45rem;
+      flex: 1;
+      min-height: 0;
     }
     .agenda-row {
       display: grid;
-      grid-template-columns: 4.4rem 1fr;
-      gap: 0.90rem;
+      grid-template-columns: 5.4rem 1fr;
       align-items: stretch;
       background: var(--surface);
       border: 1.5px solid var(--rule);
@@ -1658,43 +1700,39 @@
       color: var(--accent-dk);
       font-family: var(--font-code);
       font-weight: 800;
-      font-size: 1.35rem;
+      font-size: 1.48em;
       display: flex;
       align-items: center;
       justify-content: center;
       border-right: 1.5px solid var(--rule);
     }
-    .agenda-copy {
-      padding: 0.70rem 0.95rem 0.80rem 0;
-    }
+    .agenda-copy { padding: 0.45rem 0.85rem 0.55rem 0.85rem; }
     .agenda-title {
       font-family: var(--font-display);
       font-weight: 750;
-      font-size: 1.18rem;
+      font-size: 1.28em;
       color: var(--ink);
-      margin-bottom: 0.18rem;
     }
     .agenda-body {
-      font-size: 0.95rem;
-      line-height: 1.42;
+      font-size: 1.15em;
+      line-height: 1.28;
       color: var(--ink);
     }
     .core-four-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.55rem;
-      margin: 0.35rem 0 0.70rem;
+      gap: 0.45rem;
+      margin: 0.25rem 0 0.45rem;
     }
     .core-pill {
       background: var(--surface);
       border: 1.5px solid var(--rule);
       border-radius: 10px;
-      padding: 0.70rem 0.75rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      padding: 0.55rem 0.65rem;
     }
     .core-pill-k {
       font-family: var(--font-code);
-      font-size: 0.72rem;
+      font-size: 0.78em;
       font-weight: 750;
       color: var(--accent-dk);
       letter-spacing: 0.04em;
@@ -1703,26 +1741,17 @@
     .core-pill-t {
       font-family: var(--font-display);
       font-weight: 750;
-      font-size: 1.05rem;
+      font-size: 1.18em;
       color: var(--ink);
-      margin: 0.12rem 0 0.10rem;
     }
-    .core-pill-d {
-      font-size: 0.80rem;
-      color: var(--ink-muted);
-      line-height: 1.30;
-    }
-    .ctrl-pills {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.40rem;
-    }
+    .core-pill-d { font-size: 0.90em; color: var(--ink-muted); line-height: 1.25; }
+    .ctrl-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
     .ctrl-pill {
       background: var(--accent-sf);
       border: 1px solid var(--rule);
       border-radius: 8px;
-      padding: 0.42rem 0.55rem;
-      font-size: 0.82rem;
+      padding: 0.40rem 0.50rem;
+      font-size: 0.90em;
       font-weight: 650;
       color: var(--ink);
       text-align: center;
@@ -1731,7 +1760,7 @@
       height: 100%;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 1.40rem;
+      gap: 1.20rem;
       align-items: center;
     }
     .thanks-kicker {
@@ -1740,47 +1769,41 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-dk);
-      font-size: 0.88rem;
+      font-size: 1.00em;
     }
     .thanks-title {
       font-family: var(--font-display);
-      font-size: 3.1rem;
+      font-size: 3.30em;
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin: 0.35rem 0 0.70rem;
+      line-height: 1.02;
+      margin: 0.2rem 0 0.5rem;
     }
-    .thanks-book {
-      font-size: 1.08rem;
-      line-height: 1.40;
-      color: var(--ink);
-      max-width: 28rem;
-    }
+    .thanks-book { font-size: 1.26em; line-height: 1.30; color: var(--ink); max-width: 28rem; }
     .thanks-link a {
       color: var(--accent-dk);
       font-weight: 700;
       font-family: var(--font-code);
-      font-size: 0.95rem;
+      font-size: 1.05em;
     }
     .thanks-cover {
       background: var(--surface);
       border: 1.5px solid var(--rule);
       border-radius: 14px;
-      padding: 0.80rem;
+      padding: 0.70rem;
       box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       text-align: center;
     }
     .thanks-cover img {
       width: 100%;
-      max-height: 52vh;
+      max-height: 42vh;
       object-fit: contain;
       border-radius: 8px;
     }
     @media (max-width: 980px) {
-      .triple-grid, .core-four-row, .ctrl-pills, .thanks-wrap {
-        grid-template-columns: 1fr 1fr;
-      }
+      .triple-grid, .core-four-row, .ctrl-pills, .thanks-wrap { grid-template-columns: 1fr 1fr; }
       .thanks-wrap { grid-template-columns: 1fr; }
+      .section-title { font-size: 2.0em; }
     }
 
   </style>
@@ -1821,7 +1844,8 @@
   </main>
   <script>
 
-    const slidesData = [{"number": 1, "slide_type": "title", "raw_lines": ["Agentic AI Harness Engineering", "From Software Engineering to Harness Engineering", "CSA Greater China Region 2026"]}, {"number": 2, "slide_type": "speaker", "raw_lines": ["About the Speaker: Ken Huang, CISSP", "• AI book author and speaker (Harness Engineering, MAESTRO)", "• Adjunct Professor, University of San Francisco", "• OWASP AIVSS Project Lead", "• Fellow and co-chair of two CSA AI Safety working groups", "• Core member, OWASP Top 10 for LLM Applications", "• AIUC-1 Consortium Member", "• Grant reviewer, Schmidt Sciences", "• EC-Council instructor — Generative AI for Cyber Security", "• CEO of DistributedApps.ai: https://distributedapps.ai/", "• Substack: kenhuangus.substack.com  ·  LinkedIn: linkedin.com/in/kenhuang8"]}, {"number": 3, "slide_type": "agenda", "raw_lines": ["From Software Engineering to Harness Engineering", "The talk in four moves"], "agenda": [{"num": "01", "title": "The discipline shift", "body": "Software Engineering → Harness Engineering. Traditional SE specifies deterministic behavior. Agentic systems need a surrounding control plane."}, {"num": "02", "title": "The Core Four", "body": "Prompt · Context · Loop · Graph. Graph engineering is the multi-agent specialization under the harness umbrella — not a separate discipline."}, {"num": "03", "title": "Control-plane components", "body": "Automation · Identity · Memory · Observability · Runtime · Evaluation · Scalability · Token budget."}, {"num": "04", "title": "The extension layer", "body": "Skill · Plug-in · MCP · hooks · CLI. Inventory, least privilege, typed actions, and revoke-on-policy-failure."}]}, {"number": 4, "slide_type": "section", "raw_lines": ["Part 1", "From Software Engineering", "to Harness Engineering for Agentic AI Systems"], "kicker": "Ontology → Intent → Prompt · Context · Loop · Graph"}, {"number": 5, "slide_type": "comparison", "raw_lines": ["From Software Engineering to Harness Engineering"]}, {"number": 6, "slide_type": "triple", "raw_lines": ["Ontology Before Intent", "Define meaning before action"], "points": [{"num": "01", "title": "Ontology first", "body": "Ontology defines domain entities, relationships, and rules before any agent is allowed to act."}, {"num": "02", "title": "Intent binds the principal", "body": "Intent binds a principal to a goal, an object, constraints, and an explicit success condition."}, {"num": "03", "title": "The harness validates action", "body": "The harness validates planned actions against that intent and against policy — not against model confidence."}]}, {"number": 7, "slide_type": "section", "raw_lines": ["Part 2", "The Core Four", "Prompt · Context · Loop · Graph"], "kicker": "Four specializations of one harness — Graph Engineering is the multi-agent layer"}, {"number": 8, "slide_type": "triple", "raw_lines": ["Prompt Engineering", "Define the task"], "points": [{"num": "01", "title": "Specify the task completely", "body": "State the goal, constraints, required output, and stop condition. Ambiguous prompts become unbounded runs."}, {"num": "02", "title": "Separate trust boundaries", "body": "Keep trusted instructions apart from untrusted data. Retrieved content, tickets, and user text are not system policy."}, {"num": "03", "title": "Version and test before release", "body": "Prompts are production artifacts. Version them, test them, and re-evaluate when tools or models change."}]}, {"number": 9, "slide_type": "triple", "raw_lines": ["Context Engineering", "Give the right evidence"], "points": [{"num": "01", "title": "Select only what this decision needs", "body": "Do not dump the corpus into the window. Provide the evidence required for the current decision, nothing more."}, {"num": "02", "title": "Attach provenance and scope", "body": "Every retrieved item needs source, freshness, and access scope. Context without provenance is untrusted rumor."}, {"num": "03", "title": "Policy outranks retrieval", "body": "Resolve conflicts before use. Written policy beats retrieved content when the two disagree."}]}, {"number": 10, "slide_type": "triple", "raw_lines": ["Loop Engineering", "Keep autonomy bounded"], "points": [{"num": "01", "title": "Structure every cycle", "body": "Each cycle is observe → plan → act → verify. A loop without verification is just retry theater."}, {"num": "02", "title": "Cap steps, time, cost, and retries", "body": "Unbounded loops burn tokens, multiply side effects, and hide failure. Limits are a safety control, not a cost hack."}, {"num": "03", "title": "Stop when progress cannot be shown", "body": "If the agent cannot demonstrate progress or safety, stop. Silent continuation is the failure mode."}]}, {"number": 11, "slide_type": "triple", "raw_lines": ["Graph Engineering", "Govern workflow and handoffs"], "points": [{"num": "01", "title": "One responsibility per node", "body": "Each node owns one clear job: plan, implement, review, or remediate. Overlapping roles recreate the single-agent bottleneck."}, {"num": "02", "title": "Edges are contracts, not chat", "body": "Edges define allowed data and authority transfer. Pass structured artifacts. Do not forward bloated conversation history."}, {"num": "03", "title": "Route exceptions on purpose", "body": "Failures go to a fallback node or a human. A graph with no exception path is a sequential retry loop wearing a new name."}]}, {"number": 12, "slide_type": "section", "raw_lines": ["Part 3", "Control-Plane Components", "Putting autonomy in order"], "kicker": "Automation · Identity · Memory · Observability · Runtime · Evaluation · Scalability · Token"}, {"number": 13, "slide_type": "triple", "raw_lines": ["Automation", "Repeat the safe boundary"], "points": [{"num": "01", "title": "Automate start, sandbox, allowlist, and stop", "body": "The harness starts the run, sandboxes tools, enforces the allowlist, and stops the run. Humans do not babysit the happy path."}, {"num": "02", "title": "Retries must be visible, bounded, and idempotent", "body": "Invisible retries hide failure. Unbounded retries multiply harm. Non-idempotent retries corrupt state."}, {"num": "03", "title": "Humans approve boundaries; the harness executes inside them", "body": "Policy is a human decision. Execution inside that policy is a harness job."}]}, {"number": 14, "slide_type": "triple", "raw_lines": ["Identity and Intent", "Who acts, for whom, and why"], "points": [{"num": "01", "title": "Every run has a principal", "body": "Each run carries a principal, a task ID, and a short-lived credential. Anonymous autonomy is unaccountable autonomy."}, {"num": "02", "title": "Ontology grounds intent", "body": "Intent is goal, object, constraints, and success — grounded in the domain ontology, not in a free-text wish."}, {"num": "03", "title": "Authorize every tool call against intent", "body": "A tool call that is allowed by the sandbox can still be unauthorized for this intent. Check both."}]}, {"number": 15, "slide_type": "triple", "raw_lines": ["Memory", "Persist only governed state"], "points": [{"num": "01", "title": "Write memory only for an explicit purpose", "body": "Memory is not a dump of the transcript. Write it for a named purpose and a named scope."}, {"num": "02", "title": "Isolate users and tasks", "body": "Separate tenants and tasks. Record provenance and retention. Cross-task memory is a data leak waiting for a prompt."}, {"num": "03", "title": "Detect, quarantine, and roll back poisoned memory", "body": "Persistent memory is an attack surface. Treat poison as an incident: detect, isolate, roll back."}]}, {"number": 16, "slide_type": "triple", "raw_lines": ["Observability", "Evidence for decisions and actions"], "points": [{"num": "01", "title": "Trace decisions, tool calls, and artifacts", "body": "You cannot govern what you cannot reconstruct. Log the decision, the call, and the resulting artifact."}, {"num": "02", "title": "Preserve enough to reconstruct high-risk actions", "body": "High-impact writes, credential use, and external side effects need forensic-grade evidence, not a summary."}, {"num": "03", "title": "Protect telemetry itself", "body": "Minimize, access-control, and retain telemetry on purpose. Agent logs contain secrets, PII, and attack material."}]}, {"number": 17, "slide_type": "triple", "raw_lines": ["Runtime Control", "Intervene after start"], "points": [{"num": "01", "title": "Pause, stop, or change policy live", "body": "A run that cannot be interrupted is not a production system. Operators need pause, stop, and policy change during execution."}, {"num": "02", "title": "Checkpoint before high-impact actions", "body": "Take a checkpoint before irreversible writes. Support rollback. Hope is not a recovery plan."}, {"num": "03", "title": "No interrupt path, no trustworthy autonomy", "body": "Autonomy without an interrupt path is just unsupervised execution with extra vocabulary."}]}, {"number": 18, "slide_type": "triple", "raw_lines": ["Evaluation", "Gate the autonomous zone"], "points": [{"num": "01", "title": "Test success and boundary compliance", "body": "A task that succeeds while violating a boundary is a failed evaluation. Score both."}, {"num": "02", "title": "Re-evaluate after any material change", "body": "Prompts, tools, memory, or models changing is a release. Re-run the gate."}, {"num": "03", "title": "Failed evaluation blocks release or reduces autonomy", "body": "Do not ship a failing agent at full autonomy. Block the release or drop it to a tighter permission tier."}]}, {"number": 19, "slide_type": "triple", "raw_lines": ["Scalability", "Scale safety, not only throughput"], "points": [{"num": "01", "title": "Admit work before execution", "body": "Admission control and backpressure come first. An agent farm with no queue discipline is a denial-of-service against itself."}, {"num": "02", "title": "Isolate tenants and workers", "body": "Contain failures. One poisoned worker or tenant must not contaminate the fleet."}, {"num": "03", "title": "Idempotent retries so scale does not multiply harm", "body": "At ten agents, a bug is a bug. At ten thousand, a non-idempotent retry is an incident."}]}, {"number": 20, "slide_type": "triple", "raw_lines": ["Token Budget", "Bound cost and attack surface"], "points": [{"num": "01", "title": "Budget tokens and tool output per run and loop", "body": "Unbounded context is unbounded spend and unbounded injection surface. Set the cap per run and per loop."}, {"num": "02", "title": "Stop safely at the limit", "body": "Hit the ceiling, stop, and report. Never continue silently past the budget."}, {"num": "03", "title": "Raising the budget is a policy change", "body": "A bigger window is not a tuning knob. It is a policy change and it requires evaluation."}]}, {"number": 21, "slide_type": "section", "raw_lines": ["Part 4", "The Extension Layer", "Skill · Plug-in · MCP · hooks · CLI"], "kicker": "Capabilities are not free — inventory, approve, scope, and revoke"}, {"number": 22, "slide_type": "triple", "raw_lines": ["Extensions", "Skill · Plug-in · MCP · hooks · CLI"], "points": [{"num": "01", "title": "Inventory and approve every capability", "body": "Skills, plug-ins, tools, and MCP servers are part of the attack surface. Nothing joins the harness without an inventory record and an approval."}, {"num": "02", "title": "Typed actions, least privilege, scoped credentials", "body": "Prefer typed tool calls over shell. Issue short-lived, scoped credentials. Broad tokens turn every extension into admin."}, {"num": "03", "title": "Validate I/O and revoke on policy failure", "body": "Check inputs and outputs. An extension that fails policy is revoked, not warned."}]}, {"number": 23, "slide_type": "thanks", "raw_lines": ["Thank you", "Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems", "amazon.com/dp/B0HF3F86YM"]}];
+    const slidesData = [{"number": 1, "slide_type": "title", "raw_lines": ["Agentic AI Harness Engineering", "From Software Engineering to Harness Engineering", "CSA Greater China Region 2026"]}, {"number": 2, "slide_type": "speaker", "raw_lines": ["About the Speaker: Ken Huang, CISSP", "• AI book author and speaker (Harness Engineering, MAESTRO)", "• Adjunct Professor, University of San Francisco", "• OWASP AIVSS Project Lead", "• Fellow and co-chair of two CSA AI Safety working groups", "• Core member, OWASP Top 10 for LLM Applications", "• AIUC-1 Consortium Member", "• Grant reviewer, Schmidt Sciences", "• EC-Council instructor — Generative AI for Cyber Security", "• CEO of DistributedApps.ai: https://distributedapps.ai/", "• Substack: kenhuangus.substack.com  ·  LinkedIn: linkedin.com/in/kenhuang8"]}, {"number": 3, "slide_type": "agenda", "raw_lines": ["From Software Engineering to Harness Engineering", "The talk in four moves"], "agenda": [{"num": "01", "title": "The discipline shift", "body": "Software Engineering → Harness Engineering. Specified behavior vs a control plane around agents."}, {"num": "02", "title": "The Core Four", "body": "Prompt · Context · Loop · Graph. Graph engineering is the multi-agent layer — not a separate discipline."}, {"num": "03", "title": "Control-plane components", "body": "Automation · Identity · Memory · Observability · Runtime · Evaluation · Scalability · Token budget."}, {"num": "04", "title": "The extension layer", "body": "Skill · Plug-in · MCP · hooks · CLI. Inventory, least privilege, typed actions, revoke on failure."}]}, {"number": 4, "slide_type": "section", "raw_lines": ["Part 1", "From Software Engineering", "to Harness Engineering for Agentic AI Systems"], "kicker": "Ontology → Intent → Prompt · Context · Loop · Graph"}, {"number": 5, "slide_type": "comparison", "raw_lines": ["From Software Engineering to Harness Engineering"]}, {"number": 6, "slide_type": "triple", "raw_lines": ["Ontology Before Intent", "Define meaning before action"], "points": [{"num": "01", "title": "Ontology first", "body": "Ontology defines domain entities, relationships, and rules before any agent is allowed to act."}, {"num": "02", "title": "Intent binds the principal", "body": "Intent binds a principal to a goal, an object, constraints, and an explicit success condition."}, {"num": "03", "title": "The harness validates action", "body": "The harness validates planned actions against that intent and against policy — not against model confidence."}]}, {"number": 7, "slide_type": "section", "raw_lines": ["Part 2", "The Core Four", "Prompt · Context · Loop · Graph"], "kicker": "Four specializations of one harness — Graph Engineering is the multi-agent layer"}, {"number": 8, "slide_type": "triple", "raw_lines": ["Prompt Engineering", "Define the task"], "points": [{"num": "01", "title": "Specify the task completely", "body": "State the goal, constraints, required output, and stop condition. Ambiguous prompts become unbounded runs."}, {"num": "02", "title": "Separate trust boundaries", "body": "Keep trusted instructions apart from untrusted data. Retrieved content, tickets, and user text are not system policy."}, {"num": "03", "title": "Version and test before release", "body": "Prompts are production artifacts. Version them, test them, and re-evaluate when tools or models change."}]}, {"number": 9, "slide_type": "triple", "raw_lines": ["Context Engineering", "Give the right evidence"], "points": [{"num": "01", "title": "Select only what this decision needs", "body": "Do not dump the corpus into the window. Provide the evidence required for the current decision, nothing more."}, {"num": "02", "title": "Attach provenance and scope", "body": "Every retrieved item needs source, freshness, and access scope. Context without provenance is untrusted rumor."}, {"num": "03", "title": "Policy outranks retrieval", "body": "Resolve conflicts before use. Written policy beats retrieved content when the two disagree."}]}, {"number": 10, "slide_type": "triple", "raw_lines": ["Loop Engineering", "Keep autonomy bounded"], "points": [{"num": "01", "title": "Structure every cycle", "body": "Each cycle is observe → plan → act → verify. A loop without verification is just retry theater."}, {"num": "02", "title": "Cap steps, time, cost, and retries", "body": "Unbounded loops burn tokens, multiply side effects, and hide failure. Limits are a safety control, not a cost hack."}, {"num": "03", "title": "Stop when progress cannot be shown", "body": "If the agent cannot demonstrate progress or safety, stop. Silent continuation is the failure mode."}]}, {"number": 11, "slide_type": "triple", "raw_lines": ["Graph Engineering", "Govern workflow and handoffs"], "points": [{"num": "01", "title": "One responsibility per node", "body": "Each node owns one clear job: plan, implement, review, or remediate. Overlapping roles recreate the single-agent bottleneck."}, {"num": "02", "title": "Edges are contracts, not chat", "body": "Edges define allowed data and authority transfer. Pass structured artifacts. Do not forward bloated conversation history."}, {"num": "03", "title": "Route exceptions on purpose", "body": "Failures go to a fallback node or a human. A graph with no exception path is a sequential retry loop wearing a new name."}]}, {"number": 12, "slide_type": "section", "raw_lines": ["Part 3", "Control-Plane Components", "Putting autonomy in order"], "kicker": "Automation · Identity · Memory · Observability · Runtime · Evaluation · Scalability · Token"}, {"number": 13, "slide_type": "triple", "raw_lines": ["Automation", "Repeat the safe boundary"], "points": [{"num": "01", "title": "Automate start, sandbox, allowlist, and stop", "body": "The harness starts the run, sandboxes tools, enforces the allowlist, and stops the run. Humans do not babysit the happy path."}, {"num": "02", "title": "Retries must be visible, bounded, and idempotent", "body": "Invisible retries hide failure. Unbounded retries multiply harm. Non-idempotent retries corrupt state."}, {"num": "03", "title": "Humans approve boundaries; the harness executes inside them", "body": "Policy is a human decision. Execution inside that policy is a harness job."}]}, {"number": 14, "slide_type": "triple", "raw_lines": ["Identity and Intent", "Who acts, for whom, and why"], "points": [{"num": "01", "title": "Every run has a principal", "body": "Each run carries a principal, a task ID, and a short-lived credential. Anonymous autonomy is unaccountable autonomy."}, {"num": "02", "title": "Ontology grounds intent", "body": "Intent is goal, object, constraints, and success — grounded in the domain ontology, not in a free-text wish."}, {"num": "03", "title": "Authorize every tool call against intent", "body": "A tool call that is allowed by the sandbox can still be unauthorized for this intent. Check both."}]}, {"number": 15, "slide_type": "triple", "raw_lines": ["Memory", "Persist only governed state"], "points": [{"num": "01", "title": "Write memory only for an explicit purpose", "body": "Memory is not a dump of the transcript. Write it for a named purpose and a named scope."}, {"num": "02", "title": "Isolate users and tasks", "body": "Separate tenants and tasks. Record provenance and retention. Cross-task memory is a data leak waiting for a prompt."}, {"num": "03", "title": "Detect, quarantine, and roll back poisoned memory", "body": "Persistent memory is an attack surface. Treat poison as an incident: detect, isolate, roll back."}]}, {"number": 16, "slide_type": "triple", "raw_lines": ["Observability", "Evidence for decisions and actions"], "points": [{"num": "01", "title": "Trace decisions, tool calls, and artifacts", "body": "You cannot govern what you cannot reconstruct. Log the decision, the call, and the resulting artifact."}, {"num": "02", "title": "Preserve enough to reconstruct high-risk actions", "body": "High-impact writes, credential use, and external side effects need forensic-grade evidence, not a summary."}, {"num": "03", "title": "Protect telemetry itself", "body": "Minimize, access-control, and retain telemetry on purpose. Agent logs contain secrets, PII, and attack material."}]}, {"number": 17, "slide_type": "triple", "raw_lines": ["Runtime Control", "Intervene after start"], "points": [{"num": "01", "title": "Pause, stop, or change policy live", "body": "A run that cannot be interrupted is not a production system. Operators need pause, stop, and policy change during execution."}, {"num": "02", "title": "Checkpoint before high-impact actions", "body": "Take a checkpoint before irreversible writes. Support rollback. Hope is not a recovery plan."}, {"num": "03", "title": "No interrupt path, no trustworthy autonomy", "body": "Autonomy without an interrupt path is just unsupervised execution with extra vocabulary."}]}, {"number": 18, "slide_type": "triple", "raw_lines": ["Evaluation", "Gate the autonomous zone"], "points": [{"num": "01", "title": "Test success and boundary compliance", "body": "A task that succeeds while violating a boundary is a failed evaluation. Score both."}, {"num": "02", "title": "Re-evaluate after any material change", "body": "Prompts, tools, memory, or models changing is a release. Re-run the gate."}, {"num": "03", "title": "Failed evaluation blocks release or reduces autonomy", "body": "Do not ship a failing agent at full autonomy. Block the release or drop it to a tighter permission tier."}]}, {"number": 19, "slide_type": "triple", "raw_lines": ["Scalability", "Scale safety, not only throughput"], "points": [{"num": "01", "title": "Admit work before execution", "body": "Admission control and backpressure come first. An agent farm with no queue discipline is a denial-of-service against itself."}, {"num": "02", "title": "Isolate tenants and workers", "body": "Contain failures. One poisoned worker or tenant must not contaminate the fleet."}, {"num": "03", "title": "Idempotent retries so scale does not multiply harm", "body": "At ten agents, a bug is a bug. At ten thousand, a non-idempotent retry is an incident."}]}, {"number": 20, "slide_type": "triple", "raw_lines": ["Token Budget", "Bound cost and attack surface"], "points": [{"num": "01", "title": "Budget tokens and tool output per run and loop", "body": "Unbounded context is unbounded spend and unbounded injection surface. Set the cap per run and per loop."}, {"num": "02", "title": "Stop safely at the limit", "body": "Hit the ceiling, stop, and report. Never continue silently past the budget."}, {"num": "03", "title": "Raising the budget is a policy change", "body": "A bigger window is not a tuning knob. It is a policy change and it requires evaluation."}]}, {"number": 21, "slide_type": "section", "raw_lines": ["Part 4", "The Extension Layer", "Skill · Plug-in · MCP · hooks · CLI"], "kicker": "Capabilities are not free — inventory, approve, scope, and revoke"}, {"number": 22, "slide_type": "triple", "raw_lines": ["Extensions", "Skill · Plug-in · MCP · hooks · CLI"], "points": [{"num": "01", "title": "Inventory and approve every capability", "body": "Skills, plug-ins, tools, and MCP servers are part of the attack surface. Nothing joins the harness without an inventory record and an approval."}, {"num": "02", "title": "Typed actions, least privilege, scoped credentials", "body": "Prefer typed tool calls over shell. Issue short-lived, scoped credentials. Broad tokens turn every extension into admin."}, {"num": "03", "title": "Validate I/O and revoke on policy failure", "body": "Check inputs and outputs. An extension that fails policy is revoked, not warned."}]}, {"number": 23, "slide_type": "thanks", "raw_lines": ["Thank you", "Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems", "amazon.com/dp/B0HF3F86YM"]}];
+    const svgMap = {"1": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <text x=\"400\" y=\"22\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"15\" font-weight=\"800\" text-anchor=\"middle\">HARNESS ENGINEERING  —  the umbrella discipline</text>\n  <path d=\"M 80 78 Q 400 8 720 78\" fill=\"none\" stroke=\"#BD5D3A\" stroke-width=\"3.2\"/>\n  <path d=\"M 80 78 L 720 78\" stroke=\"#BD5D3A\" stroke-width=\"2.2\"/>\n  <rect x=\"70\" y=\"96\" width=\"155\" height=\"72\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"147.5\" y=\"126.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Prompt</text>\n  <text x=\"147.5\" y=\"144.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">define the task</text>\n  <rect x=\"245\" y=\"96\" width=\"155\" height=\"72\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"322.5\" y=\"126.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Context</text>\n  <text x=\"322.5\" y=\"144.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">give evidence</text>\n  <rect x=\"420\" y=\"96\" width=\"155\" height=\"72\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"497.5\" y=\"126.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Loop</text>\n  <text x=\"497.5\" y=\"144.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">bound execution</text>\n  <rect x=\"595\" y=\"96\" width=\"135\" height=\"72\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"662.5\" y=\"126.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Graph</text>\n  <text x=\"662.5\" y=\"144.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">govern workflow</text>\n\n</svg>", "2": "<svg viewBox=\"0 0 800 140\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"20\" y=\"28\" width=\"180\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"110.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Author</text>\n  <text x=\"110.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">Harness · MAESTRO</text>\n  <path d=\"M 200 63 L 238 63\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s2)\"/>\n  <rect x=\"240\" y=\"28\" width=\"180\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"330.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Professor</text>\n  <text x=\"330.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">Univ. of San Francisco</text>\n  <path d=\"M 420 63 L 458 63\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s2)\"/>\n  <rect x=\"460\" y=\"28\" width=\"150\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"535.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">OWASP</text>\n  <text x=\"535.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">AIVSS · LLM Top 10</text>\n  <path d=\"M 610 63 L 648 63\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s2)\"/>\n  <rect x=\"650\" y=\"28\" width=\"130\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"715.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">CSA</text>\n  <text x=\"715.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">AI Safety WGs</text>\n  <text x=\"400\" y=\"128\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">One speaker  ·  books, standards, and production harnesses</text>\n\n</svg>", "3": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s3\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"40\" y=\"18\" width=\"175\" height=\"150\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"127.5\" y=\"87.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">01  Shift</text>\n  <text x=\"127.5\" y=\"105.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">SE → Harness</text>\n  <path d=\"M 215 93 L 248 93\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s3)\"/>\n  <rect x=\"250\" y=\"18\" width=\"175\" height=\"150\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"337.5\" y=\"87.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">02  Core Four</text>\n  <text x=\"337.5\" y=\"105.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">Prompt Context Loop Graph</text>\n  <path d=\"M 425 93 L 458 93\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s3)\"/>\n  <rect x=\"460\" y=\"18\" width=\"155\" height=\"150\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"537.5\" y=\"87.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">03  Control</text>\n  <text x=\"537.5\" y=\"105.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">identity · memory · eval</text>\n  <path d=\"M 615 93 L 648 93\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s3)\"/>\n  <rect x=\"650\" y=\"18\" width=\"130\" height=\"150\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"715.0\" y=\"87.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">04  Ext.</text>\n  <text x=\"715.0\" y=\"105.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">skill MCP hooks</text>\n\n</svg>", "4": "<svg viewBox=\"0 0 800 170\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s4\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"40\" y=\"40\" width=\"250\" height=\"110\" rx=\"10\" fill=\"#EBF2FE\" stroke=\"#1e40af\" stroke-width=\"2.4\"/>\n  <text x=\"165.0\" y=\"89.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Software Engineering</text>\n  <text x=\"165.0\" y=\"107.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">specified, tested, repeatable</text>\n  <path d=\"M 300 95 L 370 95\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s4)\"/>\n  <text x=\"335.0\" y=\"87.0\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"10\" font-weight=\"800\" text-anchor=\"middle\">paradigm</text>\n  <rect x=\"380\" y=\"40\" width=\"380\" height=\"110\" rx=\"10\" fill=\"#E6F7F0\" stroke=\"#047857\" stroke-width=\"2.4\"/>\n  <text x=\"570.0\" y=\"89.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Harness Engineering</text>\n  <text x=\"570.0\" y=\"107.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">deterministic control around probabilistic agents</text>\n\n</svg>", "5": "<svg viewBox=\"0 0 800 188\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s5\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"16\" width=\"250\" height=\"156\" rx=\"10\" fill=\"#EBF2FE\" stroke=\"#1e40af\" stroke-width=\"2.4\"/>\n  <text x=\"141.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"15\" font-weight=\"800\" text-anchor=\"middle\">Software Engineering</text>\n  <text x=\"141.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"12\" font-weight=\"600\" text-anchor=\"middle\">f(x) → y   specified behavior</text>\n  <path d=\"M 276 94 L 328 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s5)\"/>\n  <rect x=\"336\" y=\"16\" width=\"448\" height=\"156\" rx=\"12\" fill=\"#E6F7F0\" stroke=\"#047857\" stroke-width=\"2.4\"/>\n  <text x=\"560\" y=\"44\" fill=\"#047857\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"16\" font-weight=\"800\" text-anchor=\"middle\">Harness Engineering</text>\n  <rect x=\"352\" y=\"58\" width=\"100\" height=\"96\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"402.0\" y=\"100.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Prompt</text>\n  <text x=\"402.0\" y=\"118.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">task</text>\n  <rect x=\"462\" y=\"58\" width=\"100\" height=\"96\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"512.0\" y=\"100.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Context</text>\n  <text x=\"512.0\" y=\"118.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">evidence</text>\n  <rect x=\"572\" y=\"58\" width=\"100\" height=\"96\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"622.0\" y=\"100.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Loop</text>\n  <text x=\"622.0\" y=\"118.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">bounds</text>\n  <rect x=\"682\" y=\"58\" width=\"86\" height=\"96\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"725.0\" y=\"100.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Graph</text>\n  <text x=\"725.0\" y=\"118.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">handoffs</text>\n\n</svg>", "6": "<svg viewBox=\"0 0 800 170\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s6\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"20\" y=\"40\" width=\"200\" height=\"108\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"120.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">01  Ontology</text>\n  <text x=\"120.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">entities · relations · rules</text>\n  <path d=\"M 230 94 L 268 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s6)\"/>\n  <rect x=\"276\" y=\"40\" width=\"230\" height=\"108\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"391.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">02  Intent</text>\n  <text x=\"391.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">goal · object · success</text>\n  <path d=\"M 516 94 L 554 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s6)\"/>\n  <rect x=\"562\" y=\"40\" width=\"218\" height=\"108\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"671.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">03  Harness check</text>\n  <text x=\"671.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">action vs intent + policy</text>\n  <text x=\"400\" y=\"28\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">No ontology  →  no authorized action</text>\n\n</svg>", "7": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s7\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <text x=\"400\" y=\"24\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"15\" font-weight=\"800\" text-anchor=\"middle\">Four specializations of one harness</text>\n  <rect x=\"20\" y=\"48\" width=\"175\" height=\"118\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"107.5\" y=\"101.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Prompt</text>\n  <text x=\"107.5\" y=\"119.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">define the task</text>\n  <path d=\"M 195 107 L 228 107\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s7)\"/>\n  <rect x=\"230\" y=\"48\" width=\"175\" height=\"118\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"317.5\" y=\"101.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Context</text>\n  <text x=\"317.5\" y=\"119.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">give evidence</text>\n  <path d=\"M 405 107 L 438 107\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s7)\"/>\n  <rect x=\"440\" y=\"48\" width=\"165\" height=\"118\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"522.5\" y=\"101.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Loop</text>\n  <text x=\"522.5\" y=\"119.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">bound the run</text>\n  <path d=\"M 605 107 L 638 107\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s7)\"/>\n  <rect x=\"640\" y=\"48\" width=\"140\" height=\"118\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"710.0\" y=\"101.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Graph</text>\n  <text x=\"710.0\" y=\"119.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">multi-agent</text>\n\n</svg>", "8": "<svg viewBox=\"0 0 800 176\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s8\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"36\" width=\"300\" height=\"120\" rx=\"10\" fill=\"#E6F7F0\" stroke=\"#047857\" stroke-width=\"2.4\"/>\n  <text x=\"166.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Trusted instructions</text>\n  <text x=\"166.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">goal · constraints · output · stop</text>\n  <rect x=\"332\" y=\"70\" width=\"136\" height=\"52\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"400.0\" y=\"101.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"800\" text-anchor=\"middle\">TRUST BOUNDARY</text>\n  <rect x=\"484\" y=\"36\" width=\"300\" height=\"120\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"634.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Untrusted data</text>\n  <text x=\"634.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">tickets · retrieval · user text</text>\n\n</svg>", "9": "<svg viewBox=\"0 0 800 176\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s9\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"36\" width=\"150\" height=\"120\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#E3E0D6\" stroke-width=\"2.4\"/>\n  <text x=\"91.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Corpus</text>\n  <text x=\"91.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">too much</text>\n  <path d=\"M 176 96 L 214 96\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s9)\"/>\n  <text x=\"195.0\" y=\"88.0\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"10\" font-weight=\"800\" text-anchor=\"middle\">select</text>\n  <rect x=\"222\" y=\"36\" width=\"250\" height=\"120\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"347.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">This decision only</text>\n  <text x=\"347.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">source · freshness · scope</text>\n  <path d=\"M 482 96 L 520 96\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s9)\"/>\n  <rect x=\"528\" y=\"36\" width=\"256\" height=\"120\" rx=\"10\" fill=\"#E6F7F0\" stroke=\"#047857\" stroke-width=\"2.4\"/>\n  <text x=\"656.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Context window</text>\n  <text x=\"656.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">policy outranks retrieval</text>\n\n</svg>", "10": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s10\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"40\" y=\"18\" width=\"160\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"120.0\" y=\"58.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Observe</text>\n  <path d=\"M 210 53 L 248 53\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s10)\"/>\n  <rect x=\"256\" y=\"18\" width=\"160\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"336.0\" y=\"58.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Plan</text>\n  <path d=\"M 426 53 L 464 53\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s10)\"/>\n  <rect x=\"472\" y=\"18\" width=\"140\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"542.0\" y=\"58.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Act</text>\n  <path d=\"M 622 53 L 660 53\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s10)\"/>\n  <rect x=\"668\" y=\"18\" width=\"112\" height=\"70\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"724.0\" y=\"58.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Verify</text>\n  <path d=\"M 724 88 L 724 118 L 120 118 L 120 88\" stroke=\"#BD5D3A\" stroke-width=\"2.4\" fill=\"none\" marker-end=\"url(#arr-s10)\"/>\n  <text x=\"400\" y=\"168\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Bounds: steps · time · cost · retries   —   no progress → STOP</text>\n\n</svg>", "11": "<svg viewBox=\"0 0 800 182\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s11\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"40\" y=\"20\" width=\"150\" height=\"86\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"115.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Plan</text>\n  <text x=\"115.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">one job</text>\n  <path d=\"M 200 63 L 238 63\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s11)\"/>\n  <text x=\"219.0\" y=\"55.0\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"10\" font-weight=\"800\" text-anchor=\"middle\">artifact</text>\n  <rect x=\"246\" y=\"20\" width=\"160\" height=\"86\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"326.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Implement</text>\n  <text x=\"326.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">one job</text>\n  <path d=\"M 416 63 L 454 63\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s11)\"/>\n  <text x=\"435.0\" y=\"55.0\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"10\" font-weight=\"800\" text-anchor=\"middle\">artifact</text>\n  <rect x=\"462\" y=\"20\" width=\"150\" height=\"86\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"537.0\" y=\"57.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Review</text>\n  <text x=\"537.0\" y=\"75.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">one job</text>\n  <path d=\"M 622 63 L 660 63\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s11)\"/>\n  <rect x=\"668\" y=\"20\" width=\"112\" height=\"86\" rx=\"10\" fill=\"#E6F7F0\" stroke=\"#047857\" stroke-width=\"2.4\"/>\n  <text x=\"724.0\" y=\"68.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Done</text>\n  <path d=\"M 537 106 L 537 142 L 246 142\" stroke=\"#BD5D3A\" stroke-width=\"2.4\" fill=\"none\" marker-end=\"url(#arr-s11)\"/>\n  <rect x=\"80\" y=\"118\" width=\"160\" height=\"52\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"160.0\" y=\"138.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Human / fallback</text>\n  <text x=\"160.0\" y=\"156.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">exception path</text>\n\n</svg>", "12": "<svg viewBox=\"0 0 800 184\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s12\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"300\" y=\"62\" width=\"200\" height=\"64\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"400.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Agent run</text>\n  <text x=\"400.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">probabilistic core</text>\n  <rect x=\"20\" y=\"16\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"95.0\" y=\"45.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Automation</text>\n  <rect x=\"210\" y=\"16\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"285.0\" y=\"45.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Identity</text>\n  <rect x=\"440\" y=\"16\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"515.0\" y=\"45.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Memory</text>\n  <rect x=\"630\" y=\"16\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"705.0\" y=\"45.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Observability</text>\n  <rect x=\"20\" y=\"124\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"95.0\" y=\"153.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Runtime</text>\n  <rect x=\"210\" y=\"124\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"285.0\" y=\"153.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Evaluation</text>\n  <rect x=\"440\" y=\"124\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"515.0\" y=\"153.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Scalability</text>\n  <rect x=\"630\" y=\"124\" width=\"150\" height=\"48\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"705.0\" y=\"153.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Token budget</text>\n\n</svg>", "13": "<svg viewBox=\"0 0 800 168\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s13\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"36\" width=\"130\" height=\"100\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"81.0\" y=\"80.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Start</text>\n  <text x=\"81.0\" y=\"98.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">harness</text>\n  <path d=\"M 156 86 L 188 86\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s13)\"/>\n  <rect x=\"196\" y=\"36\" width=\"140\" height=\"100\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"266.0\" y=\"80.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Sandbox</text>\n  <text x=\"266.0\" y=\"98.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">tools</text>\n  <path d=\"M 346 86 L 378 86\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s13)\"/>\n  <rect x=\"386\" y=\"36\" width=\"150\" height=\"100\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"461.0\" y=\"80.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Allowlist</text>\n  <text x=\"461.0\" y=\"98.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">visible retries</text>\n  <path d=\"M 546 86 L 578 86\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s13)\"/>\n  <rect x=\"586\" y=\"36\" width=\"198\" height=\"100\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"685.0\" y=\"80.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Stop</text>\n  <text x=\"685.0\" y=\"98.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">human set the boundary</text>\n\n</svg>", "14": "<svg viewBox=\"0 0 800 172\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s14\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"40\" width=\"150\" height=\"108\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"91.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Principal</text>\n  <text x=\"91.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">who acts</text>\n  <path d=\"M 176 94 L 208 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s14)\"/>\n  <rect x=\"216\" y=\"40\" width=\"140\" height=\"108\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"286.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Task ID</text>\n  <text x=\"286.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">this run</text>\n  <path d=\"M 366 94 L 398 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s14)\"/>\n  <rect x=\"406\" y=\"40\" width=\"170\" height=\"108\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"491.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Short credential</text>\n  <text x=\"491.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">time-boxed</text>\n  <path d=\"M 586 94 L 618 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s14)\"/>\n  <rect x=\"626\" y=\"40\" width=\"158\" height=\"108\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"705.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Tool auth</text>\n  <text x=\"705.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">vs stated intent</text>\n\n</svg>", "15": "<svg viewBox=\"0 0 800 172\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"20\" y=\"36\" width=\"230\" height=\"116\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"135.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Write</text>\n  <text x=\"135.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">named purpose + scope</text>\n  <path d=\"M 260 94 L 298 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s15)\"/>\n  <rect x=\"306\" y=\"36\" width=\"230\" height=\"116\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"421.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Isolate</text>\n  <text x=\"421.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">user · task · retention</text>\n  <path d=\"M 546 94 L 584 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s15)\"/>\n  <rect x=\"592\" y=\"36\" width=\"188\" height=\"116\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"686.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Roll back</text>\n  <text x=\"686.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">poison = incident</text>\n\n</svg>", "16": "<svg viewBox=\"0 0 800 172\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s16\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"20\" y=\"36\" width=\"210\" height=\"116\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"125.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Decision</text>\n  <text x=\"125.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">why this action</text>\n  <path d=\"M 240 94 L 278 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s16)\"/>\n  <text x=\"259.0\" y=\"86.0\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"10\" font-weight=\"800\" text-anchor=\"middle\">trace</text>\n  <rect x=\"286\" y=\"36\" width=\"220\" height=\"116\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"396.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Tool call</text>\n  <text x=\"396.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">what ran</text>\n  <path d=\"M 516 94 L 554 94\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s16)\"/>\n  <text x=\"535.0\" y=\"86.0\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"10\" font-weight=\"800\" text-anchor=\"middle\">trace</text>\n  <rect x=\"562\" y=\"36\" width=\"218\" height=\"116\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"671.0\" y=\"88.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Artifact</text>\n  <text x=\"671.0\" y=\"106.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">reconstruct high-risk</text>\n\n</svg>", "17": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s17\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"40\" y=\"70\" width=\"720\" height=\"28\" rx=\"8\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.2\"/>\n  <text x=\"400\" y=\"89\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">LIVE RUN  —  still interruptible</text>\n  <rect x=\"40\" y=\"16\" width=\"160\" height=\"42\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"120.0\" y=\"42.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Pause</text>\n  <rect x=\"240\" y=\"16\" width=\"160\" height=\"42\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"320.0\" y=\"42.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Stop</text>\n  <rect x=\"440\" y=\"16\" width=\"160\" height=\"42\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"520.0\" y=\"42.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Change policy</text>\n  <rect x=\"640\" y=\"16\" width=\"120\" height=\"42\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"700.0\" y=\"42.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">Checkpoint</text>\n  <rect x=\"200\" y=\"118\" width=\"400\" height=\"50\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"400.0\" y=\"148.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">No interrupt path  =  unsupervised execution</text>\n\n</svg>", "18": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s18\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"20\" y=\"40\" width=\"220\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"130.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Change</text>\n  <text x=\"130.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">prompt · tool · model</text>\n  <path d=\"M 250 96 L 292 96\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s18)\"/>\n  <rect x=\"300\" y=\"28\" width=\"200\" height=\"136\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"400.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"16\" font-weight=\"800\" text-anchor=\"middle\">EVAL GATE</text>\n  <text x=\"400.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">success AND boundary</text>\n  <path d=\"M 510 70 L 558 70\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s18)\"/>\n  <rect x=\"566\" y=\"20\" width=\"210\" height=\"70\" rx=\"10\" fill=\"#E6F7F0\" stroke=\"#047857\" stroke-width=\"2.4\"/>\n  <text x=\"671.0\" y=\"49.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Release</text>\n  <text x=\"671.0\" y=\"67.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">full autonomy</text>\n  <path d=\"M 510 122 L 558 122\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s18)\"/>\n  <rect x=\"566\" y=\"102\" width=\"210\" height=\"62\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"671.0\" y=\"127.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Block / reduce</text>\n  <text x=\"671.0\" y=\"145.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">failed evaluation</text>\n\n</svg>", "19": "<svg viewBox=\"0 0 800 176\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s19\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"40\" width=\"180\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"106.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Admit</text>\n  <text x=\"106.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">backpressure first</text>\n  <path d=\"M 206 96 L 244 96\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s19)\"/>\n  <rect x=\"252\" y=\"16\" width=\"150\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"327.0\" y=\"45.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Tenant A</text>\n  <text x=\"327.0\" y=\"63.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">isolated</text>\n  <rect x=\"252\" y=\"98\" width=\"150\" height=\"70\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"327.0\" y=\"127.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Tenant B</text>\n  <text x=\"327.0\" y=\"145.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">isolated</text>\n  <path d=\"M 412 96 L 450 96\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s19)\"/>\n  <rect x=\"458\" y=\"40\" width=\"322\" height=\"112\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"619.0\" y=\"90.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Idempotent retry</text>\n  <text x=\"619.0\" y=\"108.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">scale must not multiply harm</text>\n\n</svg>", "20": "<svg viewBox=\"0 0 800 180\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s20\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <text x=\"400\" y=\"28\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Token + tool-output budget per run and per loop</text>\n  <rect x=\"60\" y=\"52\" width=\"680\" height=\"44\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <rect x=\"64\" y=\"56\" width=\"470\" height=\"36\" rx=\"8\" fill=\"#F5E6DF\"/>\n  <text x=\"300\" y=\"80\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">consumed</text>\n  <text x=\"700\" y=\"80\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"13\" font-weight=\"800\" text-anchor=\"middle\">CAP</text>\n  <rect x=\"220\" y=\"116\" width=\"360\" height=\"52\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"400.0\" y=\"136.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"15\" font-weight=\"800\" text-anchor=\"middle\">Hit the ceiling → STOP and report</text>\n  <text x=\"400.0\" y=\"154.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"12\" font-weight=\"600\" text-anchor=\"middle\">never continue silently</text>\n\n</svg>", "21": "<svg viewBox=\"0 0 800 176\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s21\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <text x=\"400\" y=\"24\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Extensions plug into the harness — they are not free capability</text>\n  <rect x=\"20\" y=\"48\" width=\"140\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"90.0\" y=\"109.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Skill</text>\n  <rect x=\"176\" y=\"48\" width=\"140\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"246.0\" y=\"109.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Plug-in</text>\n  <rect x=\"332\" y=\"48\" width=\"140\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"402.0\" y=\"109.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">MCP</text>\n  <rect x=\"488\" y=\"48\" width=\"140\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"558.0\" y=\"109.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">hooks</text>\n  <rect x=\"644\" y=\"48\" width=\"136\" height=\"112\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"712.0\" y=\"109.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">CLI</text>\n\n</svg>", "22": "<svg viewBox=\"0 0 800 172\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s22\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <rect x=\"16\" y=\"40\" width=\"230\" height=\"116\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"131.0\" y=\"92.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Inventory + approve</text>\n  <text x=\"131.0\" y=\"110.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">every skill, tool, server</text>\n  <path d=\"M 256 98 L 294 98\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s22)\"/>\n  <rect x=\"302\" y=\"40\" width=\"230\" height=\"116\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"417.0\" y=\"92.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Least privilege</text>\n  <text x=\"417.0\" y=\"110.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">typed · scoped creds</text>\n  <path d=\"M 542 98 L 580 98\" stroke=\"#BD5D3A\" stroke-width=\"2.6\" fill=\"none\" marker-end=\"url(#arr-s22)\"/>\n  <rect x=\"588\" y=\"40\" width=\"196\" height=\"116\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"686.0\" y=\"92.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Validate / revoke</text>\n  <text x=\"686.0\" y=\"110.0\" fill=\"#6B6B63\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">fail policy → out</text>\n\n</svg>", "23": "<svg viewBox=\"0 0 800 168\" class=\"slide-svg\" role=\"img\" aria-hidden=\"true\">\n  <defs>\n    <marker id=\"arr-s23\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\">\n      <path d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#BD5D3A\"/>\n    </marker>\n  </defs>\n  \n  <text x=\"400\" y=\"30\" fill=\"#BD5D3A\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"15\" font-weight=\"800\" text-anchor=\"middle\">Build the harness. Graph engineering is one layer under it.</text>\n  <rect x=\"40\" y=\"56\" width=\"170\" height=\"100\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"125.0\" y=\"111.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Prompt</text>\n  <rect x=\"230\" y=\"56\" width=\"170\" height=\"100\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"315.0\" y=\"111.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Context</text>\n  <rect x=\"420\" y=\"56\" width=\"170\" height=\"100\" rx=\"10\" fill=\"#FAF9F5\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"505.0\" y=\"111.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Loop</text>\n  <rect x=\"610\" y=\"56\" width=\"150\" height=\"100\" rx=\"10\" fill=\"#F5E6DF\" stroke=\"#BD5D3A\" stroke-width=\"2.4\"/>\n  <text x=\"685.0\" y=\"111.0\" fill=\"#141413\" font-family=\"Inter,system-ui,sans-serif\" font-size=\"14\" font-weight=\"800\" text-anchor=\"middle\">Graph</text>\n\n</svg>"};
     const totalSlides = slidesData.length;
     let currentIdx = 0;
     let isGridMode = false;
@@ -1862,17 +1886,14 @@
       return html;
     }
 
+    function svgFor(n) {
+      return svgMap[String(n)] || '';
+    }
+
     function renderTitle() {
       return `
-        <div id="slide-content-wrap" class="slide-1-container">
-          <div class="slide-1-hero-card">
-            <div class="slide-1-hero-tagline">
-              From Software Engineering to Harness Engineering
-            </div>
-            <div class="slide-1-hero-desc">
-              Ontology defines intent. Governed order constrains action. Graph engineering is the multi-agent specialization under the harness umbrella &mdash; not a competing discipline.
-            </div>
-          </div>
+        <div id="slide-content-wrap" class="slide-1-container idea-slide">
+          ${svgFor(1)}
           <div class="slide-1-instructor-card">
             <div class="slide-1-avatar-wrap">
               <img src="assets/images/ken-head-shot.png" alt="Ken Huang" class="slide-1-avatar-img" />
@@ -1894,24 +1915,6 @@
                   <span>CEO of <span class="slide-1-title-highlight">DistributedApps.ai</span></span>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="slide-1-pillars-row">
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">✍️ Prompt</div>
-              <div class="slide-1-pillar-desc">Define the task, constraints, output, and stop</div>
-            </div>
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">📚 Context</div>
-              <div class="slide-1-pillar-desc">Give the right evidence, with provenance</div>
-            </div>
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">🔁 Loop</div>
-              <div class="slide-1-pillar-desc">Bound observe &rarr; plan &rarr; act &rarr; verify</div>
-            </div>
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">🕸️ Graph</div>
-              <div class="slide-1-pillar-desc">Govern multi-agent nodes, edges, and handoffs</div>
             </div>
           </div>
         </div>`;
@@ -2004,16 +2007,16 @@
             <div class="agenda-body">${rich(row.body)}</div>
           </div>
         </div>`).join('');
-      return `<div id="slide-content-wrap"><div class="agenda-stack">${rows}</div></div>`;
+      return `<div id="slide-content-wrap" class="idea-slide">${svgFor(slide.number)}<div class="agenda-stack">${rows}</div></div>`;
     }
 
     function renderSection(slide) {
       return `
-        <div id="slide-content-wrap" class="section-slide">
+        <div id="slide-content-wrap" class="section-slide idea-slide">
           <div class="section-kicker">${esc(slide.raw_lines[0] || '')}</div>
           <div class="section-title">${esc(slide.raw_lines[1] || '')}</div>
           <div class="section-sub">${esc(slide.raw_lines[2] || '')}</div>
-          ${slide.kicker ? '<div class="triple-lead">' + esc(slide.kicker) + '</div>' : ''}
+          ${svgFor(slide.number)}
         </div>`;
     }
 
@@ -2025,7 +2028,8 @@
           <div class="triple-body">${rich(p.body)}</div>
         </div>`).join('');
       return `
-        <div id="slide-content-wrap">
+        <div id="slide-content-wrap" class="idea-slide">
+          ${svgFor(slide.number)}
           <div class="triple-lead">${esc(slide.raw_lines[1] || '')}</div>
           <div class="triple-grid">${cards}</div>
         </div>`;
@@ -2033,21 +2037,19 @@
 
     function renderComparison() {
       return `
-        <div id="slide-content-wrap" class="thesis-slide-wrap">
+        <div id="slide-content-wrap" class="idea-slide">
+          ${svgFor(5)}
           <div class="thesis-grid">
             <div class="thesis-card trad-card">
               <div class="thesis-card-header trad-header">
                 <span class="thesis-icon">🏛️</span>
                 <div>
                   <div class="thesis-title">Software Engineering</div>
-                  <div class="thesis-subtitle">For specified, testable, repeatable behavior</div>
+                  <div class="thesis-subtitle">Specified, tested, repeatable</div>
                 </div>
-                <span class="thesis-badge trad-badge">DETERMINISTIC</span>
               </div>
               <div class="thesis-card-body">
-                <div class="thesis-point"><strong>What it includes:</strong> specs, design, and code; the test pyramid and CI/CD; release, ops, and SRE.</div>
-                <div class="thesis-point"><strong>What it assumes:</strong> behavior is specified and testable. Logic encodes expected branches.</div>
-                <div class="thesis-point"><strong>Engineering job:</strong> build software whose behavior is specified, tested, and repeatable.</div>
+                <div class="thesis-point">Specs, tests, CI/CD, SRE. Behavior is encoded as expected branches: <code>f(x) → y</code>.</div>
               </div>
             </div>
             <div class="thesis-card harn-card">
@@ -2055,29 +2057,11 @@
                 <span class="thesis-icon">🛡️</span>
                 <div>
                   <div class="thesis-title">Harness Engineering</div>
-                  <div class="thesis-subtitle">Deterministic control for probabilistic agents</div>
+                  <div class="thesis-subtitle">Control around probabilistic agents</div>
                 </div>
-                <span class="thesis-badge harn-badge">AGENTIC AI</span>
               </div>
               <div class="thesis-card-body">
-                <div class="core-four-row">
-                  <div class="core-pill"><div class="core-pill-k">01</div><div class="core-pill-t">Prompt</div><div class="core-pill-d">Define the task</div></div>
-                  <div class="core-pill"><div class="core-pill-k">02</div><div class="core-pill-t">Context</div><div class="core-pill-d">Provide evidence</div></div>
-                  <div class="core-pill"><div class="core-pill-k">03</div><div class="core-pill-t">Loop</div><div class="core-pill-d">Bound execution</div></div>
-                  <div class="core-pill"><div class="core-pill-k">04</div><div class="core-pill-t">Graph</div><div class="core-pill-d">Govern workflow</div></div>
-                </div>
-                <div class="thesis-point" style="margin-bottom:0.45rem;"><strong>Also part of the harness:</strong></div>
-                <div class="ctrl-pills">
-                  <div class="ctrl-pill">Automation</div>
-                  <div class="ctrl-pill">Identity &amp; intent</div>
-                  <div class="ctrl-pill">Memory</div>
-                  <div class="ctrl-pill">Observability</div>
-                  <div class="ctrl-pill">Runtime control</div>
-                  <div class="ctrl-pill">Evaluation</div>
-                  <div class="ctrl-pill">Scalability</div>
-                  <div class="ctrl-pill">Token budget</div>
-                </div>
-                <div class="thesis-point" style="margin-top:0.55rem;">Extensions: skill · plug-in · MCP · hooks · CLI</div>
+                <div class="thesis-point">Prompt, context, loop, and graph sit inside one control plane: identity, memory, eval, runtime, token budget.</div>
               </div>
             </div>
           </div>
@@ -2086,8 +2070,9 @@
 
     function renderThanks(slide) {
       return `
-        <div id="slide-content-wrap" class="thanks-wrap">
+        <div id="slide-content-wrap" class="thanks-wrap idea-slide">
           <div>
+            ${svgFor(23)}
             <div class="thanks-kicker">CSA GCR 2026</div>
             <div class="thanks-title">Thank you</div>
             <div class="thanks-book">${esc(slide.raw_lines[1] || '')}</div>
@@ -2139,18 +2124,9 @@
       bodyEl.style.setProperty('--fit-scale', '1.0');
       const wrapper = document.getElementById('slide-content-wrap') || bodyEl;
       const clientH = bodyEl.clientHeight;
-      const targetH = clientH * 0.92;
-      const tight = wrapper.querySelector('.slide-1-container, .instructor-slide-grid, .thesis-grid, .triple-grid, .agenda-stack, .thanks-wrap, .section-slide');
-      const maxScale = tight ? 1.18 : 1.50;
       let scale = 1.0;
-      let grow = 0;
-      while (wrapper.offsetHeight < targetH && bodyEl.scrollHeight <= clientH && scale < maxScale && grow < 40) {
-        scale += 0.05;
-        bodyEl.style.setProperty('--fit-scale', scale.toFixed(2));
-        grow++;
-      }
       let shrink = 0;
-      while ((bodyEl.scrollHeight > clientH || wrapper.offsetHeight > (clientH - 6)) && scale > 0.50 && shrink < 60) {
+      while ((bodyEl.scrollHeight > clientH || wrapper.offsetHeight > (clientH - 6)) && scale > 0.55 && shrink < 70) {
         scale -= 0.02;
         bodyEl.style.setProperty('--fit-scale', scale.toFixed(2));
         shrink++;

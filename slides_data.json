@@ -36,12 +36,12 @@
       {
         "num": "01",
         "title": "The discipline shift",
-        "body": "Software Engineering \u2192 Harness Engineering. Traditional SE specifies deterministic behavior. Agentic systems need a surrounding control plane."
+        "body": "Software Engineering \u2192 Harness Engineering. Specified behavior vs a control plane around agents."
       },
       {
         "num": "02",
         "title": "The Core Four",
-        "body": "Prompt \u00b7 Context \u00b7 Loop \u00b7 Graph. Graph engineering is the multi-agent specialization under the harness umbrella \u2014 not a separate discipline."
+        "body": "Prompt \u00b7 Context \u00b7 Loop \u00b7 Graph. Graph engineering is the multi-agent layer \u2014 not a separate discipline."
       },
       {
         "num": "03",
@@ -51,7 +51,7 @@
       {
         "num": "04",
         "title": "The extension layer",
-        "body": "Skill \u00b7 Plug-in \u00b7 MCP \u00b7 hooks \u00b7 CLI. Inventory, least privilege, typed actions, and revoke-on-policy-failure."
+        "body": "Skill \u00b7 Plug-in \u00b7 MCP \u00b7 hooks \u00b7 CLI. Inventory, least privilege, typed actions, revoke on failure."
       }
     ]
   },

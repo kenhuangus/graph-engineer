@@ -11,17 +11,58 @@ DATA_PATH = os.path.join(ROOT, "slides_data.json")
 OUT_PATH = os.path.join(ROOT, "slides.html")
 
 EXTRA_CSS = r"""
+    /* Doubled type, in em so --fit-scale can shrink to fit */
+    .slide-title { font-size: clamp(3.2rem, 5.4vw, 4.8rem) !important; }
+    .slide-body { --slide-body-base-size: 1.65rem; }
+    .slide-num-badge { font-size: 1.35rem !important; padding: 0.28rem 0.85rem; }
+    .slide-1-hero-tagline { font-size: 1.55em !important; }
+    .slide-1-hero-desc { font-size: 1.18em !important; }
+    .slide-1-instructor-name { font-size: 2.15em !important; }
+    .slide-1-instructor-badge { font-size: 0.92em !important; }
+    .slide-1-title-item { font-size: 1.30em !important; }
+    .slide-1-avatar-img { width: 7.5em !important; height: 7.5em !important; }
+    .instructor-info-col .main-bullets { font-size: 1.15em !important; }
+    .instructor-info-col .primary-bullet { font-size: 1.05em !important; line-height: 1.28 !important; margin-bottom: 0.12em !important; }
+    .author-books-header { font-size: 0.95em !important; }
+    .book-item-title { font-size: 0.62em !important; }
+    .book-publisher-tag { font-size: 0.50em !important; }
+    .thesis-title { font-size: 1.40em !important; }
+    .thesis-subtitle { font-size: 0.95em !important; }
+    .thesis-badge { font-size: 0.72em !important; }
+    .thesis-point { font-size: 0.95em !important; }
+
+    .idea-slide {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      min-height: 0;
+      height: 100%;
+    }
+    .idea-slide .slide-svg {
+      width: 100%;
+      height: auto;
+      max-height: 38%;
+      flex: 0 0 auto;
+      margin: 0;
+    }
+    .slide-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+
     .section-slide {
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 1.2rem 1.6rem;
-      gap: 0.85rem;
+      justify-content: flex-start;
+      padding: 0.2rem 0.4rem;
+      gap: 0.55rem;
     }
     .section-kicker {
       font-family: var(--font-code);
-      font-size: 0.92rem;
+      font-size: 1.05em;
       font-weight: 750;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -29,20 +70,20 @@ EXTRA_CSS = r"""
       background: var(--accent-sf);
       border: 1px solid var(--accent);
       width: fit-content;
-      padding: 0.28rem 0.70rem;
+      padding: 0.28rem 0.80rem;
       border-radius: 999px;
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: 2.55rem;
+      font-size: 2.70em;
       font-weight: 800;
-      line-height: 1.12;
+      line-height: 1.08;
       letter-spacing: -0.02em;
       color: var(--ink);
       max-width: 18ch;
     }
     .section-sub {
-      font-size: 1.15rem;
+      font-size: 1.32em;
       color: var(--ink-muted);
       font-weight: 550;
       max-width: 42rem;
@@ -50,53 +91,54 @@ EXTRA_CSS = r"""
     .triple-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.85rem;
-      margin-top: 0.35rem;
+      gap: 0.70rem;
+      min-height: 0;
+      flex: 1;
     }
     .triple-card {
       background: var(--surface);
       border: 1.5px solid var(--rule);
       border-radius: 12px;
-      padding: 1.05rem 1.15rem 1.20rem;
+      padding: 0.85rem 1.00rem 1.00rem;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.28rem;
       box-shadow: 0 4px 14px rgba(0,0,0,0.04);
       min-height: 0;
     }
     .triple-num {
       font-family: var(--font-code);
-      font-size: 1.35rem;
+      font-size: 1.48em;
       font-weight: 800;
       color: var(--accent-dk);
     }
     .triple-title {
       font-family: var(--font-display);
-      font-size: 1.22rem;
+      font-size: 1.32em;
       font-weight: 750;
       color: var(--ink);
-      line-height: 1.22;
+      line-height: 1.15;
     }
     .triple-body {
-      font-size: 0.98rem;
-      line-height: 1.45;
+      font-size: 1.18em;
+      line-height: 1.28;
       color: var(--ink);
     }
     .triple-lead {
-      font-size: 1.05rem;
+      font-size: 1.16em;
       color: var(--ink-muted);
       font-weight: 550;
-      margin-bottom: 0.15rem;
     }
     .agenda-stack {
       display: flex;
       flex-direction: column;
-      gap: 0.70rem;
+      gap: 0.45rem;
+      flex: 1;
+      min-height: 0;
     }
     .agenda-row {
       display: grid;
-      grid-template-columns: 4.4rem 1fr;
-      gap: 0.90rem;
+      grid-template-columns: 5.4rem 1fr;
       align-items: stretch;
       background: var(--surface);
       border: 1.5px solid var(--rule);
@@ -109,43 +151,39 @@ EXTRA_CSS = r"""
       color: var(--accent-dk);
       font-family: var(--font-code);
       font-weight: 800;
-      font-size: 1.35rem;
+      font-size: 1.48em;
       display: flex;
       align-items: center;
       justify-content: center;
       border-right: 1.5px solid var(--rule);
     }
-    .agenda-copy {
-      padding: 0.70rem 0.95rem 0.80rem 0;
-    }
+    .agenda-copy { padding: 0.45rem 0.85rem 0.55rem 0.85rem; }
     .agenda-title {
       font-family: var(--font-display);
       font-weight: 750;
-      font-size: 1.18rem;
+      font-size: 1.28em;
       color: var(--ink);
-      margin-bottom: 0.18rem;
     }
     .agenda-body {
-      font-size: 0.95rem;
-      line-height: 1.42;
+      font-size: 1.15em;
+      line-height: 1.28;
       color: var(--ink);
     }
     .core-four-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.55rem;
-      margin: 0.35rem 0 0.70rem;
+      gap: 0.45rem;
+      margin: 0.25rem 0 0.45rem;
     }
     .core-pill {
       background: var(--surface);
       border: 1.5px solid var(--rule);
       border-radius: 10px;
-      padding: 0.70rem 0.75rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      padding: 0.55rem 0.65rem;
     }
     .core-pill-k {
       font-family: var(--font-code);
-      font-size: 0.72rem;
+      font-size: 0.78em;
       font-weight: 750;
       color: var(--accent-dk);
       letter-spacing: 0.04em;
@@ -154,26 +192,17 @@ EXTRA_CSS = r"""
     .core-pill-t {
       font-family: var(--font-display);
       font-weight: 750;
-      font-size: 1.05rem;
+      font-size: 1.18em;
       color: var(--ink);
-      margin: 0.12rem 0 0.10rem;
     }
-    .core-pill-d {
-      font-size: 0.80rem;
-      color: var(--ink-muted);
-      line-height: 1.30;
-    }
-    .ctrl-pills {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.40rem;
-    }
+    .core-pill-d { font-size: 0.90em; color: var(--ink-muted); line-height: 1.25; }
+    .ctrl-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
     .ctrl-pill {
       background: var(--accent-sf);
       border: 1px solid var(--rule);
       border-radius: 8px;
-      padding: 0.42rem 0.55rem;
-      font-size: 0.82rem;
+      padding: 0.40rem 0.50rem;
+      font-size: 0.90em;
       font-weight: 650;
       color: var(--ink);
       text-align: center;
@@ -182,7 +211,7 @@ EXTRA_CSS = r"""
       height: 100%;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 1.40rem;
+      gap: 1.20rem;
       align-items: center;
     }
     .thanks-kicker {
@@ -191,52 +220,47 @@ EXTRA_CSS = r"""
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-dk);
-      font-size: 0.88rem;
+      font-size: 1.00em;
     }
     .thanks-title {
       font-family: var(--font-display);
-      font-size: 3.1rem;
+      font-size: 3.30em;
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin: 0.35rem 0 0.70rem;
+      line-height: 1.02;
+      margin: 0.2rem 0 0.5rem;
     }
-    .thanks-book {
-      font-size: 1.08rem;
-      line-height: 1.40;
-      color: var(--ink);
-      max-width: 28rem;
-    }
+    .thanks-book { font-size: 1.26em; line-height: 1.30; color: var(--ink); max-width: 28rem; }
     .thanks-link a {
       color: var(--accent-dk);
       font-weight: 700;
       font-family: var(--font-code);
-      font-size: 0.95rem;
+      font-size: 1.05em;
     }
     .thanks-cover {
       background: var(--surface);
       border: 1.5px solid var(--rule);
       border-radius: 14px;
-      padding: 0.80rem;
+      padding: 0.70rem;
       box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       text-align: center;
     }
     .thanks-cover img {
       width: 100%;
-      max-height: 52vh;
+      max-height: 42vh;
       object-fit: contain;
       border-radius: 8px;
     }
     @media (max-width: 980px) {
-      .triple-grid, .core-four-row, .ctrl-pills, .thanks-wrap {
-        grid-template-columns: 1fr 1fr;
-      }
+      .triple-grid, .core-four-row, .ctrl-pills, .thanks-wrap { grid-template-columns: 1fr 1fr; }
       .thanks-wrap { grid-template-columns: 1fr; }
+      .section-title { font-size: 2.0em; }
     }
 """
 
 JS = r"""
     const slidesData = SLIDES_JSON;
+    const svgMap = SVG_JSON;
     const totalSlides = slidesData.length;
     let currentIdx = 0;
     let isGridMode = false;
@@ -277,17 +301,14 @@ JS = r"""
       return html;
     }
 
+    function svgFor(n) {
+      return svgMap[String(n)] || '';
+    }
+
     function renderTitle() {
       return `
-        <div id="slide-content-wrap" class="slide-1-container">
-          <div class="slide-1-hero-card">
-            <div class="slide-1-hero-tagline">
-              From Software Engineering to Harness Engineering
-            </div>
-            <div class="slide-1-hero-desc">
-              Ontology defines intent. Governed order constrains action. Graph engineering is the multi-agent specialization under the harness umbrella &mdash; not a competing discipline.
-            </div>
-          </div>
+        <div id="slide-content-wrap" class="slide-1-container idea-slide">
+          ${svgFor(1)}
           <div class="slide-1-instructor-card">
             <div class="slide-1-avatar-wrap">
               <img src="assets/images/ken-head-shot.png" alt="Ken Huang" class="slide-1-avatar-img" />
@@ -309,24 +330,6 @@ JS = r"""
                   <span>CEO of <span class="slide-1-title-highlight">DistributedApps.ai</span></span>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="slide-1-pillars-row">
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">✍️ Prompt</div>
-              <div class="slide-1-pillar-desc">Define the task, constraints, output, and stop</div>
-            </div>
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">📚 Context</div>
-              <div class="slide-1-pillar-desc">Give the right evidence, with provenance</div>
-            </div>
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">🔁 Loop</div>
-              <div class="slide-1-pillar-desc">Bound observe &rarr; plan &rarr; act &rarr; verify</div>
-            </div>
-            <div class="slide-1-pillar-pill">
-              <div class="slide-1-pillar-title">🕸️ Graph</div>
-              <div class="slide-1-pillar-desc">Govern multi-agent nodes, edges, and handoffs</div>
             </div>
           </div>
         </div>`;
@@ -419,16 +422,16 @@ JS = r"""
             <div class="agenda-body">${rich(row.body)}</div>
           </div>
         </div>`).join('');
-      return `<div id="slide-content-wrap"><div class="agenda-stack">${rows}</div></div>`;
+      return `<div id="slide-content-wrap" class="idea-slide">${svgFor(slide.number)}<div class="agenda-stack">${rows}</div></div>`;
     }
 
     function renderSection(slide) {
       return `
-        <div id="slide-content-wrap" class="section-slide">
+        <div id="slide-content-wrap" class="section-slide idea-slide">
           <div class="section-kicker">${esc(slide.raw_lines[0] || '')}</div>
           <div class="section-title">${esc(slide.raw_lines[1] || '')}</div>
           <div class="section-sub">${esc(slide.raw_lines[2] || '')}</div>
-          ${slide.kicker ? '<div class="triple-lead">' + esc(slide.kicker) + '</div>' : ''}
+          ${svgFor(slide.number)}
         </div>`;
     }
 
@@ -440,7 +443,8 @@ JS = r"""
           <div class="triple-body">${rich(p.body)}</div>
         </div>`).join('');
       return `
-        <div id="slide-content-wrap">
+        <div id="slide-content-wrap" class="idea-slide">
+          ${svgFor(slide.number)}
           <div class="triple-lead">${esc(slide.raw_lines[1] || '')}</div>
           <div class="triple-grid">${cards}</div>
         </div>`;
@@ -448,21 +452,19 @@ JS = r"""
 
     function renderComparison() {
       return `
-        <div id="slide-content-wrap" class="thesis-slide-wrap">
+        <div id="slide-content-wrap" class="idea-slide">
+          ${svgFor(5)}
           <div class="thesis-grid">
             <div class="thesis-card trad-card">
               <div class="thesis-card-header trad-header">
                 <span class="thesis-icon">🏛️</span>
                 <div>
                   <div class="thesis-title">Software Engineering</div>
-                  <div class="thesis-subtitle">For specified, testable, repeatable behavior</div>
+                  <div class="thesis-subtitle">Specified, tested, repeatable</div>
                 </div>
-                <span class="thesis-badge trad-badge">DETERMINISTIC</span>
               </div>
               <div class="thesis-card-body">
-                <div class="thesis-point"><strong>What it includes:</strong> specs, design, and code; the test pyramid and CI/CD; release, ops, and SRE.</div>
-                <div class="thesis-point"><strong>What it assumes:</strong> behavior is specified and testable. Logic encodes expected branches.</div>
-                <div class="thesis-point"><strong>Engineering job:</strong> build software whose behavior is specified, tested, and repeatable.</div>
+                <div class="thesis-point">Specs, tests, CI/CD, SRE. Behavior is encoded as expected branches: <code>f(x) → y</code>.</div>
               </div>
             </div>
             <div class="thesis-card harn-card">
@@ -470,29 +472,11 @@ JS = r"""
                 <span class="thesis-icon">🛡️</span>
                 <div>
                   <div class="thesis-title">Harness Engineering</div>
-                  <div class="thesis-subtitle">Deterministic control for probabilistic agents</div>
+                  <div class="thesis-subtitle">Control around probabilistic agents</div>
                 </div>
-                <span class="thesis-badge harn-badge">AGENTIC AI</span>
               </div>
               <div class="thesis-card-body">
-                <div class="core-four-row">
-                  <div class="core-pill"><div class="core-pill-k">01</div><div class="core-pill-t">Prompt</div><div class="core-pill-d">Define the task</div></div>
-                  <div class="core-pill"><div class="core-pill-k">02</div><div class="core-pill-t">Context</div><div class="core-pill-d">Provide evidence</div></div>
-                  <div class="core-pill"><div class="core-pill-k">03</div><div class="core-pill-t">Loop</div><div class="core-pill-d">Bound execution</div></div>
-                  <div class="core-pill"><div class="core-pill-k">04</div><div class="core-pill-t">Graph</div><div class="core-pill-d">Govern workflow</div></div>
-                </div>
-                <div class="thesis-point" style="margin-bottom:0.45rem;"><strong>Also part of the harness:</strong></div>
-                <div class="ctrl-pills">
-                  <div class="ctrl-pill">Automation</div>
-                  <div class="ctrl-pill">Identity &amp; intent</div>
-                  <div class="ctrl-pill">Memory</div>
-                  <div class="ctrl-pill">Observability</div>
-                  <div class="ctrl-pill">Runtime control</div>
-                  <div class="ctrl-pill">Evaluation</div>
-                  <div class="ctrl-pill">Scalability</div>
-                  <div class="ctrl-pill">Token budget</div>
-                </div>
-                <div class="thesis-point" style="margin-top:0.55rem;">Extensions: skill · plug-in · MCP · hooks · CLI</div>
+                <div class="thesis-point">Prompt, context, loop, and graph sit inside one control plane: identity, memory, eval, runtime, token budget.</div>
               </div>
             </div>
           </div>
@@ -501,8 +485,9 @@ JS = r"""
 
     function renderThanks(slide) {
       return `
-        <div id="slide-content-wrap" class="thanks-wrap">
+        <div id="slide-content-wrap" class="thanks-wrap idea-slide">
           <div>
+            ${svgFor(23)}
             <div class="thanks-kicker">CSA GCR 2026</div>
             <div class="thanks-title">Thank you</div>
             <div class="thanks-book">${esc(slide.raw_lines[1] || '')}</div>
@@ -554,18 +539,9 @@ JS = r"""
       bodyEl.style.setProperty('--fit-scale', '1.0');
       const wrapper = document.getElementById('slide-content-wrap') || bodyEl;
       const clientH = bodyEl.clientHeight;
-      const targetH = clientH * 0.92;
-      const tight = wrapper.querySelector('.slide-1-container, .instructor-slide-grid, .thesis-grid, .triple-grid, .agenda-stack, .thanks-wrap, .section-slide');
-      const maxScale = tight ? 1.18 : 1.50;
       let scale = 1.0;
-      let grow = 0;
-      while (wrapper.offsetHeight < targetH && bodyEl.scrollHeight <= clientH && scale < maxScale && grow < 40) {
-        scale += 0.05;
-        bodyEl.style.setProperty('--fit-scale', scale.toFixed(2));
-        grow++;
-      }
       let shrink = 0;
-      while ((bodyEl.scrollHeight > clientH || wrapper.offsetHeight > (clientH - 6)) && scale > 0.50 && shrink < 60) {
+      while ((bodyEl.scrollHeight > clientH || wrapper.offsetHeight > (clientH - 6)) && scale > 0.55 && shrink < 70) {
         scale -= 0.02;
         bodyEl.style.setProperty('--fit-scale', scale.toFixed(2));
         shrink++;
@@ -654,6 +630,8 @@ def main() -> None:
     with open(DATA_PATH, "r", encoding="utf-8") as f:
         slides = json.load(f)
     js = JS.replace("SLIDES_JSON", json.dumps(slides, ensure_ascii=False))
+    from svg_diagrams import SVG_MAP
+    js = js.replace("SVG_JSON", json.dumps(SVG_MAP, ensure_ascii=False))
 
     html = """<!DOCTYPE html>
 <html lang="en">

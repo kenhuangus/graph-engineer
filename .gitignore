@@ -11,6 +11,11 @@ _prep_assets.py
 _qa_screenshots.py
 _qa_all_slides.py
 _ping.py
+_git_init.py
+_gh_deploy.py
+_wait_pages.py
+_git_push.py
+_qa_live.py
 _template.css.fragment
 qa_*.png
 __pycache__/

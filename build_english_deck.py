@@ -476,7 +476,7 @@ JS = r"""
                 </div>
               </div>
               <div class="thesis-card-body">
-                <div class="thesis-point">Prompt, context, loop, and graph sit inside one control plane: identity, memory, eval, runtime, token budget.</div>
+                <div class="thesis-point">Prompt, context, and loop run in one agent. Graph engineering fans out when that loop is not enough — still inside one control plane.</div>
               </div>
             </div>
           </div>

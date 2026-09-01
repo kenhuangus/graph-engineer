@@ -125,8 +125,8 @@
       <div class="badge-pill">PACKT · GRAPH ENGINEERING</div>
       <h1 class="hero-title">Agentic AI Graph Engineering</h1>
       <p class="hero-subtitle">
-        Packt edition of the harness engineering keynote. Traditional software engineering specifies deterministic behavior.
-        Agentic systems need a surrounding control plane. Graph engineering is one specialization under that harness &mdash; not a competing discipline.
+        Packt edition of the graph engineering keynote. Graph engineering is the multi-agent layer of the agent harness:
+        fan-out only when one loop is not enough, and only inside a control plane.
       </p>
       <div class="hero-buttons">
         <a href="slides.html" class="btn-github">Open the 23-slide deck</a>
@@ -149,28 +149,28 @@
 
   <section id="outline">
     <div class="container">
-      <h2 class="section-title">The talk in four moves</h2>
-      <p class="section-subtitle">Translated from the original bilingual Google Slides deck into an English GitHub Pages presentation.</p>
+      <h2 class="section-title">Graph engineering in four moves</h2>
+      <p class="section-subtitle">Where the graph sits, and what must surround it. Translated from the original bilingual Google Slides deck.</p>
       <div class="grid">
         <div class="card">
           <div class="card-icon">01</div>
-          <h3>The discipline shift</h3>
-          <p>Software engineering specifies testable behavior. Harness engineering puts a deterministic control plane around probabilistic agents.</p>
+          <h3>Why a graph needs a harness</h3>
+          <p>Software engineering specifies testable behavior. A probabilistic agent needs a control plane before you fan out.</p>
         </div>
         <div class="card">
           <div class="card-icon">02</div>
-          <h3>The Core Four</h3>
-          <p>Prompt, context, loop, and graph. Graph engineering governs multi-agent nodes, edges, and handoffs.</p>
+          <h3>From one loop to a graph</h3>
+          <p>Prompt, context, and loop run inside one agent. Graph engineering starts when that loop is not enough.</p>
         </div>
         <div class="card">
           <div class="card-icon">03</div>
-          <h3>Control plane</h3>
-          <p>Automation, identity, memory, observability, runtime control, evaluation, scalability, and token budget.</p>
+          <h3>Control at every node and edge</h3>
+          <p>Identity, memory, eval, runtime stop, and token budgets apply per node. A graph without those controls is a retry loop with more processes.</p>
         </div>
         <div class="card">
           <div class="card-icon">04</div>
-          <h3>Extensions</h3>
-          <p>Skills, plug-ins, MCP, hooks, and CLI. Inventory, least privilege, typed actions, revoke on policy failure.</p>
+          <h3>Tools the graph is allowed to use</h3>
+          <p>Skills, plugins, MCP, hooks, and CLI. Inventory, least privilege, typed actions, revoke on policy failure.</p>
         </div>
       </div>
     </div>

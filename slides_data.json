@@ -4,7 +4,7 @@
     "slide_type": "title",
     "raw_lines": [
       "Agentic AI Graph Engineering",
-      "From Software Engineering to Harness Engineering",
+      "Nodes, edges, and exception paths inside the agent harness",
       "Packt"
     ]
   },
@@ -29,29 +29,29 @@
     "number": 3,
     "slide_type": "agenda",
     "raw_lines": [
-      "From Software Engineering to Harness Engineering",
-      "The talk in four moves"
+      "Graph engineering in four moves",
+      "Where the graph sits, and what must surround it"
     ],
     "agenda": [
       {
         "num": "01",
-        "title": "The discipline shift",
-        "body": "Software Engineering \u2192 Harness Engineering. Specified behavior vs a control plane around agents."
+        "title": "Why a graph needs a harness",
+        "body": "A single agent hits context decay, self-grading, and sequential bottlenecks. Software engineering specifies f(x). Agentic work needs a control plane before you fan out."
       },
       {
         "num": "02",
-        "title": "The Core Four",
-        "body": "Prompt \u00b7 Context \u00b7 Loop \u00b7 Graph. Graph engineering is the multi-agent layer \u2014 not a separate discipline."
+        "title": "From one loop to a graph",
+        "body": "Prompt, context, and loop run inside one agent. Graph engineering starts when that loop is not enough: specialized nodes, typed handoffs, parallel work."
       },
       {
         "num": "03",
-        "title": "Control-plane components",
-        "body": "Automation \u00b7 Identity \u00b7 Memory \u00b7 Observability \u00b7 Runtime \u00b7 Evaluation \u00b7 Scalability \u00b7 Token budget."
+        "title": "Control at every node and edge",
+        "body": "Identity, memory, eval, runtime stop, and token budgets apply per node. A graph without those controls is a retry loop with more processes."
       },
       {
         "num": "04",
-        "title": "The extension layer",
-        "body": "Skill \u00b7 Plug-in \u00b7 MCP \u00b7 hooks \u00b7 CLI. Inventory, least privilege, typed actions, revoke on failure."
+        "title": "Tools the graph is allowed to use",
+        "body": "Skills, plugins, MCP, hooks, and CLI are how nodes get capability. Inventory, least privilege, typed actions, revoke on policy failure."
       }
     ]
   },
@@ -60,16 +60,15 @@
     "slide_type": "section",
     "raw_lines": [
       "Part 1",
-      "From Software Engineering",
-      "to Harness Engineering for Agentic AI Systems"
-    ],
-    "kicker": "Ontology \u2192 Intent \u2192 Prompt \u00b7 Context \u00b7 Loop \u00b7 Graph"
+      "Why a graph needs a harness",
+      "Specified software vs a probabilistic agent"
+    ]
   },
   {
     "number": 5,
     "slide_type": "comparison",
     "raw_lines": [
-      "From Software Engineering to Harness Engineering"
+      "The model is not the system"
     ]
   },
   {
@@ -77,23 +76,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Ontology Before Intent",
-      "Define meaning before action"
+      "Name the domain before any node acts"
     ],
     "points": [
       {
         "num": "01",
         "title": "Ontology first",
-        "body": "Ontology defines domain entities, relationships, and rules before any agent is allowed to act."
+        "body": "Define entities, relationships, and rules. Every later node in the graph inherits that vocabulary. No shared ontology, no safe handoff."
       },
       {
         "num": "02",
-        "title": "Intent binds the principal",
-        "body": "Intent binds a principal to a goal, an object, constraints, and an explicit success condition."
+        "title": "Intent is a binding, not a wish",
+        "body": "Bind a principal to a goal, object, constraints, and a success test. That binding is what a node is allowed to pursue."
       },
       {
         "num": "03",
-        "title": "The harness validates action",
-        "body": "The harness validates planned actions against that intent and against policy \u2014 not against model confidence."
+        "title": "The harness checks the plan",
+        "body": "Validate planned actions against intent and policy. Model confidence is not authorization."
       }
     ]
   },
@@ -102,33 +101,32 @@
     "slide_type": "section",
     "raw_lines": [
       "Part 2",
-      "The Core Four",
-      "Prompt \u00b7 Context \u00b7 Loop \u00b7 Graph"
-    ],
-    "kicker": "Four specializations of one harness \u2014 Graph Engineering is the multi-agent layer"
+      "From one loop to a graph",
+      "Prompt, context, and loop stay inside one agent"
+    ]
   },
   {
     "number": 8,
     "slide_type": "triple",
     "raw_lines": [
       "Prompt Engineering",
-      "Define the task"
+      "Encode the authorized intent for the model"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Specify the task completely",
-        "body": "State the goal, constraints, required output, and stop condition. Ambiguous prompts become unbounded runs."
+        "title": "Put intent in the instruction",
+        "body": "Turn the authorized goal into instructions: output schema, constraints, and a stop rule. Missing stop rules become unbounded runs."
       },
       {
         "num": "02",
         "title": "Separate trust boundaries",
-        "body": "Keep trusted instructions apart from untrusted data. Retrieved content, tickets, and user text are not system policy."
+        "body": "Trusted instructions stay apart from tickets, retrieval, and user text. Untrusted data is not policy."
       },
       {
         "num": "03",
-        "title": "Version and test before release",
-        "body": "Prompts are production artifacts. Version them, test them, and re-evaluate when tools or models change."
+        "title": "Version prompts as artifacts",
+        "body": "Treat the prompt like code. Version it. Test it. Do not ship an untested instruction change into a live graph."
       }
     ]
   },
@@ -137,23 +135,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Context Engineering",
-      "Give the right evidence"
+      "Give this node only the evidence it needs"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Select only what this decision needs",
-        "body": "Do not dump the corpus into the window. Provide the evidence required for the current decision, nothing more."
+        "title": "Select for this decision",
+        "body": "Do not dump the corpus into the window. Each node gets evidence for its job, not the whole conversation."
       },
       {
         "num": "02",
         "title": "Attach provenance and scope",
-        "body": "Every retrieved item needs source, freshness, and access scope. Context without provenance is untrusted rumor."
+        "body": "Every retrieved item needs source, freshness, and access scope. Context without provenance is rumor."
       },
       {
         "num": "03",
         "title": "Policy outranks retrieval",
-        "body": "Resolve conflicts before use. Written policy beats retrieved content when the two disagree."
+        "body": "Resolve conflicts before the model sees them. Written policy beats retrieved content."
       }
     ]
   },
@@ -162,23 +160,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Loop Engineering",
-      "Keep autonomy bounded"
+      "One agent's observe → plan → act → verify cycle"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Structure every cycle",
-        "body": "Each cycle is observe \u2192 plan \u2192 act \u2192 verify. A loop without verification is just retry theater."
+        "title": "Verify every cycle",
+        "body": "A single-agent loop without verification is retry theater. Graph nodes still need this cycle internally."
       },
       {
         "num": "02",
-        "title": "Cap steps, time, cost, and retries",
-        "body": "Unbounded loops burn tokens, multiply side effects, and hide failure. Limits are a safety control, not a cost hack."
+        "title": "Cap the cycle, not the graph",
+        "body": "Limit steps, time, cost, and retries on this node. Do not confuse a node retry budget with a graph-level retry of the whole workflow."
       },
       {
         "num": "03",
-        "title": "Stop when progress cannot be shown",
-        "body": "If the agent cannot demonstrate progress or safety, stop. Silent continuation is the failure mode."
+        "title": "Stop when this node cannot show progress",
+        "body": "If the node cannot demonstrate progress or safety, stop it and take the exception edge. Do not let it spin."
       }
     ]
   },
@@ -187,23 +185,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Graph Engineering",
-      "Govern workflow and handoffs"
+      "Fan-out only when one loop is not enough"
     ],
     "points": [
       {
         "num": "01",
-        "title": "One responsibility per node",
-        "body": "Each node owns one clear job: plan, implement, review, or remediate. Overlapping roles recreate the single-agent bottleneck."
+        "title": "One job per node",
+        "body": "Plan, implement, review, or remediate. Overlapping roles recreate the single-agent bottleneck. Parallel and conditional graphs still need this isolation."
       },
       {
         "num": "02",
-        "title": "Edges are contracts, not chat",
-        "body": "Edges define allowed data and authority transfer. Pass structured artifacts. Do not forward bloated conversation history."
+        "title": "Edges are contracts",
+        "body": "Pass typed artifacts and scoped authority. Do not forward the transcript. Sequential, parallel, reviewer, and conditional graphs all fail the same way when the edge is chat."
       },
       {
         "num": "03",
-        "title": "Route exceptions on purpose",
-        "body": "Failures go to a fallback node or a human. A graph with no exception path is a sequential retry loop wearing a new name."
+        "title": "Exceptions have an owner",
+        "body": "Route failure to a fallback node or a human. A graph with no exception edge is a sequential retry loop with extra processes."
       }
     ]
   },
@@ -212,33 +210,32 @@
     "slide_type": "section",
     "raw_lines": [
       "Part 3",
-      "Control-Plane Components",
-      "Putting autonomy in order"
-    ],
-    "kicker": "Automation \u00b7 Identity \u00b7 Memory \u00b7 Observability \u00b7 Runtime \u00b7 Evaluation \u00b7 Scalability \u00b7 Token"
+      "Control at every node and edge",
+      "A graph inherits the harness; it does not replace it"
+    ]
   },
   {
     "number": 13,
     "slide_type": "triple",
     "raw_lines": [
       "Automation",
-      "Repeat the safe boundary"
+      "Same start, sandbox, and stop on every node"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Automate start, sandbox, allowlist, and stop",
-        "body": "The harness starts the run, sandboxes tools, enforces the allowlist, and stops the run. Humans do not babysit the happy path."
+        "title": "Automate the node lifecycle",
+        "body": "The harness starts the node, sandboxes its tools, enforces the allowlist, and stops it. Humans set those boundaries. They do not babysit the happy path."
       },
       {
         "num": "02",
-        "title": "Retries must be visible, bounded, and idempotent",
-        "body": "Invisible retries hide failure. Unbounded retries multiply harm. Non-idempotent retries corrupt state."
+        "title": "Failures stay visible",
+        "body": "Do not hide a failed node behind an invisible retry. Log it, bound it, and keep the action idempotent so a replay cannot double-write."
       },
       {
         "num": "03",
-        "title": "Humans approve boundaries; the harness executes inside them",
-        "body": "Policy is a human decision. Execution inside that policy is a harness job."
+        "title": "Humans approve boundaries",
+        "body": "Policy is a human decision. Execution inside that policy is a harness job, including every node in the graph."
       }
     ]
   },
@@ -247,23 +244,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Identity and Intent",
-      "Who acts, for whom, and why"
+      "Who this node acts for, and what it may touch"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Every run has a principal",
-        "body": "Each run carries a principal, a task ID, and a short-lived credential. Anonymous autonomy is unaccountable autonomy."
+        "title": "Every node run has a principal",
+        "body": "Principal, task ID, and a short-lived credential. Anonymous node processes are unaccountable processes."
       },
       {
         "num": "02",
-        "title": "Ontology grounds intent",
-        "body": "Intent is goal, object, constraints, and success \u2014 grounded in the domain ontology, not in a free-text wish."
+        "title": "Scope the credential to this node",
+        "body": "The planner's credential must not implement. The implementer's credential must not merge. Shared god-tokens collapse the graph back into one agent."
       },
       {
         "num": "03",
-        "title": "Authorize every tool call against intent",
-        "body": "A tool call that is allowed by the sandbox can still be unauthorized for this intent. Check both."
+        "title": "Authorize the tool call, not just the sandbox",
+        "body": "A tool the sandbox allows can still be unauthorized for this node's intent. Check both."
       }
     ]
   },
@@ -272,23 +269,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Memory",
-      "Persist only governed state"
+      "Persist only governed state, per node and per task"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Write memory only for an explicit purpose",
-        "body": "Memory is not a dump of the transcript. Write it for a named purpose and a named scope."
+        "title": "Write for a named purpose",
+        "body": "Memory is not a dump of the transcript. Write it for a named purpose and a named scope, usually one task or one node."
       },
       {
         "num": "02",
-        "title": "Isolate users and tasks",
-        "body": "Separate tenants and tasks. Record provenance and retention. Cross-task memory is a data leak waiting for a prompt."
+        "title": "Isolate tenants, tasks, and nodes",
+        "body": "Cross-node memory without a contract is a leak. Record provenance and retention on every write."
       },
       {
         "num": "03",
-        "title": "Detect, quarantine, and roll back poisoned memory",
-        "body": "Persistent memory is an attack surface. Treat poison as an incident: detect, isolate, roll back."
+        "title": "Treat poison as an incident",
+        "body": "Persistent memory is an attack surface. Detect, quarantine, and roll back. A poisoned planner memory infects every downstream node."
       }
     ]
   },
@@ -297,23 +294,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Observability",
-      "Evidence for decisions and actions"
+      "Reconstruct the path across nodes"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Trace decisions, tool calls, and artifacts",
-        "body": "You cannot govern what you cannot reconstruct. Log the decision, the call, and the resulting artifact."
+        "title": "Trace node, edge, and artifact",
+        "body": "Log which node decided, what it passed, and what it wrote. A graph you cannot reconstruct, you cannot govern."
       },
       {
         "num": "02",
-        "title": "Preserve enough to reconstruct high-risk actions",
-        "body": "High-impact writes, credential use, and external side effects need forensic-grade evidence, not a summary."
+        "title": "Keep forensic evidence for high-risk edges",
+        "body": "Credential use, external writes, and authority transfer need the payload, not a summary."
       },
       {
         "num": "03",
-        "title": "Protect telemetry itself",
-        "body": "Minimize, access-control, and retain telemetry on purpose. Agent logs contain secrets, PII, and attack material."
+        "title": "Protect the traces",
+        "body": "Minimize, access-control, and retain telemetry on purpose. Node logs contain secrets, PII, and attack material."
       }
     ]
   },
@@ -322,23 +319,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Runtime Control",
-      "Intervene after start"
+      "Interrupt a live graph, not only a live loop"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Pause, stop, or change policy live",
-        "body": "A run that cannot be interrupted is not a production system. Operators need pause, stop, and policy change during execution."
+        "title": "Pause, stop, or re-policy in flight",
+        "body": "Operators must pause one node or the whole graph. A graph that cannot be interrupted is unsupervised execution."
       },
       {
         "num": "02",
-        "title": "Checkpoint before high-impact actions",
-        "body": "Take a checkpoint before irreversible writes. Support rollback. Hope is not a recovery plan."
+        "title": "Checkpoint before irreversible edges",
+        "body": "Snapshot before merge, deploy, or external write. Support rollback of that node without replaying the entire graph."
       },
       {
         "num": "03",
         "title": "No interrupt path, no trustworthy autonomy",
-        "body": "Autonomy without an interrupt path is just unsupervised execution with extra vocabulary."
+        "body": "If you cannot stop the implementer, the reviewer never gets a turn that matters."
       }
     ]
   },
@@ -347,23 +344,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Evaluation",
-      "Gate the autonomous zone"
+      "Gate the graph, not only the prompt"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Test success and boundary compliance",
-        "body": "A task that succeeds while violating a boundary is a failed evaluation. Score both."
+        "title": "Score success and boundary compliance",
+        "body": "A graph that finishes while violating a node boundary has failed. Score both."
       },
       {
         "num": "02",
-        "title": "Re-evaluate after any material change",
-        "body": "Prompts, tools, memory, or models changing is a release. Re-run the gate."
+        "title": "Re-evaluate when the graph changes",
+        "body": "A new node, tool, prompt, or model is a release of the graph. Re-run the gate."
       },
       {
         "num": "03",
-        "title": "Failed evaluation blocks release or reduces autonomy",
-        "body": "Do not ship a failing agent at full autonomy. Block the release or drop it to a tighter permission tier."
+        "title": "Failed eval drops autonomy",
+        "body": "Block the release or collapse the graph to fewer nodes and tighter credentials. Do not ship a failing topology at full fan-out."
       }
     ]
   },
@@ -372,23 +369,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Scalability",
-      "Scale safety, not only throughput"
+      "Fan-out safety, not only fan-out throughput"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Admit work before execution",
-        "body": "Admission control and backpressure come first. An agent farm with no queue discipline is a denial-of-service against itself."
+        "title": "Admit work before spawning nodes",
+        "body": "Admission control and backpressure come first. Unbounded fan-out is a denial-of-service against your own harness."
       },
       {
         "num": "02",
         "title": "Isolate tenants and workers",
-        "body": "Contain failures. One poisoned worker or tenant must not contaminate the fleet."
+        "body": "Contain a failed or poisoned node. It must not contaminate sibling nodes or other tenants."
       },
       {
         "num": "03",
-        "title": "Idempotent retries so scale does not multiply harm",
-        "body": "At ten agents, a bug is a bug. At ten thousand, a non-idempotent retry is an incident."
+        "title": "Idempotent replay at fleet scale",
+        "body": "At ten nodes, a double-write is a bug. At ten thousand, it is an incident. Retries must not multiply side effects."
       }
     ]
   },
@@ -397,23 +394,23 @@
     "slide_type": "triple",
     "raw_lines": [
       "Token Budget",
-      "Bound cost and attack surface"
+      "Cap cost and injection surface per node and per graph"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Budget tokens and tool output per run and loop",
-        "body": "Unbounded context is unbounded spend and unbounded injection surface. Set the cap per run and per loop."
+        "title": "Budget the node and the graph",
+        "body": "Set token and tool-output caps per node and a ceiling for the whole graph. Unbounded context is unbounded spend and unbounded injection."
       },
       {
         "num": "02",
-        "title": "Stop safely at the limit",
-        "body": "Hit the ceiling, stop, and report. Never continue silently past the budget."
+        "title": "Stop at the cap",
+        "body": "Hit the ceiling, stop that node, take the exception edge. Never continue silently past the budget."
       },
       {
         "num": "03",
-        "title": "Raising the budget is a policy change",
-        "body": "A bigger window is not a tuning knob. It is a policy change and it requires evaluation."
+        "title": "Raising the cap is a policy change",
+        "body": "A bigger window is not a tuning knob. It is a policy change and it requires evaluation of the graph."
       }
     ]
   },
@@ -422,33 +419,32 @@
     "slide_type": "section",
     "raw_lines": [
       "Part 4",
-      "The Extension Layer",
-      "Skill \u00b7 Plug-in \u00b7 MCP \u00b7 hooks \u00b7 CLI"
-    ],
-    "kicker": "Capabilities are not free \u2014 inventory, approve, scope, and revoke"
+      "Tools the graph is allowed to use",
+      "Extensions are edges to capability, not free power"
+    ]
   },
   {
     "number": 22,
     "slide_type": "triple",
     "raw_lines": [
       "Extensions",
-      "Skill \u00b7 Plug-in \u00b7 MCP \u00b7 hooks \u00b7 CLI"
+      "How a node obtains a tool"
     ],
     "points": [
       {
         "num": "01",
-        "title": "Inventory and approve every capability",
-        "body": "Skills, plug-ins, tools, and MCP servers are part of the attack surface. Nothing joins the harness without an inventory record and an approval."
+        "title": "Inventory before the node can call it",
+        "body": "Skills, plugins, MCP servers, hooks, and CLI tools are attack surface. Nothing joins a node without an inventory record and an approval."
       },
       {
         "num": "02",
-        "title": "Typed actions, least privilege, scoped credentials",
-        "body": "Prefer typed tool calls over shell. Issue short-lived, scoped credentials. Broad tokens turn every extension into admin."
+        "title": "Typed actions, least privilege",
+        "body": "Prefer typed tool calls over shell. Issue credentials scoped to that node. A shared token turns every extension into admin across the graph."
       },
       {
         "num": "03",
-        "title": "Validate I/O and revoke on policy failure",
-        "body": "Check inputs and outputs. An extension that fails policy is revoked, not warned."
+        "title": "Validate I/O and revoke",
+        "body": "Check inputs and outputs at the edge. An extension that fails policy is revoked from the graph, not warned."
       }
     ]
   },

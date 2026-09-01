@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""High-contrast terracotta SVG diagrams for the CSA GCR deck."""
+"""High-contrast terracotta SVG diagrams for the Packt Graph Engineering deck."""
 
 INK = "#141413"
 MUTED = "#6B6B63"
@@ -57,14 +57,19 @@ def _label(x, y, text, size=12, fill=DK, anchor="middle", weight="800"):
 
 SVG_MAP = {
     "1": _svg("s1", f'''
-  {_label(400, 22, "GRAPH ENGINEERING  —  the multi-agent layer", 15)}
-  <path d="M 80 78 Q 400 8 720 78" fill="none" stroke="{DK}" stroke-width="3.2"/>
-  <path d="M 80 78 L 720 78" stroke="{DK}" stroke-width="2.2"/>
-  {_box(70, 96, 155, 72, "Prompt", "define the task")}
-  {_box(245, 96, 155, 72, "Context", "give evidence")}
-  {_box(420, 96, 155, 72, "Loop", "bound execution")}
-  {_box(595, 96, 135, 72, "Graph", "govern workflow", fill=TINT)}
-''', 180),
+  {_label(400, 20, "A multi-agent graph inside the harness — not a replacement for it", 14)}
+  <rect x="24" y="32" width="752" height="148" rx="14" fill="{WHITE}" stroke="{DK}" stroke-width="2.6"/>
+  {_label(48, 54, "HARNESS", 11, MUTED, "start")}
+  {_box(48, 66, 148, 58, "Planner", "one loop")}
+  {_arrow(196, 95, 230, 95, "s1", "typed")}
+  {_box(238, 66, 160, 58, "Implementer", "one loop", fill=TINT)}
+  {_arrow(398, 95, 432, 95, "s1", "typed")}
+  {_box(440, 66, 148, 58, "Reviewer", "one loop")}
+  {_arrow(588, 95, 622, 95, "s1")}
+  {_box(630, 66, 124, 58, "Done", "", fill=GREEN_BG, stroke=GREEN)}
+  {_box(238, 136, 200, 34, "human / fallback", "", fill=TINT, title_size=12)}
+  <path d="M 514 124 L 514 153 L 438 153" stroke="{DK}" stroke-width="2.2" fill="none" marker-end="url(#arr-s1)"/>
+''', 188),
 
     "2": _svg("s2", f'''
   {_box(20, 28, 180, 70, "Author", "Harness · MAESTRO")}
@@ -78,20 +83,21 @@ SVG_MAP = {
 ''', 140),
 
     "3": _svg("s3", f'''
-  {_box(40, 18, 175, 150, "01  Shift", "SE → Harness", fill=WHITE)}
-  {_arrow(215, 93, 248, 93, "s3")}
-  {_box(250, 18, 175, 150, "02  Core Four", "Prompt Context Loop Graph", fill=TINT)}
-  {_arrow(425, 93, 458, 93, "s3")}
-  {_box(460, 18, 155, 150, "03  Control", "identity · memory · eval")}
-  {_arrow(615, 93, 648, 93, "s3")}
-  {_box(650, 18, 130, 150, "04  Ext.", "skill MCP hooks")}
+  {_box(20, 18, 175, 150, "01  Need", "why a graph needs a harness", fill=WHITE)}
+  {_arrow(195, 93, 228, 93, "s3")}
+  {_box(236, 18, 175, 150, "02  Graph", "one loop → many nodes", fill=TINT)}
+  {_arrow(411, 93, 444, 93, "s3")}
+  {_box(452, 18, 155, 150, "03  Control", "per node · per edge")}
+  {_arrow(607, 93, 640, 93, "s3")}
+  {_box(648, 18, 132, 150, "04  Tools", "skill · plugin · MCP")}
 ''', 180),
 
     "4": _svg("s4", f'''
-  {_box(40, 40, 250, 110, "Software Engineering", "specified, tested, repeatable", fill=BLUE_BG, stroke=BLUE)}
-  {_arrow(300, 95, 370, 95, "s4", "paradigm")}
-  {_box(380, 40, 380, 110, "Harness Engineering", "deterministic control around probabilistic agents", fill=GREEN_BG, stroke=GREEN)}
-''', 170),
+  {_box(24, 28, 300, 118, "Specified software", "f(x) → y   tested branches", fill=BLUE_BG, stroke=BLUE)}
+  {_arrow(334, 87, 392, 87, "s4")}
+  {_box(404, 28, 372, 118, "A probabilistic agent", "unbounded without a control plane", fill=TINT)}
+  {_label(400, 168, "The graph inherits that plane. It does not replace it.", 13, MUTED)}
+''', 180),
 
     "5": _svg("s5", f'''
   {_box(16, 16, 250, 156, "Software Engineering", "f(x) → y   specified behavior", fill=BLUE_BG, stroke=BLUE, title_size=15, sub_size=12)}
@@ -114,15 +120,18 @@ SVG_MAP = {
 ''', 170),
 
     "7": _svg("s7", f'''
-  {_label(400, 24, "Four specializations of one harness", 15)}
-  {_box(20, 48, 175, 118, "Prompt", "define the task")}
-  {_arrow(195, 107, 228, 107, "s7")}
-  {_box(230, 48, 175, 118, "Context", "give evidence")}
-  {_arrow(405, 107, 438, 107, "s7")}
-  {_box(440, 48, 165, 118, "Loop", "bound the run")}
-  {_arrow(605, 107, 638, 107, "s7")}
-  {_box(640, 48, 140, 118, "Graph", "multi-agent", fill=TINT)}
-''', 180),
+  {_label(196, 24, "ONE AGENT LOOP", 13, MUTED)}
+  {_label(608, 24, "MULTI-AGENT GRAPH", 13, DK)}
+  <rect x="16" y="36" width="352" height="136" rx="12" fill="{WHITE}" stroke="{RULE}" stroke-width="2.2"/>
+  {_box(32, 56, 100, 96, "Prompt", "task")}
+  {_box(142, 56, 100, 96, "Context", "evidence")}
+  {_box(252, 56, 100, 96, "Loop", "bounds")}
+  {_arrow(378, 104, 420, 104, "s7", "fan-out")}
+  <rect x="428" y="36" width="356" height="136" rx="12" fill="{TINT}" stroke="{DK}" stroke-width="2.4"/>
+  {_box(444, 56, 104, 96, "Plan", "node")}
+  {_box(556, 56, 104, 96, "Impl.", "node")}
+  {_box(668, 56, 100, 96, "Review", "node")}
+''', 184),
 
     "8": _svg("s8", f'''
   {_box(16, 36, 300, 120, "Trusted instructions", "goal · constraints · output · stop", fill=GREEN_BG, stroke=GREEN)}
@@ -151,16 +160,17 @@ SVG_MAP = {
 ''', 180),
 
     "11": _svg("s11", f'''
-  {_box(40, 20, 150, 86, "Plan", "one job", fill=WHITE)}
-  {_arrow(200, 63, 238, 63, "s11", "artifact")}
-  {_box(246, 20, 160, 86, "Implement", "one job")}
-  {_arrow(416, 63, 454, 63, "s11", "artifact")}
-  {_box(462, 20, 150, 86, "Review", "one job", fill=TINT)}
-  {_arrow(622, 63, 660, 63, "s11")}
-  {_box(668, 20, 112, 86, "Done", "", fill=GREEN_BG, stroke=GREEN)}
-  <path d="M 537 106 L 537 142 L 246 142" stroke="{DK}" stroke-width="2.4" fill="none" marker-end="url(#arr-s11)"/>
-  {_box(80, 118, 160, 52, "Human / fallback", "exception path", fill=TINT, title_size=13, sub_size=11)}
-''', 182),
+  {_box(28, 12, 132, 72, "Plan", "one job", fill=WHITE)}
+  {_arrow(160, 48, 196, 48, "s11", "typed")}
+  {_box(204, 12, 148, 72, "Implement", "one job")}
+  {_arrow(352, 48, 388, 48, "s11", "typed")}
+  {_box(396, 12, 132, 72, "Review", "one job", fill=TINT)}
+  {_arrow(528, 48, 564, 48, "s11")}
+  {_box(572, 12, 200, 72, "Done / merge", "", fill=GREEN_BG, stroke=GREEN, title_size=14)}
+  <path d="M 462 84 L 462 118 L 204 118" stroke="{DK}" stroke-width="2.4" fill="none" marker-end="url(#arr-s11)"/>
+  {_box(48, 96, 150, 40, "exception owner", "", fill=TINT, title_size=12)}
+  {_label(400, 168, "Archetypes: sequential  ·  parallel  ·  reviewer  ·  conditional", 13)}
+''', 180),
 
     "12": _svg("s12", f'''
   {_box(300, 62, 200, 64, "Agent run", "probabilistic core", fill=WHITE)}
@@ -177,9 +187,9 @@ SVG_MAP = {
     "13": _svg("s13", f'''
   {_box(16, 36, 130, 100, "Start", "harness")}
   {_arrow(156, 86, 188, 86, "s13")}
-  {_box(196, 36, 140, 100, "Sandbox", "tools")}
+  {_box(196, 36, 140, 100, "Sandbox", "isolated runtime")}
   {_arrow(346, 86, 378, 86, "s13")}
-  {_box(386, 36, 150, 100, "Allowlist", "visible retries")}
+  {_box(386, 36, 150, 100, "Allowlist", "approved tools")}
   {_arrow(546, 86, 578, 86, "s13")}
   {_box(586, 36, 198, 100, "Stop", "human set the boundary", fill=TINT)}
 ''', 168),
@@ -240,7 +250,7 @@ SVG_MAP = {
 ''', 176),
 
     "20": _svg("s20", f'''
-  {_label(400, 28, "Token + tool-output budget per run and per loop", 14)}
+  {_label(400, 28, "Token + tool-output budget per node and per graph", 14)}
   <rect x="60" y="52" width="680" height="44" rx="10" fill="{WHITE}" stroke="{DK}" stroke-width="2.4"/>
   <rect x="64" y="56" width="470" height="36" rx="8" fill="{TINT}"/>
   {_label(300, 80, "consumed", 13, DK)}
@@ -249,13 +259,18 @@ SVG_MAP = {
 ''', 180),
 
     "21": _svg("s21", f'''
-  {_label(400, 24, "Extensions plug into the harness — they are not free capability", 14)}
-  {_box(20, 48, 140, 112, "Skill", "")}
-  {_box(176, 48, 140, 112, "Plug-in", "")}
-  {_box(332, 48, 140, 112, "MCP", "")}
-  {_box(488, 48, 140, 112, "hooks", "")}
-  {_box(644, 48, 136, 112, "CLI", "")}
-''', 176),
+  {_box(16, 28, 128, 56, "skill", "")}
+  {_box(16, 100, 128, 56, "plugin", "")}
+  {_box(656, 28, 128, 56, "MCP", "")}
+  {_box(656, 100, 128, 56, "hooks", "")}
+  {_box(328, 136, 144, 36, "CLI", "", title_size=13)}
+  {_arrow(144, 56, 288, 84, "s21")}
+  {_arrow(144, 128, 288, 104, "s21")}
+  {_arrow(656, 56, 512, 84, "s21")}
+  {_arrow(656, 128, 512, 104, "s21")}
+  {_arrow(400, 136, 400, 128, "s21")}
+  {_box(296, 40, 208, 88, "This node", "scoped tools only", fill=TINT)}
+''', 180),
 
     "22": _svg("s22", f'''
   {_box(16, 40, 230, 116, "Inventory + approve", "every skill, tool, server")}
@@ -266,10 +281,8 @@ SVG_MAP = {
 ''', 172),
 
     "23": _svg("s23", f'''
-  {_label(400, 30, "Build the graph. Graph engineering is the multi-agent layer of the harness.", 15)}
-  {_box(40, 56, 170, 100, "Prompt", "")}
-  {_box(230, 56, 170, 100, "Context", "")}
-  {_box(420, 56, 170, 100, "Loop", "")}
-  {_box(610, 56, 150, 100, "Graph", "", fill=TINT)}
-''', 168),
+  {_label(400, 44, "Fan-out only when one loop is not enough.", 18)}
+  {_label(400, 80, "A graph without a harness is a retry loop with more processes.", 14, MUTED)}
+  {_box(120, 108, 560, 52, "typed edges  ·  scoped credentials  ·  exception owners", "", fill=TINT, title_size=14)}
+''', 172),
 }

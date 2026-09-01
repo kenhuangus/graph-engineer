@@ -430,9 +430,8 @@ JS = r"""
     function renderSection(slide) {
       return `
         <div id="slide-content-wrap" class="section-slide idea-slide">
-          <div class="section-kicker">${esc(slide.raw_lines[0] || '')}</div>
-          <div class="section-title">${esc(slide.raw_lines[1] || '')}</div>
-          <div class="section-sub">${esc(slide.raw_lines[2] || '')}</div>
+          <div class="section-title">${esc(slide.raw_lines[0] || '')}</div>
+          <div class="section-sub">${esc(slide.raw_lines[1] || '')}</div>
           ${svgFor(slide.number)}
         </div>`;
     }
@@ -669,7 +668,7 @@ def main() -> None:
       <button id="btn-prev" class="btn" onclick="prevSlide()">❮ Prev</button>
       <select id="slide-select" class="slide-select" onchange="goToSlide(this.value)"></select>
       <div class="goto-group">
-        <input type="number" id="goto-input" min="1" max="22" placeholder="#" class="goto-input" title="Enter slide number (1-22)" onkeydown="if(event.key==='Enter') jumpToEnteredSlide()">
+        <input type="number" id="goto-input" min="1" max="20" placeholder="#" class="goto-input" title="Enter slide number (1-20)" onkeydown="if(event.key==='Enter') jumpToEnteredSlide()">
         <button id="btn-goto" class="btn btn-goto" onclick="jumpToEnteredSlide()" title="Jump to entered slide number">Go ➔</button>
       </div>
       <button id="btn-next" class="btn" onclick="nextSlide()">Next ❯</button>

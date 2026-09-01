@@ -37,47 +37,12 @@
     "number": 4,
     "slide_type": "section",
     "raw_lines": [
-      "Part 1",
       "The Harness Stack",
       "Five second-level disciplines under harness engineering"
     ]
   },
   {
     "number": 5,
-    "slide_type": "triple",
-    "raw_lines": [
-      "Ontology Before Intent",
-      "Name the domain before any node acts"
-    ],
-    "points": [
-      {
-        "num": "01",
-        "title": "Ontology first",
-        "body": "Define entities, relationships, and rules. Every later node in the graph inherits that vocabulary. No shared ontology, no safe handoff."
-      },
-      {
-        "num": "02",
-        "title": "Intent is a binding, not a wish",
-        "body": "Bind a principal to a goal, object, constraints, and a success test. That binding is what a node is allowed to pursue."
-      },
-      {
-        "num": "03",
-        "title": "The harness checks the plan",
-        "body": "Validate planned actions against intent and policy. Model confidence is not authorization."
-      }
-    ]
-  },
-  {
-    "number": 6,
-    "slide_type": "section",
-    "raw_lines": [
-      "Part 2",
-      "From one loop to a graph",
-      "Prompt, context, and loop stay inside one agent"
-    ]
-  },
-  {
-    "number": 7,
     "slide_type": "triple",
     "raw_lines": [
       "Prompt Engineering",
@@ -102,7 +67,7 @@
     ]
   },
   {
-    "number": 8,
+    "number": 6,
     "slide_type": "triple",
     "raw_lines": [
       "Context Engineering",
@@ -127,7 +92,7 @@
     ]
   },
   {
-    "number": 9,
+    "number": 7,
     "slide_type": "triple",
     "raw_lines": [
       "Loop Engineering",
@@ -152,7 +117,7 @@
     ]
   },
   {
-    "number": 10,
+    "number": 8,
     "slide_type": "triple",
     "raw_lines": [
       "Graph Engineering",
@@ -177,16 +142,15 @@
     ]
   },
   {
-    "number": 11,
+    "number": 9,
     "slide_type": "section",
     "raw_lines": [
-      "Part 3",
       "Control at every node and edge",
       "A graph inherits the harness; it does not replace it"
     ]
   },
   {
-    "number": 12,
+    "number": 10,
     "slide_type": "triple",
     "raw_lines": [
       "Automation",
@@ -211,7 +175,7 @@
     ]
   },
   {
-    "number": 13,
+    "number": 11,
     "slide_type": "triple",
     "raw_lines": [
       "Identity and Intent",
@@ -236,7 +200,7 @@
     ]
   },
   {
-    "number": 14,
+    "number": 12,
     "slide_type": "triple",
     "raw_lines": [
       "Memory",
@@ -261,7 +225,7 @@
     ]
   },
   {
-    "number": 15,
+    "number": 13,
     "slide_type": "triple",
     "raw_lines": [
       "Observability",
@@ -286,7 +250,7 @@
     ]
   },
   {
-    "number": 16,
+    "number": 14,
     "slide_type": "triple",
     "raw_lines": [
       "Runtime Control",
@@ -311,7 +275,7 @@
     ]
   },
   {
-    "number": 17,
+    "number": 15,
     "slide_type": "triple",
     "raw_lines": [
       "Evaluation",
@@ -336,7 +300,7 @@
     ]
   },
   {
-    "number": 18,
+    "number": 16,
     "slide_type": "triple",
     "raw_lines": [
       "Scalability",
@@ -361,7 +325,7 @@
     ]
   },
   {
-    "number": 19,
+    "number": 17,
     "slide_type": "triple",
     "raw_lines": [
       "Token Budget",
@@ -386,16 +350,15 @@
     ]
   },
   {
-    "number": 20,
+    "number": 18,
     "slide_type": "section",
     "raw_lines": [
-      "Part 4",
       "Tools the graph is allowed to use",
       "Extensions are edges to capability, not free power"
     ]
   },
   {
-    "number": 21,
+    "number": 19,
     "slide_type": "triple",
     "raw_lines": [
       "Extensions",
@@ -420,7 +383,7 @@
     ]
   },
   {
-    "number": 22,
+    "number": 20,
     "slide_type": "thanks",
     "raw_lines": [
       "Thank you",

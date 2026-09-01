@@ -19,7 +19,7 @@ Thesis of the talk: software engineering specifies deterministic behavior; harne
 | File | Role |
 | --- | --- |
 | `index.html` | Landing page (speaker, outline, link to the deck) |
-| `slides.html` | 23-slide presentation (keyboard, Go-To, grid, fullscreen) |
+| `slides.html` | 22-slide presentation (keyboard, Go-To, grid, fullscreen) |
 | `slides_data.json` | English slide content |
 | `build_english_deck.py` | Rebuilds `slides.html` from the JSON + Packt template CSS |
 | `assets/images/` | Speaker photo, book covers, logos |

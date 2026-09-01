@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agentic AI Graph Engineering | Packt</title>
   <meta name="description" content="Packt deck on graph engineering for agentic AI. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=3">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png?v=3">
   <style>
     :root {
       --background: #F0EEE6;
@@ -108,7 +109,7 @@
   <nav>
     <div class="container nav-container">
       <a href="#" class="brand">
-        <img src="assets/images/harness_app_icon.png" alt="Graph Engineering">
+        <img src="favicon.svg?v=3" alt="Graph Engineering">
         <div class="brand-text">Graph Engineering</div>
       </a>
       <ul class="nav-links">
@@ -129,7 +130,7 @@
         fan-out only when one loop is not enough, and only inside a control plane.
       </p>
       <div class="hero-buttons">
-        <a href="slides.html" class="btn-github">Open the 23-slide deck</a>
+        <a href="slides.html" class="btn-github">Open the 22-slide deck</a>
         <a href="#speaker" class="btn-secondary">Meet the speaker</a>
       </div>
 
@@ -149,26 +150,31 @@
 
   <section id="outline">
     <div class="container">
-      <h2 class="section-title">Graph engineering in four moves</h2>
-      <p class="section-subtitle">Where the graph sits, and what must surround it. Translated from the original bilingual Google Slides deck.</p>
+      <h2 class="section-title">The talk</h2>
+      <p class="section-subtitle">The Packt Harness core thesis, then graph engineering as the multi-agent layer.</p>
       <div class="grid">
         <div class="card">
           <div class="card-icon">01</div>
-          <h3>Why a graph needs a harness</h3>
-          <p>Software engineering specifies testable behavior. A probabilistic agent needs a control plane before you fan out.</p>
+          <h3>Traditional SE vs harness engineering</h3>
+          <p>Software engineering specifies deterministic f(x) → y. Harness engineering puts a deterministic control plane around probabilistic agents.</p>
         </div>
         <div class="card">
           <div class="card-icon">02</div>
+          <h3>The harness stack</h3>
+          <p>Harness engineering sits on top. Prompt, context, loop, graph, and memory engineering are the second-level disciplines under it.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">03</div>
           <h3>From one loop to a graph</h3>
           <p>Prompt, context, and loop run inside one agent. Graph engineering starts when that loop is not enough.</p>
         </div>
         <div class="card">
-          <div class="card-icon">03</div>
+          <div class="card-icon">04</div>
           <h3>Control at every node and edge</h3>
           <p>Identity, memory, eval, runtime stop, and token budgets apply per node. A graph without those controls is a retry loop with more processes.</p>
         </div>
         <div class="card">
-          <div class="card-icon">04</div>
+          <div class="card-icon">05</div>
           <h3>Tools the graph is allowed to use</h3>
           <p>Skills, plugins, MCP, hooks, and CLI. Inventory, least privilege, typed actions, revoke on policy failure.</p>
         </div>

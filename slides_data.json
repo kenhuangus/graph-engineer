@@ -27,32 +27,10 @@
   },
   {
     "number": 3,
-    "slide_type": "agenda",
+    "slide_type": "comparison",
     "raw_lines": [
-      "Graph engineering in four moves",
-      "Where the graph sits, and what must surround it"
-    ],
-    "agenda": [
-      {
-        "num": "01",
-        "title": "Why a graph needs a harness",
-        "body": "A single agent hits context decay, self-grading, and sequential bottlenecks. Software engineering specifies f(x). Agentic work needs a control plane before you fan out."
-      },
-      {
-        "num": "02",
-        "title": "From one loop to a graph",
-        "body": "Prompt, context, and loop run inside one agent. Graph engineering starts when that loop is not enough: specialized nodes, typed handoffs, parallel work."
-      },
-      {
-        "num": "03",
-        "title": "Control at every node and edge",
-        "body": "Identity, memory, eval, runtime stop, and token budgets apply per node. A graph without those controls is a retry loop with more processes."
-      },
-      {
-        "num": "04",
-        "title": "Tools the graph is allowed to use",
-        "body": "Skills, plugins, MCP, hooks, and CLI are how nodes get capability. Inventory, least privilege, typed actions, revoke on policy failure."
-      }
+      "The Masterclass Core Thesis: Traditional SE vs. Harness Engineering",
+      "Deterministic IT Engineering → Non-Deterministic Agentic AI Control Systems"
     ]
   },
   {
@@ -60,19 +38,12 @@
     "slide_type": "section",
     "raw_lines": [
       "Part 1",
-      "Why a graph needs a harness",
-      "Specified software vs a probabilistic agent"
+      "The Harness Stack",
+      "Five second-level disciplines under harness engineering"
     ]
   },
   {
     "number": 5,
-    "slide_type": "comparison",
-    "raw_lines": [
-      "The model is not the system"
-    ]
-  },
-  {
-    "number": 6,
     "slide_type": "triple",
     "raw_lines": [
       "Ontology Before Intent",
@@ -97,7 +68,7 @@
     ]
   },
   {
-    "number": 7,
+    "number": 6,
     "slide_type": "section",
     "raw_lines": [
       "Part 2",
@@ -106,7 +77,7 @@
     ]
   },
   {
-    "number": 8,
+    "number": 7,
     "slide_type": "triple",
     "raw_lines": [
       "Prompt Engineering",
@@ -131,7 +102,7 @@
     ]
   },
   {
-    "number": 9,
+    "number": 8,
     "slide_type": "triple",
     "raw_lines": [
       "Context Engineering",
@@ -156,7 +127,7 @@
     ]
   },
   {
-    "number": 10,
+    "number": 9,
     "slide_type": "triple",
     "raw_lines": [
       "Loop Engineering",
@@ -181,7 +152,7 @@
     ]
   },
   {
-    "number": 11,
+    "number": 10,
     "slide_type": "triple",
     "raw_lines": [
       "Graph Engineering",
@@ -206,7 +177,7 @@
     ]
   },
   {
-    "number": 12,
+    "number": 11,
     "slide_type": "section",
     "raw_lines": [
       "Part 3",
@@ -215,7 +186,7 @@
     ]
   },
   {
-    "number": 13,
+    "number": 12,
     "slide_type": "triple",
     "raw_lines": [
       "Automation",
@@ -240,7 +211,7 @@
     ]
   },
   {
-    "number": 14,
+    "number": 13,
     "slide_type": "triple",
     "raw_lines": [
       "Identity and Intent",
@@ -265,7 +236,7 @@
     ]
   },
   {
-    "number": 15,
+    "number": 14,
     "slide_type": "triple",
     "raw_lines": [
       "Memory",
@@ -290,7 +261,7 @@
     ]
   },
   {
-    "number": 16,
+    "number": 15,
     "slide_type": "triple",
     "raw_lines": [
       "Observability",
@@ -315,7 +286,7 @@
     ]
   },
   {
-    "number": 17,
+    "number": 16,
     "slide_type": "triple",
     "raw_lines": [
       "Runtime Control",
@@ -340,7 +311,7 @@
     ]
   },
   {
-    "number": 18,
+    "number": 17,
     "slide_type": "triple",
     "raw_lines": [
       "Evaluation",
@@ -365,7 +336,7 @@
     ]
   },
   {
-    "number": 19,
+    "number": 18,
     "slide_type": "triple",
     "raw_lines": [
       "Scalability",
@@ -390,7 +361,7 @@
     ]
   },
   {
-    "number": 20,
+    "number": 19,
     "slide_type": "triple",
     "raw_lines": [
       "Token Budget",
@@ -415,7 +386,7 @@
     ]
   },
   {
-    "number": 21,
+    "number": 20,
     "slide_type": "section",
     "raw_lines": [
       "Part 4",
@@ -424,7 +395,7 @@
     ]
   },
   {
-    "number": 22,
+    "number": 21,
     "slide_type": "triple",
     "raw_lines": [
       "Extensions",
@@ -449,7 +420,7 @@
     ]
   },
   {
-    "number": 23,
+    "number": 22,
     "slide_type": "thanks",
     "raw_lines": [
       "Thank you",

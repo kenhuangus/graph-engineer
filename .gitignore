@@ -16,6 +16,15 @@ _gh_deploy.py
 _wait_pages.py
 _git_push.py
 _qa_live.py
+_render_favicon.py
+_qa_favicon.py
+_collapse_345.py
+_extract_h3.py
+_shot_harness3.py
+_h3.svg
+_qa_thesis.py
+_insert_stack.py
+_qa_stack.py
 _template.css.fragment
 qa_*.png
 __pycache__/

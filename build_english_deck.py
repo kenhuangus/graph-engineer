@@ -26,10 +26,12 @@ EXTRA_CSS = r"""
     .author-books-header { font-size: 0.95em !important; }
     .book-item-title { font-size: 0.62em !important; }
     .book-publisher-tag { font-size: 0.50em !important; }
-    .thesis-title { font-size: 1.40em !important; }
-    .thesis-subtitle { font-size: 0.95em !important; }
-    .thesis-badge { font-size: 0.72em !important; }
-    .thesis-point { font-size: 0.95em !important; }
+    .slide-title.is-long { font-size: clamp(1.55rem, 2.6vw, 2.15rem) !important; letter-spacing: -0.02em; }
+    .thesis-slide-wrap .slide-svg { width: 100%; height: auto; max-height: 34%; flex: 0 0 auto; }
+    .thesis-slide-wrap .thesis-title { font-size: 1.02rem !important; }
+    .thesis-slide-wrap .thesis-subtitle { font-size: 0.80rem !important; }
+    .thesis-slide-wrap .thesis-badge { font-size: 0.66rem !important; }
+    .thesis-slide-wrap .thesis-point { font-size: 0.86rem !important; }
 
     .idea-slide {
       display: flex;
@@ -452,31 +454,37 @@ JS = r"""
 
     function renderComparison() {
       return `
-        <div id="slide-content-wrap" class="idea-slide">
-          ${svgFor(5)}
+        <div id="slide-content-wrap" class="thesis-slide-wrap">
+          ${svgFor(3)}
           <div class="thesis-grid">
             <div class="thesis-card trad-card">
               <div class="thesis-card-header trad-header">
                 <span class="thesis-icon">🏛️</span>
                 <div>
-                  <div class="thesis-title">Software Engineering</div>
-                  <div class="thesis-subtitle">Specified, tested, repeatable</div>
+                  <div class="thesis-title">Traditional Software Engineering</div>
+                  <div class="thesis-subtitle">SDLC, DevOps, CI/CD, Testing Pyramids &amp; SRE</div>
                 </div>
+                <span class="thesis-badge trad-badge">DETERMINISTIC SYSTEMS</span>
               </div>
               <div class="thesis-card-body">
-                <div class="thesis-point">Specs, tests, CI/CD, SRE. Behavior is encoded as expected branches: <code>f(x) → y</code>.</div>
+                <div class="thesis-point"><strong>🎯 System Domain:</strong> Built for <strong>deterministic IT systems</strong> where explicit logic and algorithms run on predictable computer hardware.</div>
+                <div class="thesis-point"><strong>⚙️ Frameworks &amp; Practices:</strong> SDLC, Agile, Architecture Patterns, CI/CD pipelines, Unit/Integration Testing Pyramids, SRE, and Secure-SDLC / AppSec.</div>
+                <div class="thesis-point"><strong>🔒 Core Principle:</strong> <strong>Deterministic Repeatability</strong> — identical inputs and state strictly produce identical outputs (<code>f(x) ➔ y</code>).</div>
               </div>
             </div>
             <div class="thesis-card harn-card">
               <div class="thesis-card-header harn-header">
                 <span class="thesis-icon">🛡️</span>
                 <div>
-                  <div class="thesis-title">Harness Engineering</div>
-                  <div class="thesis-subtitle">Control around probabilistic agents</div>
+                  <div class="thesis-title">Harness Engineering for Agentic AI</div>
+                  <div class="thesis-subtitle">Deterministic Control Systems for Probabilistic Agents</div>
                 </div>
+                <span class="thesis-badge harn-badge">NON-DETERMINISTIC + HARNESS</span>
               </div>
               <div class="thesis-card-body">
-                <div class="thesis-point">Prompt, context, and loop run in one agent. Graph engineering fans out when that loop is not enough — still inside one control plane.</div>
+                <div class="thesis-point"><strong>🧠 Probabilistic Emergence:</strong> Behavior emerges probabilistically from foundation models plus prompts, dynamic context, memory, tools, loops, policies, and multi-agent teams.</div>
+                <div class="thesis-point"><strong>🛡️ Deterministic Control Environment:</strong> Engineers the surrounding scaffold: Memory (<code>CLAUDE.md</code>/<code>AGENTS.md</code>), path sandboxing, Pre/Post AST hooks, Pytest TDA loops, and permission gateways.</div>
+                <div class="thesis-point"><strong>🎯 The 5 Production Goals:</strong> Transforms probabilistic model outputs into systems that are <strong>Reliable</strong>, <strong>Observable</strong>, <strong>Secure</strong>, <strong>Governable</strong>, and <strong>Operationally Manageable</strong>.</div>
               </div>
             </div>
           </div>
@@ -487,7 +495,7 @@ JS = r"""
       return `
         <div id="slide-content-wrap" class="thanks-wrap idea-slide">
           <div>
-            ${svgFor(23)}
+            ${svgFor(slide.number)}
             <div class="thanks-kicker">Packt</div>
             <div class="thanks-title">Thank you</div>
             <div class="thanks-book">${esc(slide.raw_lines[1] || '')}</div>
@@ -513,8 +521,10 @@ JS = r"""
       if (idx >= slidesData.length) idx = slidesData.length - 1;
       currentIdx = idx;
       const slide = slidesData[idx];
+      const t = slide.slide_type;
       selectEl.value = idx;
       document.getElementById('slide-title').innerText = slide.raw_lines[0] || ('Slide ' + slide.number);
+      document.getElementById('slide-title').classList.toggle('is-long', t === 'comparison');
       document.getElementById('slide-num-badge').innerText = 'Slide ' + slide.number + ' of ' + slidesData.length;
       if (window.location.hash !== '#' + slide.number) {
         history.replaceState(null, '', '#' + slide.number);
@@ -523,7 +533,6 @@ JS = r"""
       document.getElementById('btn-next').disabled = (idx === slidesData.length - 1);
 
       let html = '';
-      const t = slide.slide_type;
       if (t === 'title') html = renderTitle();
       else if (t === 'speaker') html = renderSpeaker(slide);
       else if (t === 'agenda') html = renderAgenda(slide);
@@ -640,9 +649,9 @@ def main() -> None:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agentic AI Graph Engineering — Packt</title>
   <meta name="description" content="Packt deck on graph engineering for agentic AI. Graph engineering is the multi-agent layer of the agent harness. Speaker: Ken Huang, CISSP.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=3">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -651,7 +660,7 @@ def main() -> None:
 <body>
   <header>
     <div class="header-left">
-      <img src="assets/images/harness_app_icon.png" alt="Graph Engineering Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; display:inline-block;" />
+      <img src="favicon.svg?v=3" alt="Graph Engineering Logo" style="width:28px; height:28px; border-radius:6px; object-fit:cover; display:inline-block;" />
       <div class="brand-title">Graph Engineering · Packt</div>
     </div>
     <div class="controls">
@@ -660,7 +669,7 @@ def main() -> None:
       <button id="btn-prev" class="btn" onclick="prevSlide()">❮ Prev</button>
       <select id="slide-select" class="slide-select" onchange="goToSlide(this.value)"></select>
       <div class="goto-group">
-        <input type="number" id="goto-input" min="1" max="23" placeholder="#" class="goto-input" title="Enter slide number (1-23)" onkeydown="if(event.key==='Enter') jumpToEnteredSlide()">
+        <input type="number" id="goto-input" min="1" max="22" placeholder="#" class="goto-input" title="Enter slide number (1-22)" onkeydown="if(event.key==='Enter') jumpToEnteredSlide()">
         <button id="btn-goto" class="btn btn-goto" onclick="jumpToEnteredSlide()" title="Jump to entered slide number">Go ➔</button>
       </div>
       <button id="btn-next" class="btn" onclick="nextSlide()">Next ❯</button>

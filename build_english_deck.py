@@ -211,10 +211,18 @@ EXTRA_CSS = r"""
     }
     .thanks-wrap {
       height: 100%;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 1.20rem;
-      align-items: center;
+      max-height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      justify-content: space-between;
+      min-height: 0;
+      box-sizing: border-box;
+    }
+    .thanks-header {
+      text-align: center;
+      flex: 0 0 auto;
     }
     .thanks-kicker {
       font-family: var(--font-code);
@@ -222,40 +230,113 @@ EXTRA_CSS = r"""
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-dk);
-      font-size: 1.00em;
+      font-size: 0.78em;
     }
-    .thanks-title {
+    .thanks-lede {
+      font-size: 0.88em;
+      line-height: 1.25;
+      color: var(--ink-muted);
+      max-width: 40rem;
+      margin: 0.2rem auto 0;
+    }
+    .thanks-books {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      flex: 1 1 auto;
+      min-height: 0;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .thanks-book-card {
+      background: var(--surface);
+      border: 1.5px solid var(--rule);
+      border-radius: 12px;
+      padding: 0.55rem 0.65rem 0.65rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.30rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .thanks-book-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    }
+    .thanks-book-cover {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .thanks-book-cover img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+    }
+    .thanks-book-tag {
+      font-family: var(--font-code);
+      font-size: 0.62em;
+      font-weight: 750;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-dk);
+      background: var(--accent-sf);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.12rem 0.45rem;
+      flex: 0 0 auto;
+    }
+    .thanks-book-title {
       font-family: var(--font-display);
-      font-size: 3.30em;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
-      margin: 0.2rem 0 0.5rem;
+      font-size: 0.88em;
+      font-weight: 750;
+      line-height: 1.15;
+      color: var(--ink);
+      max-width: 17rem;
+      flex: 0 0 auto;
     }
-    .thanks-book { font-size: 1.26em; line-height: 1.30; color: var(--ink); max-width: 28rem; }
+    .thanks-book-asin {
+      font-family: var(--font-code);
+      font-size: 0.62em;
+      font-weight: 650;
+      color: var(--ink-muted);
+      line-height: 1.2;
+      flex: 0 0 auto;
+    }
+    .thanks-book-asin span {
+      color: var(--accent-dk);
+      font-weight: 750;
+    }
+    .thanks-footer {
+      text-align: center;
+      flex: 0 0 auto;
+    }
     .thanks-link a {
       color: var(--accent-dk);
       font-weight: 700;
       font-family: var(--font-code);
-      font-size: 1.05em;
+      font-size: 0.82em;
     }
-    .thanks-cover {
-      background: var(--surface);
-      border: 1.5px solid var(--rule);
-      border-radius: 14px;
-      padding: 0.70rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      text-align: center;
-    }
-    .thanks-cover img {
-      width: 100%;
-      max-height: 42vh;
-      object-fit: contain;
-      border-radius: 8px;
+    .slide-body:has(.thanks-wrap) {
+      overflow: hidden;
     }
     @media (max-width: 980px) {
-      .triple-grid, .core-four-row, .ctrl-pills, .thanks-wrap { grid-template-columns: 1fr 1fr; }
-      .thanks-wrap { grid-template-columns: 1fr; }
+      .triple-grid, .core-four-row, .ctrl-pills { grid-template-columns: 1fr 1fr; }
+      .thanks-books { grid-template-columns: 1fr 1fr; gap: 0.55rem; }
       .section-title { font-size: 2.0em; }
     }
 """
@@ -493,24 +574,32 @@ JS = r"""
     function renderThanks(slide) {
       return `
         <div id="slide-content-wrap" class="thanks-wrap idea-slide">
-          <div>
-            ${svgFor(slide.number)}
-            <div class="thanks-kicker">Packt</div>
-            <div class="thanks-title">Thank you</div>
-            <div class="thanks-book">${esc(slide.raw_lines[1] || '')}</div>
-            <div class="thanks-link" style="margin-top:0.85rem;">
-              <a href="https://www.amazon.com/dp/B0HF3F86YM" target="_blank" rel="noopener noreferrer">amazon.com/dp/B0HF3F86YM ↗</a>
-            </div>
-            <div class="thanks-link" style="margin-top:0.35rem;">
-              <a href="https://distributedapps.ai/" target="_blank" rel="noopener noreferrer">distributedapps.ai ↗</a>
-              &nbsp;·&nbsp;
-              <a href="https://kenhuangus.substack.com/" target="_blank" rel="noopener noreferrer">kenhuangus.substack.com ↗</a>
-            </div>
+          <div class="thanks-header">
+            <div class="thanks-kicker">Packt · Future reading</div>
+            <div class="thanks-lede">Two companion Kindle books by Ken Huang</div>
           </div>
-          <div class="thanks-cover">
-            <a href="https://www.amazon.com/dp/B0HF3F86YM" target="_blank" rel="noopener noreferrer">
-              <img src="assets/images/harness_engineering_book.png" alt="Harness Engineering book cover" />
+          <div class="thanks-books">
+            <a class="thanks-book-card" href="https://www.amazon.com/dp/B0HHZVDQQY" target="_blank" rel="noopener noreferrer" title="Graph Engineering for Agentic AI Systems on Amazon">
+              <div class="thanks-book-cover">
+                <img src="assets/images/graph_engineering_book.jpg" alt="Graph Engineering for Agentic AI Systems book cover" />
+              </div>
+              <div class="thanks-book-tag">Kindle · B0HHZVDQQY</div>
+              <div class="thanks-book-title">Graph Engineering for Agentic AI Systems</div>
+              <div class="thanks-book-asin"><span>Amazon ↗</span></div>
             </a>
+            <a class="thanks-book-card" href="https://www.amazon.com/dp/B0HF3F86YM" target="_blank" rel="noopener noreferrer" title="Harness Engineering on Amazon">
+              <div class="thanks-book-cover">
+                <img src="assets/images/harness_engineering_book.jpg" alt="Harness Engineering book cover" />
+              </div>
+              <div class="thanks-book-tag">Kindle · B0HF3F86YM</div>
+              <div class="thanks-book-title">Harness Engineering</div>
+              <div class="thanks-book-asin"><span>Amazon ↗</span></div>
+            </a>
+          </div>
+          <div class="thanks-footer thanks-link">
+            <a href="https://distributedapps.ai/" target="_blank" rel="noopener noreferrer">distributedapps.ai ↗</a>
+            &nbsp;·&nbsp;
+            <a href="https://kenhuangus.substack.com/" target="_blank" rel="noopener noreferrer">kenhuangus.substack.com ↗</a>
           </div>
         </div>`;
     }

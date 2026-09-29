@@ -2,7 +2,8 @@
 
 English GitHub Pages edition of Ken Huang’s Packt graph engineering keynote.
 
-**Live deck:** open `slides.html` (or the GitHub Pages URL after deploy).
+**Live site (GitHub Pages):** https://kenhuangus.github.io/graph-engineer/  
+**Live deck:** https://kenhuangus.github.io/graph-engineer/slides.html
 
 ## What this is
 
@@ -19,7 +20,7 @@ Thesis of the talk: software engineering specifies deterministic behavior; harne
 | File | Role |
 | --- | --- |
 | `index.html` | Landing page (speaker, outline, link to the deck) |
-| `slides.html` | 20-slide presentation (keyboard, Go-To, grid, fullscreen) |
+| `slides.html` | Presentation (keyboard, Go-To, grid, fullscreen) |
 | `slides_data.json` | English slide content |
 | `build_english_deck.py` | Rebuilds `slides.html` from the JSON + Packt template CSS |
 | `assets/images/` | Speaker photo, book covers, logos |
